@@ -1,0 +1,36 @@
+{
+  "title": "Hello",
+  "settings": "settings",
+  "settingsScreen": "settings screen",
+  "wozniakBio": "Developed the {appleOne} & {appleTwo} microcomputers.",
+  "@wozniakBio": {
+    "placeholders": {
+      "appleOne": {},
+      "appleTwo": {}
+    }
+  },
+  "heroCount": "{count,plural, =0{No heroes yet} =1{1 hero} other{{count} heroes}}",
+  "@heroCount": {
+    "placeholders": {
+      "count": {}
+    }},
+  "itemTotal": "Your total is: {value}",
+  "@itemTotal": {
+    "placeholders": {
+      "value": {
+        "type": "double",
+        "format": "currency"
+      }
+    }
+  },
+  "heroBorn": "Born {date}",
+  "@heroBorn": {
+    "placeholders": {
+      "date": {
+        "type": "DateTime",
+        "format": "yMMMd"
+      }
+    }
+  },
+  "alanTuring": "Alan Turing"
+}

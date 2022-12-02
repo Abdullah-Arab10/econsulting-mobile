@@ -1,0 +1,10 @@
+{
+  "title": "مرحبا",
+  "settings": "الاعدادات",
+  "settingsScreen": "شاشة الاعدادات",
+  "wozniakBio": "طور جهازي كمبيوتر {appleOne} و {appleTwo}",
+  "heroCount": "{count,plural, =0{لا توجد أبطال بعد} =1{بطل {count}} =2{بطلان} few{{count} أبطال} many{{count} بطل} other{{count} بطل}",
+  "itemTotal": "إجمالي: {value}",
+  "heroBorn": "تاريخ الميلاد {date}",
+  "alanTuring" : "ألان تورينغ"
+}
