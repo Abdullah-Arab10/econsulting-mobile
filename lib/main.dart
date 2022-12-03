@@ -22,7 +22,7 @@ class ConsultingApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => LocaleCubit()..getSavedLanguage())
+        BlocProvider(create: (context) => LocaleCubit()..getSavedLanguage()),
       ],
       child: BlocBuilder<LocaleCubit, ChangeLocaleState>(
           builder: (context, state) {
@@ -31,7 +31,7 @@ class ConsultingApp extends StatelessWidget {
           title: 'Flutter Demo',
           theme: AppTheme.themeData(),
           onGenerateRoute: appRouter.generateRoute,
-          locale: Locale('en'),
+          locale: state.locale,
           localizationsDelegates: [
             S.delegate,
             GlobalMaterialLocalizations.delegate,
