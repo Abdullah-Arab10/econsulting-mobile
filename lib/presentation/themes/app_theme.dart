@@ -1,12 +1,16 @@
 import 'package:e_consulting_flutter/presentation/themes/colors.dart';
 import 'package:flutter/material.dart';
 
+import '../../utils/helpers/material_colors_helper.dart';
+
 class AppTheme {
   static const colors = AppColors();
   static ThemeData themeData() {
     return ThemeData(
         fontFamily: 'Glory',
         primaryColor: colors.primaryColor,
+        colorScheme: ColorScheme.fromSwatch(
+            primarySwatch: buildMaterialColor(colors.primaryColor)),
         scaffoldBackgroundColor: colors.backgroundColor,
         cardColor: colors.backgroundColor,
         backgroundColor: colors.backgroundColor,
