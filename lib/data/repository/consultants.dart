@@ -1,4 +1,4 @@
-import 'package:e_consulting_flutter/data/models/ConsultantsModel.dart';
+import 'package:e_consulting_flutter/data/models/consultant/consultants_model.dart';
 import 'package:e_consulting_flutter/data/services/consultant_service.dart';
 
 class ConsultantsRepository {

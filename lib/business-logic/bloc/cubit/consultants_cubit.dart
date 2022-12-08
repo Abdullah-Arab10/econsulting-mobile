@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:e_consulting_flutter/data/repository/consultants.dart';
 import 'package:meta/meta.dart';
 
-import '../../../data/models/ConsultantsModel.dart';
+import '../../../data/models/consultant/consultants_model.dart';
 
 part 'consultants_state.dart';
 

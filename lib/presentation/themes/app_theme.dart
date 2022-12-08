@@ -4,25 +4,24 @@ import 'package:flutter/material.dart';
 import '../../utils/helpers/material_colors_helper.dart';
 
 class AppTheme {
-  static const colors = AppColors();
   static ThemeData themeData() {
     return ThemeData(
         fontFamily: 'Glory',
-        primaryColor: colors.primaryColor,
+        primaryColor: AppColors.primaryColor,
         colorScheme: ColorScheme.fromSwatch(
-            primarySwatch: buildMaterialColor(colors.primaryColor)),
-        scaffoldBackgroundColor: colors.backgroundColor,
-        cardColor: colors.backgroundColor,
-        backgroundColor: colors.backgroundColor,
+            primarySwatch: buildMaterialColor(AppColors.primaryColor)),
+        scaffoldBackgroundColor: AppColors.backgroundColor,
+        cardColor: AppColors.backgroundColor,
+        backgroundColor: AppColors.backgroundColor,
         textTheme: TextTheme(
-          headline1: TextStyle(color: colors.secondaryColor),
-          subtitle1: TextStyle(color: colors.secondaryColor),
-          headline2: TextStyle(color: colors.secondaryColor),
-          bodyText2: TextStyle(color: colors.secondaryColor),
+          headline1: TextStyle(color: AppColors.secondaryColor),
+          subtitle1: TextStyle(color: AppColors.secondaryColor),
+          headline2: TextStyle(color: AppColors.secondaryColor),
+          bodyText2: TextStyle(color: AppColors.secondaryColor),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: colors.primaryColor,
+            backgroundColor: AppColors.primaryColor,
             padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 40),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
@@ -30,7 +29,13 @@ class AppTheme {
             ),
           ),
         ),
-        appBarTheme: AppBarTheme(color: colors.primaryColor));
+        appBarTheme: AppBarTheme(
+            color: AppColors.primaryColor,
+          iconTheme: IconThemeData(
+              color: AppColors.secondaryColor
+          ),
+        )
+    );
   }
 
   AppTheme();
