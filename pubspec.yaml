@@ -38,10 +38,10 @@ flutter:
   assets:
     - assets/images/
   fonts:
-    - family: Glory
+    - family: Gilroy
       fonts:
-        - asset: assets/fonts/Glory/Glory-Regular.ttf
-        - asset: assets/fonts/Glory/Glory-ExtraBold.ttf
+        - asset: assets/fonts/Gilroy/Gilroy-ExtraBold.otf
+        - asset: assets/fonts/Gilroy/Gilroy-Light.otf
 
 flutter_intl:
   enabled: true

@@ -2,9 +2,9 @@
 
 import 'package:e_consulting_flutter/app_router.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/cubit/locale_cubit.dart';
-import 'package:e_consulting_flutter/presentation/pages/consulting_login_screen.dart';
+import 'package:e_consulting_flutter/presentation/pages/auth/login_screen.dart';
 import 'package:e_consulting_flutter/presentation/pages/on_boarding_screen.dart';
-import 'package:e_consulting_flutter/presentation/pages/register_type_screen.dart';
+import 'package:e_consulting_flutter/presentation/pages/auth/register_type_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'generated/l10n.dart';

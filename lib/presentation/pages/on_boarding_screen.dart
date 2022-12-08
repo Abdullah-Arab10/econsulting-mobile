@@ -1,12 +1,12 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:e_consulting_flutter/presentation/pages/consultant_register_screen.dart';
-import 'package:e_consulting_flutter/presentation/pages/register_type_screen.dart';
+import 'package:e_consulting_flutter/presentation/pages/auth/consultant_register_screen.dart';
+import 'package:e_consulting_flutter/presentation/pages/auth/register_type_screen.dart';
 import 'package:e_consulting_flutter/presentation/themes/colors.dart';
 import 'package:e_consulting_flutter/presentation/widgets/navigate_to.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'consulting_login_screen.dart';
+import 'auth/login_screen.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({Key? key}) : super(key: key);
@@ -29,9 +29,7 @@ class OnBoardingScreen extends StatelessWidget {
               padding: const EdgeInsetsDirectional.only(start: 16),
               child: Text(
                 'Want to know',
-                style: TextStyle(
-                  fontSize: 60,
-                ),
+                style: TextStyle(fontSize: 60, fontWeight: FontWeight.w700),
               ),
             ),
             SizedBox(
@@ -44,9 +42,7 @@ class OnBoardingScreen extends StatelessWidget {
                 children: [
                   Text(
                     'what',
-                    style: TextStyle(
-                      fontSize: 60,
-                    ),
+                    style: TextStyle(fontSize: 60, fontWeight: FontWeight.w700),
                   ),
                   Spacer(),
                   CircleAvatar(
@@ -58,11 +54,11 @@ class OnBoardingScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
                       ),
-                    child: Image(
-                      height: 70,
-                      image: AssetImage('assets/images/picture_2.png'),
+                      child: Image(
+                        height: 70,
+                        image: AssetImage('assets/images/picture_2.png'),
+                      ),
                     ),
-                  ),
                   ),
                   Spacer(),
                   Container(
@@ -128,9 +124,7 @@ class OnBoardingScreen extends StatelessWidget {
                 ),
                 Text(
                   'experts',
-                  style: TextStyle(
-                    fontSize: 60,
-                  ),
+                  style: TextStyle(fontSize: 60, fontWeight: FontWeight.w700),
                 ),
                 Spacer(),
               ],
@@ -152,16 +146,14 @@ class OnBoardingScreen extends StatelessWidget {
                           Text(
                             'say?',
                             style: TextStyle(
-                              fontSize: 60,
-                            ),
+                                fontSize: 60, fontWeight: FontWeight.w700),
                           ),
                           SizedBox(
                             height: 35,
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.only(
-                              start: 90
-                            ),
+                            padding:
+                                const EdgeInsetsDirectional.only(start: 90),
                             child: Container(
                               height: 75,
                               width: 175,
@@ -188,10 +180,8 @@ class OnBoardingScreen extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsetsDirectional.only(
-                        end: 16,
-                        bottom: 50
-                      ),
+                      padding:
+                          const EdgeInsetsDirectional.only(end: 16, bottom: 50),
                       child: CircleAvatar(
                         backgroundColor: AppColors.purpleColor,
                         radius: 70,
