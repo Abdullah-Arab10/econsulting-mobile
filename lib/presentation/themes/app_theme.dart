@@ -6,7 +6,7 @@ import '../../utils/helpers/material_colors_helper.dart';
 class AppTheme {
   static ThemeData themeData() {
     return ThemeData(
-        fontFamily: 'Glory',
+        fontFamily: 'Gilroy',
         primaryColor: AppColors.primaryColor,
         colorScheme: ColorScheme.fromSwatch(
             primarySwatch: buildMaterialColor(AppColors.primaryColor)),
@@ -30,12 +30,9 @@ class AppTheme {
           ),
         ),
         appBarTheme: AppBarTheme(
-            color: AppColors.primaryColor,
-          iconTheme: IconThemeData(
-              color: AppColors.secondaryColor
-          ),
-        )
-    );
+          color: AppColors.primaryColor,
+          iconTheme: IconThemeData(color: AppColors.secondaryColor),
+        ));
   }
 
   AppTheme();

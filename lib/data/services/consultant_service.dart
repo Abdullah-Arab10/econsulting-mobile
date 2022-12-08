@@ -8,7 +8,6 @@ class ConsultantsService extends BaseService {
   }
   Future<List<dynamic>> getAllConsultants() async {
     Response response = await dio.get('consultants-list');
-    print(response);
     return response.data;
   }
 }
