@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:e_consulting_flutter/app_router.dart';
-import 'package:e_consulting_flutter/business-logic/bloc/cubit/locale_cubit.dart';
+import 'package:e_consulting_flutter/business-logic/bloc/locale_cubit/locale_cubit.dart';
 import 'package:e_consulting_flutter/presentation/pages/auth/login_screen.dart';
 import 'package:e_consulting_flutter/presentation/pages/on_boarding_screen.dart';
 import 'package:e_consulting_flutter/presentation/pages/auth/register_type_screen.dart';

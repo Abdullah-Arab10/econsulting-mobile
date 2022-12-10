@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:e_consulting_flutter/presentation/themes/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -32,7 +34,13 @@ class AppTheme {
         appBarTheme: AppBarTheme(
           color: AppColors.primaryColor,
           iconTheme: IconThemeData(color: AppColors.secondaryColor),
-        ));
+        ),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: AppColors.backgroundColor,
+          elevation: 0,
+        ),
+    );
+
   }
 
   AppTheme();

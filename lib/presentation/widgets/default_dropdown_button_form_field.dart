@@ -1,4 +1,3 @@
-import 'package:e_consulting_flutter/business-logic/bloc/cubit/auth_cubit.dart';
 import 'package:e_consulting_flutter/presentation/themes/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +19,7 @@ Widget defaultDropdownButtonFormField({
       labelText: label,
       labelStyle: TextStyle(
         fontSize: 20,
+        fontWeight: FontWeight.w700,
         color: textColor,
       ),
       enabledBorder: OutlineInputBorder(

@@ -77,7 +77,7 @@ class OnBoardingScreen extends StatelessWidget {
                       children: [
                         Image(
                           height: 70,
-                          image: AssetImage('assets/images/picture_5.png'),
+                          image: AssetImage('assets/images/picture_4.png'),
                         ),
                         Image(
                           height: 70,
@@ -110,7 +110,7 @@ class OnBoardingScreen extends StatelessWidget {
                     children: [
                       Image(
                         height: 70,
-                        image: AssetImage('assets/images/picture_4.png'),
+                        image: AssetImage('assets/images/picture_5.png'),
                       ),
                       Image(
                         height: 70,
@@ -171,7 +171,10 @@ class OnBoardingScreen extends StatelessWidget {
                               child: Center(
                                 child: Text(
                                   'Just book',
-                                  style: TextStyle(fontSize: 30),
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.w700
+                                  ),
                                 ),
                               ),
                             ),
@@ -225,6 +228,7 @@ class OnBoardingScreen extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 23,
+                        fontWeight: FontWeight.w700,
                         color: AppColors.backgroundColor,
                       ),
                     ),
@@ -239,7 +243,10 @@ class OnBoardingScreen extends StatelessWidget {
                   Text(
                     'Have an account?',
                     style: TextStyle(
-                        color: AppColors.secondaryColor, fontSize: 20),
+                        color: AppColors.secondaryColor,
+                        fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                   Spacer(),
                   TextButton(
@@ -251,6 +258,7 @@ class OnBoardingScreen extends StatelessWidget {
                       style: TextStyle(
                         decoration: TextDecoration.underline,
                         fontSize: 20,
+                        fontWeight: FontWeight.w700,
                         color: AppColors.secondaryColor,
                       ),
                     ),

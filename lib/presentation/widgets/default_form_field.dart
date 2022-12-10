@@ -26,6 +26,7 @@ Widget defaultFormField({
         labelText: label,
         labelStyle: TextStyle(
           fontSize: 20,
+          fontWeight: FontWeight.w700,
           color: textColor,
         ),
         enabledBorder: OutlineInputBorder(

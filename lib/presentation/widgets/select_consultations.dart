@@ -1,4 +1,4 @@
-import 'package:e_consulting_flutter/business-logic/bloc/cubit/auth_cubit.dart';
+import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_cubit.dart';
 
 late int select;
 
