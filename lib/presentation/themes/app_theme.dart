@@ -1,5 +1,8 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:e_consulting_flutter/presentation/themes/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../utils/helpers/material_colors_helper.dart';
 
@@ -30,9 +33,22 @@ class AppTheme {
           ),
         ),
         appBarTheme: AppBarTheme(
-          color: AppColors.primaryColor,
+          color: AppColors.backgroundColor,
+          elevation: 0.0,
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarColor: AppColors.backgroundColor
+          ),
           iconTheme: IconThemeData(color: AppColors.secondaryColor),
-        ));
+        ),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: AppColors.backgroundColor,
+          elevation: 0,
+        ),
+        iconTheme: IconThemeData(
+          color: AppColors.primaryColor
+        )
+    );
+
   }
 
   AppTheme();

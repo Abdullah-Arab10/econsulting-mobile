@@ -1,12 +1,16 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'dart:convert';
+import 'dart:io';
+import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_states.dart';
 import 'package:e_consulting_flutter/data/models/auth/auth_login.dart';
 import 'package:e_consulting_flutter/data/models/consultant/auth_consultant_register.dart';
 import 'package:e_consulting_flutter/data/models/user/auth_user_register.dart';
 import 'package:e_consulting_flutter/data/remote/dio_helper.dart';
+import 'package:e_consulting_flutter/shared/constants/global_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'auth_states.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AuthCubit extends Cubit<AuthStates> {
   AuthCubit() : super(AuthInitialState());
@@ -19,16 +23,15 @@ class AuthCubit extends Cubit<AuthStates> {
     required String email,
     required String password,
   }) {
-    emit(LoginLoadingState());
-
-    DioHelper.postData(url: '', data: {
+    DioHelper.postData(url: LOGIN, data: {
       'email': email,
       'password': password,
     }).then((value) {
       authLogin = LoginModel.fromJson(value.data);
-      emit(LoginSuccessState());
+      emit(LoginSuccessState(authLogin));
     }).catchError((error) {
-      emit(LoginErrorState(error));
+      print(error.toString());
+      emit(LoginErrorState(error.toString()));
     });
   }
 
@@ -41,11 +44,11 @@ class AuthCubit extends Cubit<AuthStates> {
     required String password,
     required String address,
     required String phone,
-    required FileImage image,
+    File? image,
   }) {
     emit(UserRegisterLoadingState());
 
-    DioHelper.postData(url: '', data: {
+    DioHelper.postData(url: REGISTER_AS_USER, data: {
       'first_name': first_name,
       'last_name': last_name,
       'email': email,
@@ -64,13 +67,13 @@ class AuthCubit extends Cubit<AuthStates> {
   late AuthConsultantRegister authConsultantRegister;
 
   void consultantRegister({
-    required String first_name,
-    required String last_name,
+    required String firstName,
+    required String lastName,
     required String email,
     required String password,
     required String address,
     required String phone,
-    //required FileImage image,
+    File? image,
     required String bio,
     required int skill,
     required String shiftStart,
@@ -78,14 +81,40 @@ class AuthCubit extends Cubit<AuthStates> {
   }) {
     emit(ConsultantRegisterLoadingState());
 
-    DioHelper.postData(url: '', data: {
-      'first_name': first_name,
-      'last_name': last_name,
+    // FormData form = FormData.fromMap({
+    //   'firstName': firstName,
+    //   'lastName': lastName,
+    //   'email': email,
+    //   'password': password,
+    //   'address': address,
+    //   'phone': phone,
+    //   'image' : image,//await MultipartFile.fromFile(image.path,) ,
+    //   'bio': bio,
+    //   'skill': skill,
+    //   'shiftStart': shiftStart,
+    //   'shiftEnd': shiftEnd,
+    // });
+    // print(form);
+    // DioHelper.postForm(
+    //     url: REGISTER_AS_CONSULTANT,
+    //     data: form
+    // ).then((value) {
+    //   authConsultantRegister = AuthConsultantRegister.fromJson(value.data);
+    //   emit(ConsultantRegisterSuccessState());
+    // }).catchError((error) {
+    //   print(error.toString());
+    //   emit(ConsultantRegisterErrorState(error.toString()));
+    // });
+    DioHelper.postData(
+        url: REGISTER_AS_CONSULTANT,
+        data: {
+      'firstName': firstName,
+      'lastName': lastName,
       'email': email,
       'password': password,
       'address': address,
       'phone': phone,
-      //'image' : image,
+      'image': image,
       'bio': bio,
       'skill': skill,
       'shiftStart': shiftStart,
@@ -94,7 +123,8 @@ class AuthCubit extends Cubit<AuthStates> {
       authConsultantRegister = AuthConsultantRegister.fromJson(value.data);
       emit(ConsultantRegisterSuccessState());
     }).catchError((error) {
-      emit(ConsultantRegisterErrorState(error));
+      print(error.toString());
+      emit(ConsultantRegisterErrorState(error.toString()));
     });
   }
 
@@ -116,10 +146,32 @@ class AuthCubit extends Cubit<AuthStates> {
     '5',
   ];
 
-  String? selectedConsultation;
+  String selectedConsultation = '';
 
   void changeSelectedConsultation(value) {
     selectedConsultation = value;
     emit(ChangeSelectedConsultationState());
+  }
+
+  File? profileImage;
+  var picker = ImagePicker();
+
+  Future<void> getProfileImage() async {
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      profileImage = File(pickedFile.path);
+      emit(ConsultantProfileImageSuccessState());
+    } else {
+      print('No image selected');
+      emit(ConsultantProfileImageErrorState());
+    }
+  }
+
+  String upload() {
+    var uri = Uri.file(profileImage!.path).pathSegments.last;
+
+    print(uri);
+    return uri;
   }
 }

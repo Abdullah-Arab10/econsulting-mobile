@@ -9,7 +9,7 @@ Widget defaultFormField({
   required String label,
   required IconData prefix,
   required String? Function(String?) validate,
-  required Color textColor,
+  Function(String?)? onChange,
   VoidCallback? suffixPressed,
   bool isPassword = false,
   IconData? suffix,
@@ -20,36 +20,23 @@ Widget defaultFormField({
       controller: controller,
       keyboardType: keyboardType,
       validator: validate,
+      onChanged: onChange,
       onTap: onTap,
       obscureText: isPassword,
       decoration: InputDecoration(
         labelText: label,
         labelStyle: TextStyle(
-          fontSize: 20,
-          color: textColor,
+          fontWeight: FontWeight.w600,
+          color: Colors.grey,
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: AppColors.primaryColor,
+            color: AppColors.greyColor,
             width: borderWidth,
           ),
           borderRadius: BorderRadius.circular(50),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: AppColors.primaryColor,
-            width: borderWidth,
-          ),
-          borderRadius: BorderRadius.circular(50),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: AppColors.primaryColor,
-            width: borderWidth,
-          ),
-          borderRadius: BorderRadius.circular(50),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: AppColors.primaryColor,
             width: borderWidth,
