@@ -1,12 +1,12 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_states.dart';
 import 'package:e_consulting_flutter/data/models/auth/auth_login.dart';
 import 'package:e_consulting_flutter/data/models/consultant/auth_consultant_register.dart';
 import 'package:e_consulting_flutter/data/models/user/auth_user_register.dart';
 import 'package:e_consulting_flutter/data/remote/dio_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'auth_states.dart';
 
 class AuthCubit extends Cubit<AuthStates> {
   AuthCubit() : super(AuthInitialState());
@@ -41,7 +41,7 @@ class AuthCubit extends Cubit<AuthStates> {
     required String password,
     required String address,
     required String phone,
-    required FileImage image,
+    //required FileImage image,
   }) {
     emit(UserRegisterLoadingState());
 
@@ -52,7 +52,7 @@ class AuthCubit extends Cubit<AuthStates> {
       'password': password,
       'address': address,
       'phone': phone,
-      'image': image,
+      //'image': image,
     }).then((value) {
       authUserRegister = AuthUserRegister.fromJson(value.data);
       emit(UserRegisterSuccessState());
@@ -116,7 +116,7 @@ class AuthCubit extends Cubit<AuthStates> {
     '5',
   ];
 
-  String? selectedConsultation;
+  String selectedConsultation = '';
 
   void changeSelectedConsultation(value) {
     selectedConsultation = value;

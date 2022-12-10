@@ -26,6 +26,7 @@ Widget defaultButton({
         child: Text(
           isUpperCase ? text.toUpperCase() : text,
           style: TextStyle(
+            fontWeight: FontWeight.w700,
             color: textColor,
           ),
         ),
@@ -41,6 +42,7 @@ Widget defaultTextButton({
     text,
     style: TextStyle(
       fontSize: 20,
+      fontWeight: FontWeight.w700,
       color: AppColors.primaryColor,
     ),
   ),
