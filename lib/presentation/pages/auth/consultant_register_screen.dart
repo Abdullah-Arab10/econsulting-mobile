@@ -1,9 +1,10 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-
 // import 'package:dropdownfield/dropdownfield.dart';
 
+import 'dart:convert';
 import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_states.dart';
 import 'package:e_consulting_flutter/presentation/themes/colors.dart';
@@ -13,14 +14,15 @@ import 'package:e_consulting_flutter/presentation/widgets/default_dropdown_butto
 import 'package:e_consulting_flutter/presentation/widgets/default_form_field.dart';
 import 'package:e_consulting_flutter/presentation/widgets/select_consultations.dart';
 import 'package:e_consulting_flutter/presentation/widgets/show_toast.dart';
+import 'package:e_consulting_flutter/utils/helpers/images_converter_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:conditional_builder/conditional_builder.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:validators/validators.dart';
 
 class ConsultantRegisterScreen extends StatelessWidget {
-
   var firstNameController = TextEditingController();
 
   var lastNameController = TextEditingController();
@@ -49,12 +51,24 @@ class ConsultantRegisterScreen extends StatelessWidget {
 
   bool isEmailCorrect = false;
 
+  testGetImage() async {
+    Dio dio = new Dio();
+    dio.options.contentType = 'multipart/form-data';
+
+    var image;
+    var data = await dio.get("http://10.0.2.2:8000/api/auth/test2");
+    image = ImageConverter.dataFromBase64String(data.data);
+    print(image);
+    return image;
+    // dio
+    //     .post("http://10.0.2.2:8000/api/auth/test", data: data)
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AuthCubit,AuthStates>(
+    return BlocConsumer<AuthCubit, AuthStates>(
       listener: (context, state) {
-        if(state is ConsultantRegisterLoadingState)
-        {
+        if (state is ConsultantRegisterLoadingState) {
           // if(state.authLogin!.status)
           // {
           //
@@ -72,9 +86,8 @@ class ConsultantRegisterScreen extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: AppColors.backgroundColor,
             elevation: 0.0,
-            systemOverlayStyle: SystemUiOverlayStyle(
-                statusBarColor: AppColors.backgroundColor
-            ),
+            systemOverlayStyle:
+                SystemUiOverlayStyle(statusBarColor: AppColors.backgroundColor),
           ),
           body: Padding(
             padding: const EdgeInsets.all(20),
@@ -90,6 +103,16 @@ class ConsultantRegisterScreen extends StatelessWidget {
                         child: Stack(
                           alignment: Alignment.center,
                           children: [
+                            Container(
+                              width: 150,
+                              height: 150,
+                              decoration: BoxDecoration(
+                                  // image: new DecorationImage(
+                                  //     fit: BoxFit.cover,
+                                  //     image: testGetImage(),
+                                  //     scale: 0.5),
+                                  ),
+                            ),
                             CircleAvatar(
                               radius: 80,
                               backgroundColor: AppColors.primaryColor,
@@ -98,20 +121,18 @@ class ConsultantRegisterScreen extends StatelessWidget {
                               alignment: Alignment.bottomRight,
                               children: [
                                 CircleAvatar(
-                                  radius: 77,
-                                  backgroundImage: changeProfileImage(context)
-                                ),
+                                    radius: 77,
+                                    backgroundImage:
+                                        changeProfileImage(context)),
                                 CircleAvatar(
                                   radius: 20,
                                   backgroundColor: AppColors.primaryColor,
                                   child: IconButton(
                                     color: AppColors.backgroundColor,
-                                    onPressed: (){
+                                    onPressed: () {
                                       AuthCubit.get(context).getProfileImage();
                                     },
-                                    icon: Icon(
-                                        Icons.camera_alt
-                                    ),
+                                    icon: Icon(Icons.camera_alt),
                                   ),
                                 ),
                               ],
@@ -131,11 +152,10 @@ class ConsultantRegisterScreen extends StatelessWidget {
                               label: 'First Name',
                               prefix: Icons.first_page,
                               validate: (value) {
-                                if(value != null && value.isEmpty){
+                                if (value != null && value.isEmpty) {
                                   showToast(
                                       text: 'first name must not be empty',
-                                      state: ToastStates.ERROR
-                                  );
+                                      state: ToastStates.ERROR);
                                 }
                                 return null;
                               },
@@ -151,11 +171,10 @@ class ConsultantRegisterScreen extends StatelessWidget {
                               label: 'Last Name',
                               prefix: Icons.last_page,
                               validate: (value) {
-                                if(value != null && value.isEmpty){
+                                if (value != null && value.isEmpty) {
                                   showToast(
                                       text: 'last name must not be empty',
-                                      state: ToastStates.ERROR
-                                  );
+                                      state: ToastStates.ERROR);
                                 }
                                 return null;
                               },
@@ -173,17 +192,12 @@ class ConsultantRegisterScreen extends StatelessWidget {
                         prefix: Icons.email,
                         validate: (value) {
                           isEmailCorrect = isEmail(value!);
-                          if(value.isEmpty){
+                          if (value.isEmpty) {
                             showToast(
                                 text: 'email must not be empty',
-                                state: ToastStates.ERROR
-                            );
-                          }else if(isEmailCorrect == false)
-                          {
-                            showToast(
-                                text: 'gg',
-                                state: ToastStates.ERROR
-                            );
+                                state: ToastStates.ERROR);
+                          } else if (isEmailCorrect == false) {
+                            showToast(text: 'gg', state: ToastStates.ERROR);
                           }
                           return null;
                         },
@@ -198,14 +212,11 @@ class ConsultantRegisterScreen extends StatelessWidget {
                         prefix: Icons.lock,
                         suffix: AuthCubit.get(context).suffix,
                         validate: (value) {
-                          if(value != null && value.isEmpty)
-                          {
+                          if (value != null && value.isEmpty) {
                             showToast(
                                 text: 'password must not be empty',
-                                state: ToastStates.ERROR
-                            );
-                          }else if(value!.length <= 5)
-                          {
+                                state: ToastStates.ERROR);
+                          } else if (value!.length <= 5) {
                             showToast(
                               text: 'ggg',
                               state: ToastStates.WARNING,
@@ -214,8 +225,7 @@ class ConsultantRegisterScreen extends StatelessWidget {
                           return null;
                         },
                         isPassword: AuthCubit.get(context).isPassword,
-
-                        suffixPressed: (){
+                        suffixPressed: () {
                           AuthCubit.get(context).changePasswordVisibility();
                         },
                       ),
@@ -228,11 +238,10 @@ class ConsultantRegisterScreen extends StatelessWidget {
                         label: 'Address',
                         prefix: Icons.house_outlined,
                         validate: (value) {
-                          if(value != null && value.isEmpty){
+                          if (value != null && value.isEmpty) {
                             showToast(
                                 text: 'address must not be empty',
-                                state: ToastStates.ERROR
-                            );
+                                state: ToastStates.ERROR);
                           }
                           return null;
                         },
@@ -246,11 +255,10 @@ class ConsultantRegisterScreen extends StatelessWidget {
                         label: 'Phone',
                         prefix: Icons.phone,
                         validate: (value) {
-                          if(value != null && value.isEmpty){
+                          if (value != null && value.isEmpty) {
                             showToast(
                                 text: 'phone must not be empty',
-                                state: ToastStates.ERROR
-                            );
+                                state: ToastStates.ERROR);
                           }
                           return null;
                         },
@@ -267,11 +275,10 @@ class ConsultantRegisterScreen extends StatelessWidget {
                               label: 'Shift Start',
                               prefix: Icons.calendar_today_outlined,
                               validate: (value) {
-                                if(value != null && value.isEmpty){
+                                if (value != null && value.isEmpty) {
                                   showToast(
                                       text: 'shift start must not be empty',
-                                      state: ToastStates.ERROR
-                                  );
+                                      state: ToastStates.ERROR);
                                 }
                                 return null;
                               },
@@ -280,7 +287,8 @@ class ConsultantRegisterScreen extends StatelessWidget {
                                   context: context,
                                   initialTime: TimeOfDay.now(),
                                 ).then((value) {
-                                  shiftStartController.text = value!.format(context).toString();
+                                  shiftStartController.text =
+                                      value!.format(context).toString();
                                 });
                               },
                             ),
@@ -295,11 +303,10 @@ class ConsultantRegisterScreen extends StatelessWidget {
                               label: 'Shift End',
                               prefix: Icons.calendar_today_outlined,
                               validate: (value) {
-                                if(value != null && value.isEmpty){
+                                if (value != null && value.isEmpty) {
                                   showToast(
                                       text: 'shift end must not be empty',
-                                      state: ToastStates.ERROR
-                                  );
+                                      state: ToastStates.ERROR);
                                 }
                                 return null;
                               },
@@ -308,7 +315,8 @@ class ConsultantRegisterScreen extends StatelessWidget {
                                   context: context,
                                   initialTime: TimeOfDay.now(),
                                 ).then((value) {
-                                  shiftEndController.text = value!.format(context).toString();
+                                  shiftEndController.text =
+                                      value!.format(context).toString();
                                 });
                               },
                             ),
@@ -324,11 +332,10 @@ class ConsultantRegisterScreen extends StatelessWidget {
                         label: 'Bio',
                         prefix: Icons.details,
                         validate: (value) {
-                          if(value != null && value.isEmpty){
+                          if (value != null && value.isEmpty) {
                             showToast(
                                 text: 'details must not be empty',
-                                state: ToastStates.ERROR
-                            );
+                                state: ToastStates.ERROR);
                           }
                           return null;
                         },
@@ -337,23 +344,22 @@ class ConsultantRegisterScreen extends StatelessWidget {
                         height: 16,
                       ),
                       defaultDropdownButtonFormField(
-                          items: AuthCubit.get(context).consultations,
-                          label: 'Select any consultation',
-                          onChange: (val) {
-                            AuthCubit.get(context).changeSelectedConsultation(val);
-                            return null;
-                          },
-                          validate: (value)
-                          {
-                            if(AuthCubit.get(context).selectedConsultation == '')
-                            {
-                              showToast(
-                                  text: 'consultation must not be empty',
-                                  state: ToastStates.ERROR
-                              );
-                            }
-                            return null;
-                          },
+                        items: AuthCubit.get(context).consultations,
+                        label: 'Select any consultation',
+                        onChange: (val) {
+                          AuthCubit.get(context)
+                              .changeSelectedConsultation(val);
+                          return null;
+                        },
+                        validate: (value) {
+                          if (AuthCubit.get(context).selectedConsultation ==
+                              '') {
+                            showToast(
+                                text: 'consultation must not be empty',
+                                state: ToastStates.ERROR);
+                          }
+                          return null;
+                        },
                       ),
                       const SizedBox(
                         height: 20,
@@ -361,8 +367,8 @@ class ConsultantRegisterScreen extends StatelessWidget {
                       ConditionalBuilder(
                         condition: state is! LoginLoadingState,
                         builder: (context) => defaultButton(
-                          function: (){
-                            if(formKey.currentState!.validate()){
+                          function: () {
+                            if (formKey.currentState!.validate()) {
                               AuthCubit.get(context).consultantRegister(
                                 firstName: firstNameController.text,
                                 lastName: lastNameController.text,
@@ -381,7 +387,8 @@ class ConsultantRegisterScreen extends StatelessWidget {
                           text: 'register',
                           radius: 50,
                         ),
-                        fallback: (context) => Center(child: CircularProgressIndicator()),
+                        fallback: (context) =>
+                            Center(child: CircularProgressIndicator()),
                       ),
                     ],
                   ),
@@ -394,4 +401,3 @@ class ConsultantRegisterScreen extends StatelessWidget {
     );
   }
 }
-
