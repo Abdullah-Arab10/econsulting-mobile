@@ -12,46 +12,35 @@ class HomeLayoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (BuildContext context) => HomeCubit(),
-      child: BlocConsumer<HomeCubit,HomeStates>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          var cubit = HomeCubit.get(context);
-          return Scaffold(
-            appBar: AppBar(
-              backgroundColor: AppColors.backgroundColor,
-              elevation: 0.0,
-              systemOverlayStyle: SystemUiOverlayStyle(
-                  statusBarColor: AppColors.backgroundColor
-              ),
-              title: Text(
-                cubit.titles[cubit.currentIndex],
-                style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              actions: [
-                IconButton(
-                    onPressed: () {
-
-                    }, icon: Icon(
-                  Icons.search,
-                )),
-              ],
+    return BlocConsumer<HomeCubit,HomeStates>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        var cubit = HomeCubit.get(context);
+        return Scaffold(
+          appBar: AppBar(
+            backgroundColor: AppColors.backgroundColor,
+            elevation: 0.0,
+            systemOverlayStyle: SystemUiOverlayStyle(
+                statusBarColor: AppColors.backgroundColor
             ),
-            body: cubit.screens[cubit.currentIndex],
-            bottomNavigationBar: BottomNavigationBar(
-              currentIndex: cubit.currentIndex,
-              onTap: (value) {
-                cubit.changeIndex(value);
-              },
-              items: cubit.bottomItem,
-
+            title: Text(
+              cubit.titles[cubit.currentIndex],
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+              ),
             ),
-            );
-        },
-      ),
+          ),
+          body: cubit.screens[cubit.currentIndex],
+          bottomNavigationBar: BottomNavigationBar(
+            currentIndex: cubit.currentIndex,
+            onTap: (value) {
+              cubit.changeIndex(value);
+            },
+            items: cubit.bottomItem,
+
+          ),
+          );
+      },
     );
   }
 }

@@ -1,10 +1,16 @@
+import 'package:e_consulting_flutter/data/models/auth/auth_login.dart';
+
 abstract class AuthStates{}
 
 class AuthInitialState extends AuthStates{}
 
 class LoginLoadingState extends AuthStates{}
 
-class LoginSuccessState extends AuthStates{}
+class LoginSuccessState extends AuthStates{
+
+  final LoginModel authLogin;
+  LoginSuccessState(this.authLogin);
+}
 
 class LoginErrorState extends AuthStates
 {
@@ -38,3 +44,7 @@ class UserRegisterErrorState extends AuthStates
 class ChangePasswordVisibilityState extends AuthStates{}
 
 class ChangeSelectedConsultationState extends AuthStates{}
+
+class ConsultantProfileImageSuccessState extends AuthStates{}
+
+class ConsultantProfileImageErrorState extends AuthStates{}

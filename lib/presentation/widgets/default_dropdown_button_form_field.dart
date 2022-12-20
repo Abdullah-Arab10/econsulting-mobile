@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:e_consulting_flutter/presentation/themes/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +9,6 @@ Widget defaultDropdownButtonFormField({
   required String label,
   required String? Function(String?) validate,
   required String? Function(String?) onChange,
-  required Color textColor,
   double borderWidth = 2.5,
 }) => DropdownButtonFormField(
     items: items
@@ -18,13 +19,12 @@ Widget defaultDropdownButtonFormField({
     decoration: InputDecoration(
       labelText: label,
       labelStyle: TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.w700,
-        color: textColor,
+        fontWeight: FontWeight.w600,
+        color: Colors.grey,
       ),
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(
-          color: AppColors.primaryColor,
+          color: AppColors.greyColor,
           width: borderWidth,
         ),
         borderRadius: BorderRadius.circular(50),

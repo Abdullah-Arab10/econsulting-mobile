@@ -33,12 +33,25 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "alanTuring": MessageLookupByLibrary.simpleMessage("Alan Turing"),
+        "civilEngineers":
+            MessageLookupByLibrary.simpleMessage("Civil Engineers"),
+        "consultantsList":
+            MessageLookupByLibrary.simpleMessage("Consultants List"),
+        "dentists": MessageLookupByLibrary.simpleMessage("Dentists"),
+        "doctors": MessageLookupByLibrary.simpleMessage("Doctors"),
+        "economics": MessageLookupByLibrary.simpleMessage("Economics"),
         "heroBorn": m0,
         "heroCount": m1,
         "itemTotal": m2,
+        "lawyers": MessageLookupByLibrary.simpleMessage("Lawyers"),
+        "loginSuccess":
+            MessageLookupByLibrary.simpleMessage("Login successfully"),
         "settings": MessageLookupByLibrary.simpleMessage("settings"),
         "settingsScreen":
             MessageLookupByLibrary.simpleMessage("settings screen"),
+        "softwareEngineers":
+            MessageLookupByLibrary.simpleMessage("Software Engineers"),
+        "therapists": MessageLookupByLibrary.simpleMessage("Therapists"),
         "title": MessageLookupByLibrary.simpleMessage("Hello"),
         "wozniakBio": m3
       };

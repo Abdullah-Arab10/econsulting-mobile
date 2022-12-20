@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 
 Widget defaultButton({
   double width = double.infinity,
-  required Color background,
-  required Color textColor,
   double radius = 0.0,
   required VoidCallback function,
   required String text,
@@ -16,7 +14,7 @@ Widget defaultButton({
       height: 40,
       width: width,
       decoration: BoxDecoration(
-        color: background,
+        color: AppColors.primaryColor,
         borderRadius: BorderRadius.circular(
           radius,
         ),
@@ -26,8 +24,9 @@ Widget defaultButton({
         child: Text(
           isUpperCase ? text.toUpperCase() : text,
           style: TextStyle(
+            fontSize: 18,
             fontWeight: FontWeight.w700,
-            color: textColor,
+            color: AppColors.secondaryColor,
           ),
         ),
       ),

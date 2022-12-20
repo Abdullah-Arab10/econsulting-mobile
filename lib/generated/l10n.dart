@@ -140,6 +140,96 @@ class S {
       args: [],
     );
   }
+
+  /// `Login successfully`
+  String get loginSuccess {
+    return Intl.message(
+      'Login successfully',
+      name: 'loginSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Doctors`
+  String get doctors {
+    return Intl.message(
+      'Doctors',
+      name: 'doctors',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dentists`
+  String get dentists {
+    return Intl.message(
+      'Dentists',
+      name: 'dentists',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Therapists`
+  String get therapists {
+    return Intl.message(
+      'Therapists',
+      name: 'therapists',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Economics`
+  String get economics {
+    return Intl.message(
+      'Economics',
+      name: 'economics',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lawyers`
+  String get lawyers {
+    return Intl.message(
+      'Lawyers',
+      name: 'lawyers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Software Engineers`
+  String get softwareEngineers {
+    return Intl.message(
+      'Software Engineers',
+      name: 'softwareEngineers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Civil Engineers`
+  String get civilEngineers {
+    return Intl.message(
+      'Civil Engineers',
+      name: 'civilEngineers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Consultants List`
+  String get consultantsList {
+    return Intl.message(
+      'Consultants List',
+      name: 'consultantsList',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
