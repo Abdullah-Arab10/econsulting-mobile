@@ -1,6 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
 import 'package:http_parser/http_parser.dart';
-import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_states.dart';
@@ -12,7 +10,6 @@ import 'package:e_consulting_flutter/shared/constants/global_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class AuthCubit extends Cubit<AuthStates> {
   AuthCubit() : super(AuthInitialState());
