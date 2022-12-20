@@ -6,6 +6,8 @@ class LoginModel {
   late UserData user;
   late String token;
 
+  LoginModel();
+
   LoginModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];

@@ -6,5 +6,15 @@
   "heroCount": "{count,plural, =0{لا توجد أبطال بعد} =1{بطل {count}} =2{بطلان} few{{count} أبطال} many{{count} بطل} other{{count} بطل}",
   "itemTotal": "إجمالي: {value}",
   "heroBorn": "تاريخ الميلاد {date}",
-  "alanTuring" : "ألان تورينغ"
+  "alanTuring" : "ألان تورينغ",
+  "loginSuccess":"تم تسحيل الدخول بنجاح",
+  "doctors": "الأطباء",
+  "dentists": "أطباء الأسنان",
+  "therapists": "الأطباء النفسيون",
+  "economics": "الاقتصاديون",
+  "lawyers": "المحامون",
+  "softwareEngineers": "مهندسين البرمجيات",
+  "civilEngineers": "المهندسين المدنيون",
+  "consultantsList": "قائمة الاستشاريين"
+
 }
