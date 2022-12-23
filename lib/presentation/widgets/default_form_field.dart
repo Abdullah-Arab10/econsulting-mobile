@@ -4,17 +4,19 @@ import 'package:e_consulting_flutter/presentation/themes/colors.dart';
 import 'package:flutter/material.dart';
 
 Widget defaultFormField({
-  required TextEditingController controller,
-  required TextInputType keyboardType,
+  TextEditingController? controller,
+  TextInputType? keyboardType,
   required String label,
   required IconData prefix,
-  required String? Function(String?) validate,
+  String? Function(String?)? validate,
   Function(String?)? onChange,
   VoidCallback? suffixPressed,
   bool isPassword = false,
   IconData? suffix,
   VoidCallback? onTap,
   double borderWidth = 2.5,
+  String? initial,
+  bool? enable,
 }) =>
     TextFormField(
       controller: controller,
@@ -43,6 +45,13 @@ Widget defaultFormField({
           ),
           borderRadius: BorderRadius.circular(50),
         ),
+        disabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColors.greyColor,
+            width: borderWidth,
+          ),
+          borderRadius: BorderRadius.circular(50),
+        ),
         prefixIcon: Icon(
           prefix,
         ),
@@ -50,4 +59,6 @@ Widget defaultFormField({
             ? IconButton(onPressed: suffixPressed, icon: Icon(suffix))
             : null,
       ),
+      initialValue: initial,
+      enabled: enable,
     );

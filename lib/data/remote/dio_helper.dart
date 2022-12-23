@@ -14,11 +14,11 @@ class DioHelper {
       ),
     );
     dio.interceptors.add(PrettyDioLogger(
-      requestHeader: true,
-      requestBody: true,
-      responseBody: true,
-      responseHeader: false,
-      compact: false,
+      // requestHeader: true,
+      // requestBody: true,
+      // responseBody: true,
+      // responseHeader: false,
+      // compact: false,
     ));
   }
 

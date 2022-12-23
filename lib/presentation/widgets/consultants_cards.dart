@@ -3,8 +3,10 @@
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_states.dart';
+import 'package:e_consulting_flutter/presentation/pages/details_screen.dart';
 import 'package:e_consulting_flutter/presentation/themes/colors.dart';
 import 'package:e_consulting_flutter/presentation/widgets/navigate_to.dart';
+import 'package:e_consulting_flutter/utils/helpers/images_converter_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -59,6 +61,7 @@ Widget buildCardsItem(
     BlocConsumer<HomeCubit, HomeStates>(
       listener: (context, state) {},
       builder: (context, state) {
+        var image = ImageConverter.dataFromBase64String('${item['image']}');
         return Container(
           decoration: BoxDecoration(
               color: AppColors.greyColor,
@@ -66,10 +69,10 @@ Widget buildCardsItem(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              // Image(
-              //   height: 150,
-              //   image: ,
-              // ),
+              Image(
+                height: 150,
+                image: MemoryImage(image),
+              ),
               SizedBox(
                 width: 30,
               ),
@@ -141,7 +144,10 @@ Widget buildCardsItem(
                                 ),
                               ),
                             ),
-                            onTap: (){},
+                            onTap: ()
+                            {
+                              navigateTo(context, DetailsScreen());
+                            },
                           ),
                           Spacer(),
                           Row(

@@ -8,6 +8,6 @@ class HomeModel
 
   HomeModel.fromJson(Map<String, dynamic> json)
   {
-    data = HomeDataModel.fromJson(json['data']);
+ data = HomeDataModel.fromJson(json['data']);
   }
 }

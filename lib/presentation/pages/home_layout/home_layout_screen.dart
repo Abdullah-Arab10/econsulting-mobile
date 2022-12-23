@@ -17,19 +17,6 @@ class HomeLayoutScreen extends StatelessWidget {
       builder: (context, state) {
         var cubit = HomeCubit.get(context);
         return Scaffold(
-          appBar: AppBar(
-            backgroundColor: AppColors.backgroundColor,
-            elevation: 0.0,
-            systemOverlayStyle: SystemUiOverlayStyle(
-                statusBarColor: AppColors.backgroundColor
-            ),
-            title: Text(
-              cubit.titles[cubit.currentIndex],
-              style: TextStyle(
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ),
           body: cubit.screens[cubit.currentIndex],
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: cubit.currentIndex,
