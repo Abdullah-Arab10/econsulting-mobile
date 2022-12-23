@@ -5,6 +5,8 @@ import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_cubit.d
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/locale_cubit/locale_cubit.dart';
 import 'package:e_consulting_flutter/data/remote/dio_helper.dart';
+import 'package:e_consulting_flutter/presentation/pages/helpers/assets_downloader_screen.dart';
+import 'package:e_consulting_flutter/presentation/pages/home_layout/home_layout_screen.dart';
 import 'package:e_consulting_flutter/presentation/pages/on_boarding_screen.dart';
 import 'package:e_consulting_flutter/shared/constants/bloc_observer.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +16,6 @@ import 'presentation/themes/app_theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
-
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
 
@@ -34,8 +35,12 @@ class ConsultingApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => LocaleCubit()..getSavedLanguage()),
-        BlocProvider(create: (context) =>  AuthCubit(),),
-        BlocProvider(create: (context) => HomeCubit()..getHomeData(),)
+        BlocProvider(
+          create: (context) => AuthCubit(),
+        ),
+        BlocProvider(
+          create: (context) => HomeCubit()..getHomeData(),
+        )
       ],
       child: BlocBuilder<LocaleCubit, ChangeLocaleState>(
           builder: (context, state) {
@@ -65,7 +70,7 @@ class ConsultingApp extends StatelessWidget {
             }
             return alternativeLang.first;
           },
-            home: OnBoardingScreen(),
+          home: HomeLayoutScreen(),
         );
       }),
     );
