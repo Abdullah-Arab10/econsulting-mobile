@@ -70,7 +70,7 @@ class ConsultingApp extends StatelessWidget {
             }
             return alternativeLang.first;
           },
-          home: OnBoardingScreen(),
+          home: HomeLayoutScreen(),
         );
       }),
     );

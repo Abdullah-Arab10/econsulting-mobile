@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_states.dart';
@@ -9,12 +10,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../shared/constants/global_constants.dart';
+
 Widget buildCategoriesItem(
-    String type,
-    IconData icons,
-    Widget widgets,
-    context,
-    ) => Column(
+  String type,
+  IconData icons,
+  Widget widgets,
+  context,
+) =>
+    Column(
       children: [
         InkWell(
           child: Container(
@@ -25,11 +29,11 @@ Widget buildCategoriesItem(
               borderRadius: BorderRadius.circular(16),
             ),
             child: Icon(
-                size: 45,
-                  icons,
-              ),
+              size: 45,
+              icons,
             ),
-          onTap: (){
+          ),
+          onTap: () {
             navigateTo(context, widgets);
           },
         ),
@@ -43,18 +47,17 @@ Widget buildCategoriesItem(
             type,
             maxLines: 2,
             style: TextStyle(
-              overflow: TextOverflow.ellipsis,
-              fontSize: 20,
-              fontWeight: FontWeight.w700,
-              color: Colors.grey
-            ),
+                overflow: TextOverflow.ellipsis,
+                fontSize: 20,
+                fontWeight: FontWeight.w700,
+                color: Colors.grey),
           ),
         ),
       ],
     );
 
 Widget buildCardsItem(
-    item,
+  item,
 ) =>
     BlocConsumer<HomeCubit, HomeStates>(
       listener: (context, state) {},
@@ -66,10 +69,22 @@ Widget buildCardsItem(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              // Image(
-              //   height: 150,
-              //   image: ,
-              // ),
+              CachedNetworkImage(
+                imageUrl:
+                    "${STORAGE_URL}images/a16sCj8VbPZn1sSXwROQxHbfRWBGzhgiRIznZJj4.png",
+                imageBuilder: (context, imageProvider) => Container(
+                  width: 50,
+                  height: 100,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                placeholder: (context, url) => CircularProgressIndicator(),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+              ),
               SizedBox(
                 width: 30,
               ),
@@ -113,10 +128,9 @@ Widget buildCardsItem(
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
-
-                            fontSize: 11,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.grey,
+                          fontSize: 11,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.grey,
                         ),
                       ),
                       SizedBox(
@@ -141,7 +155,7 @@ Widget buildCardsItem(
                                 ),
                               ),
                             ),
-                            onTap: (){},
+                            onTap: () {},
                           ),
                           Spacer(),
                           Row(
@@ -158,8 +172,7 @@ Widget buildCardsItem(
                                 style: TextStyle(
                                     fontWeight: FontWeight.w700,
                                     fontSize: 10,
-                                  color: Colors.grey
-                                ),
+                                    color: Colors.grey),
                               ),
                               SizedBox(
                                 width: 7,
@@ -171,7 +184,7 @@ Widget buildCardsItem(
                                     fontSize: 10,
                                     color: Colors.grey
                                     //color: Colors.grey
-                                ),
+                                    ),
                               ),
                             ],
                           )
@@ -196,32 +209,36 @@ Widget myDivider() => Padding(
     );
 
 Widget categoriesBuilder(list) => ConditionalBuilder(
-  condition: list.isNotEmpty,
-  builder: (context) => ListView.separated(
-    itemBuilder: (context, index) => buildCardsItem(list[index],),
-    separatorBuilder: (context, index) => SizedBox(height: 20,),
-    itemCount: list.length,
-  ),
-  fallback: (context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            Icons.menu,
-            color: Colors.grey,
-            size: 100,
-          ),
-          Text(
-            '0',
-            style: TextStyle(
-              color: Colors.grey,
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
+      condition: list.isNotEmpty,
+      builder: (context) => ListView.separated(
+        itemBuilder: (context, index) => buildCardsItem(
+          list[index],
+        ),
+        separatorBuilder: (context, index) => SizedBox(
+          height: 20,
+        ),
+        itemCount: list.length,
       ),
+      fallback: (context) {
+        return Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.menu,
+                color: Colors.grey,
+                size: 100,
+              ),
+              Text(
+                '0',
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
-  },
-);
