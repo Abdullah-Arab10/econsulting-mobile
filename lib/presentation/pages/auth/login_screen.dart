@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:io';
+
 import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_states.dart';
 import 'package:e_consulting_flutter/presentation/pages/auth/register_type_screen.dart';
@@ -32,13 +34,12 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var t = S.of(context);
-
     return BlocConsumer<AuthCubit, AuthStates>(
       listener: (context, state) {
         if (state is LoginSuccessState) {
-          if (state.authLogin.status) {
+          // if (state.authLogin.status) {
             showToast(text: t.loginSuccess, state: ToastStates.SUCCESS);
-          }
+          //}
           navigateTo(context, HomeLayoutScreen());
         }
       },
@@ -73,7 +74,7 @@ class LoginScreen extends StatelessWidget {
                       defaultFormField(
                         controller: emailController,
                         keyboardType: TextInputType.emailAddress,
-                        label: 'Email Address',
+                        label: t.emailAddress,
                         prefix: Icons.email,
                         validate: (value) {
                           isEmailCorrect = isEmail(value!);
@@ -93,7 +94,7 @@ class LoginScreen extends StatelessWidget {
                       defaultFormField(
                         controller: passwordController,
                         keyboardType: TextInputType.visiblePassword,
-                        label: 'Password',
+                        label: t.password,
                         prefix: Icons.lock,
                         suffix: AuthCubit.get(context).suffix,
                         validate: (value) {
@@ -128,7 +129,7 @@ class LoginScreen extends StatelessWidget {
                               );
                             }
                           },
-                          text: 'login',
+                          text: t.login,
                           radius: 50,
                         ),
                         fallback: (context) =>
@@ -141,7 +142,7 @@ class LoginScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                            Text(
-                            'Don\'t have an account?',
+                            t.account,
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
                               color: Colors.grey,
@@ -151,7 +152,7 @@ class LoginScreen extends StatelessWidget {
                             function: () {
                               navigateTo(context, RegisterTypeScreen());
                             },
-                            text: 'Register Now',
+                            text: t.registerNow,
                           )
                         ],
                       ),

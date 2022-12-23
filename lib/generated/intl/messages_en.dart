@@ -32,27 +32,61 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "account":
+            MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
+        "address": MessageLookupByLibrary.simpleMessage("Address"),
         "alanTuring": MessageLookupByLibrary.simpleMessage("Alan Turing"),
+        "appointmentStart":
+            MessageLookupByLibrary.simpleMessage("Appointment Start"),
+        "bio": MessageLookupByLibrary.simpleMessage("Bio"),
+        "book": MessageLookupByLibrary.simpleMessage("BOOK"),
+        "categories": MessageLookupByLibrary.simpleMessage("Categories"),
         "civilEngineers":
             MessageLookupByLibrary.simpleMessage("Civil Engineers"),
+        "consultant": MessageLookupByLibrary.simpleMessage("consultant"),
         "consultantsList":
             MessageLookupByLibrary.simpleMessage("Consultants List"),
+        "date": MessageLookupByLibrary.simpleMessage("date"),
         "dentists": MessageLookupByLibrary.simpleMessage("Dentists"),
         "doctors": MessageLookupByLibrary.simpleMessage("Doctors"),
         "economics": MessageLookupByLibrary.simpleMessage("Economics"),
+        "emailAddress": MessageLookupByLibrary.simpleMessage("Email Address"),
+        "favorite": MessageLookupByLibrary.simpleMessage("Favorite"),
+        "firstName": MessageLookupByLibrary.simpleMessage("First Name"),
         "heroBorn": m0,
         "heroCount": m1,
+        "home": MessageLookupByLibrary.simpleMessage("Home"),
+        "homePage": MessageLookupByLibrary.simpleMessage("Home Page"),
         "itemTotal": m2,
+        "lastName": MessageLookupByLibrary.simpleMessage("Last Name"),
         "lawyers": MessageLookupByLibrary.simpleMessage("Lawyers"),
+        "login": MessageLookupByLibrary.simpleMessage("LOGIN"),
         "loginSuccess":
             MessageLookupByLibrary.simpleMessage("Login successfully"),
+        "moneyAmount": MessageLookupByLibrary.simpleMessage("Money Amount"),
+        "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "phone": MessageLookupByLibrary.simpleMessage("Phone"),
+        "profile": MessageLookupByLibrary.simpleMessage("Profile"),
+        "profileDetails":
+            MessageLookupByLibrary.simpleMessage("Profile Details"),
+        "register": MessageLookupByLibrary.simpleMessage("REGISTER"),
+        "registerAs": MessageLookupByLibrary.simpleMessage("Register as"),
+        "registerAsu": MessageLookupByLibrary.simpleMessage("Register as"),
+        "registerNow": MessageLookupByLibrary.simpleMessage("Register Now"),
+        "search": MessageLookupByLibrary.simpleMessage("Search a consultant"),
+        "selectConsultation":
+            MessageLookupByLibrary.simpleMessage("Select any consultation"),
         "settings": MessageLookupByLibrary.simpleMessage("settings"),
         "settingsScreen":
             MessageLookupByLibrary.simpleMessage("settings screen"),
+        "shiftEnd": MessageLookupByLibrary.simpleMessage("Shift End"),
+        "shiftStart": MessageLookupByLibrary.simpleMessage("Shift Start"),
         "softwareEngineers":
             MessageLookupByLibrary.simpleMessage("Software Engineers"),
         "therapists": MessageLookupByLibrary.simpleMessage("Therapists"),
         "title": MessageLookupByLibrary.simpleMessage("Hello"),
+        "transfer": MessageLookupByLibrary.simpleMessage("TRANSFER"),
+        "user": MessageLookupByLibrary.simpleMessage("user"),
         "wozniakBio": m3
       };
 }

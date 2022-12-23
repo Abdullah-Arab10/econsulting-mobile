@@ -1,17 +1,23 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:convert';
+
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_states.dart';
 import 'package:e_consulting_flutter/data/models/home_model/home_model.dart';
 import 'package:e_consulting_flutter/data/remote/dio_helper.dart';
+import 'package:e_consulting_flutter/generated/l10n.dart';
 import 'package:e_consulting_flutter/presentation/pages/home_layout/favorite_screen.dart';
 import 'package:e_consulting_flutter/presentation/pages/home_layout/home_screen.dart';
-import 'package:e_consulting_flutter/presentation/pages/home_layout/settings_screen.dart';
-import 'package:e_consulting_flutter/presentation/pages/settings.dart';
+import 'package:e_consulting_flutter/presentation/pages/home_layout/profile_screen.dart';
+import 'package:e_consulting_flutter/presentation/pages/home_layout/profile_screen.dart';
 import 'package:e_consulting_flutter/shared/constants/global_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+S t = S();
+
 class HomeCubit extends Cubit<HomeStates> {
+
   HomeCubit() : super(HomeInitialState());
 
   static HomeCubit get(context) => BlocProvider.of(context);
@@ -23,12 +29,12 @@ class HomeCubit extends Cubit<HomeStates> {
     emit(HomeBottomNavState());
   }
 
-  List<String> titles = ['Home Page', 'Favorite Page', 'Settings'];
+  List<String> titles = ['Home Page', 'Favorite Page', 'Profile'];
 
   List<Widget> screens = [
     HomeScreen(),
     FavoriteScreen(),
-    Settings()
+    ProfileScreen()
   ];
 
   List<BottomNavigationBarItem> bottomItem =
@@ -37,20 +43,20 @@ class HomeCubit extends Cubit<HomeStates> {
         icon: Icon(
           Icons.home_filled,
         ),
-        label: 'Home'
+        label: t.home
 
     ),
     BottomNavigationBarItem(
         icon: Icon(
           Icons.favorite,
         ),
-        label: 'Favorite'
+        label: t.favorite
     ),
     BottomNavigationBarItem(
         icon: Icon(
-          Icons.settings,
+          Icons.person,
         ),
-        label: 'Settings'
+        label: t.profile
     ),
   ];
 
@@ -71,13 +77,15 @@ class HomeCubit extends Cubit<HomeStates> {
     emit(HomeGetConsultantsLoadingState());
 
     DioHelper.getData(url: GET_CONSULTANTS_LIST,).then((value) {
-      // print(value.data);
-      homeModel = HomeModel.fromJson(value.data);
-      print(homeModel);
+       //print(value.data);
+    var  a = json.decode(value.data);
+      print(a);
+      print('jhj');
       emit(HomeGetConsultantsSuccessState());
     },).catchError((error){
       print(error.toString());
       emit(HomeGetConsultantsErrorState(error.toString()));
     });
   }
+
 }

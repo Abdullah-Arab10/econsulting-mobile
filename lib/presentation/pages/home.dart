@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:e_consulting_flutter/presentation/pages/settings.dart';
+import 'package:e_consulting_flutter/presentation/pages/home_layout/profile_screen.dart';
 import 'package:e_consulting_flutter/presentation/widgets/hero_card.dart';
 
 class HeroList extends StatelessWidget {
@@ -17,7 +17,7 @@ class HeroList extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Settings()),
+                MaterialPageRoute(builder: (context) => ProfileScreen()),
               );
             },
           )

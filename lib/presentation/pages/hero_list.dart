@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:e_consulting_flutter/presentation/pages/settings.dart';
+import 'package:e_consulting_flutter/presentation/pages/home_layout/profile_screen.dart';
 
 import 'package:e_consulting_flutter/presentation/widgets/hero_card.dart';
 import 'package:e_consulting_flutter/generated/l10n.dart';
@@ -30,7 +30,7 @@ class _HeroListState extends State<HeroList> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Settings()),
+                MaterialPageRoute(builder: (context) => ProfileScreen()),
               );
             },
           )

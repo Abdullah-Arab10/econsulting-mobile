@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:e_consulting_flutter/generated/l10n.dart';
 import 'package:e_consulting_flutter/presentation/pages/auth/consultant_register_screen.dart';
 import 'package:e_consulting_flutter/presentation/pages/auth/user_register_screen.dart';
 import 'package:e_consulting_flutter/presentation/themes/colors.dart';
@@ -12,6 +13,7 @@ class RegisterTypeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var t = S.of(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.backgroundColor,
@@ -27,8 +29,8 @@ class RegisterTypeScreen extends StatelessWidget {
                 onTap: () {
                   navigateTo(context, ConsultantRegisterScreen());
                 },
-                text1: 'Register as',
-                text2: 'consultant'),
+                text1: t.registerAs,
+                text2: t.consultant),
             SizedBox(
               height: 40,
             ),
@@ -36,8 +38,8 @@ class RegisterTypeScreen extends StatelessWidget {
                 onTap: () {
                   navigateTo(context, UserRegisterScreen());
                 },
-                text1: 'Register as',
-                text2: 'user'),
+                text1: t.registerAsu,
+                text2: t.user),
           ],
         ),
       ),

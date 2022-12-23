@@ -57,7 +57,7 @@ class AuthCubit extends Cubit<AuthStates> {
       'image': image,
     }).then((value) {
       authUserRegister = AuthUserRegister.fromJson(value.data);
-      emit(UserRegisterSuccessState());
+      emit(UserRegisterSuccessState(authUserRegister));
     }).catchError((error) {
       emit(UserRegisterErrorState(error));
     });
@@ -140,7 +140,7 @@ class AuthCubit extends Cubit<AuthStates> {
     });
     DioHelper.postForm(url: REGISTER_AS_CONSULTANT, data: form).then((value) {
       authConsultantRegister = AuthConsultantRegister.fromJson(value.data);
-      emit(ConsultantRegisterSuccessState());
+      emit(ConsultantRegisterSuccessState(authConsultantRegister));
     }).catchError((error) {
       print(error.toString());
       emit(ConsultantRegisterErrorState(error.toString()));
