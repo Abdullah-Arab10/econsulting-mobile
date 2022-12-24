@@ -68,7 +68,7 @@ class ConsultantRegisterScreen extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthStates>(
       listener: (context, state) {
         if (state is ConsultantRegisterSuccessState) {
-          if(state.authConsultantRegister.status)
+          if(state.authConsultantRegister.status == 200)
           {
             showToast(
                 text: 'Hello',
@@ -79,8 +79,6 @@ class ConsultantRegisterScreen extends StatelessWidget {
       },
       builder: (context, state) {
         File? profileImage = AuthCubit.get(context).profileImage;
-        print(profileImage);
-        File image = File('C:\\Images\\download');
         return Scaffold(
           backgroundColor: AppColors.backgroundColor,
           appBar: AppBar(
@@ -386,6 +384,7 @@ class ConsultantRegisterScreen extends StatelessWidget {
                           },
                           text: t.register,
                           radius: 50,
+                          color: AppColors.primaryColor
                         ),
                         fallback: (context) =>
                             Center(child: CircularProgressIndicator()),

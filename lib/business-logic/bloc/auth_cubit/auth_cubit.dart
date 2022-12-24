@@ -26,11 +26,11 @@ class AuthCubit extends Cubit<AuthStates> {
       'email': email,
       'password': password,
     }).then((value) {
-      authLogin = LoginModel.fromJson(value.data);
+      authLogin = LoginModel.fromJson(value.data, value.statusCode);
       emit(LoginSuccessState(authLogin));
     }).catchError((error) {
       print(error.toString());
-      emit(LoginErrorState(error.toString()));
+      emit(LoginErrorState(error.toString(),authLogin));
     });
   }
 
@@ -124,26 +124,46 @@ class AuthCubit extends Cubit<AuthStates> {
     required String shiftEnd,
   }) async {
     emit(ConsultantRegisterLoadingState());
-    FormData form = FormData.fromMap({
-      "image": await MultipartFile.fromFile(pickedFile!.path,
-          filename: upload(), contentType: MediaType("image", "jpg")),
-      'firstName': firstName,
-      'lastName': lastName,
-      'email': email,
-      'password': password,
-      'address': address,
-      'phone': phone,
-      'bio': bio,
-      'skill': skill,
-      'shiftStart': shiftStart,
-      'shiftEnd': shiftEnd,
-    });
+    FormData form;
+    if(image != null){
+      form = FormData.fromMap({
+        "image": await MultipartFile.fromFile(pickedFile!.path,
+            filename: upload(), contentType: MediaType("image", "jpg")),
+        'firstName': firstName,
+        'lastName': lastName,
+        'email': email,
+        'password': password,
+        'address': address,
+        'phone': phone,
+        'bio': bio,
+        'skill': skill,
+        'shiftStart': shiftStart,
+        'shiftEnd': shiftEnd,
+      });
+    } else{
+    form = FormData.fromMap({
+        "image": null,
+        'firstName': firstName,
+        'lastName': lastName,
+        'email': email,
+        'password': password,
+        'address': address,
+        'phone': phone,
+        'bio': bio,
+        'skill': skill,
+        'shiftStart': shiftStart,
+        'shiftEnd': shiftEnd,
+      });
+    }
     DioHelper.postForm(url: REGISTER_AS_CONSULTANT, data: form).then((value) {
-      authConsultantRegister = AuthConsultantRegister.fromJson(value.data);
+      authConsultantRegister = AuthConsultantRegister.fromJson(value.data, value.statusCode);
       emit(ConsultantRegisterSuccessState(authConsultantRegister));
     }).catchError((error) {
       print(error.toString());
       emit(ConsultantRegisterErrorState(error.toString()));
     });
   }
+}
+class A extends AuthCubit{
+
 }

@@ -4,6 +4,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_states.dart';
+import 'package:e_consulting_flutter/generated/l10n.dart';
+import 'package:e_consulting_flutter/presentation/pages/appointment_screen.dart';
 import 'package:e_consulting_flutter/presentation/themes/colors.dart';
 import 'package:e_consulting_flutter/presentation/widgets/navigate_to.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,48 +15,50 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../shared/constants/global_constants.dart';
 
 Widget buildCategoriesItem(
-  String type,
+    type,
   IconData icons,
   Widget widgets,
   context,
-) =>
-    Column(
-      children: [
-        InkWell(
-          child: Container(
-            width: 105,
-            height: 65,
-            decoration: BoxDecoration(
-              color: AppColors.greyColor,
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Icon(
-              size: 45,
-              icons,
-            ),
-          ),
-          onTap: () {
-            navigateTo(context, widgets);
-          },
-        ),
-        SizedBox(
-          height: 5,
-        ),
-        Container(
+)
+{
+  return Column(
+    children: [
+      InkWell(
+        child: Container(
           width: 105,
-          alignment: Alignment.center,
-          child: Text(
-            type,
-            maxLines: 2,
-            style: TextStyle(
-                overflow: TextOverflow.ellipsis,
-                fontSize: 20,
-                fontWeight: FontWeight.w700,
-                color: Colors.grey),
+          height: 65,
+          decoration: BoxDecoration(
+            color: AppColors.greyColor,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Icon(
+            size: 45,
+            icons,
           ),
         ),
-      ],
-    );
+        onTap: () {
+          navigateTo(context, widgets);
+        },
+      ),
+      SizedBox(
+        height: 5,
+      ),
+      Container(
+        width: 105,
+        alignment: Alignment.center,
+        child: Text(
+            type,
+          maxLines: 2,
+          style: TextStyle(
+              overflow: TextOverflow.ellipsis,
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
+              color: Colors.grey),
+        ),
+      ),
+    ],
+  );
+}
 
 Widget buildCardsItem(
   item,
@@ -66,24 +70,29 @@ Widget buildCardsItem(
           decoration: BoxDecoration(
               color: AppColors.greyColor,
               borderRadius: BorderRadius.circular(16)),
+          padding: EdgeInsets.all(10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              CachedNetworkImage(
-                imageUrl:
-                    "${STORAGE_URL}images/a16sCj8VbPZn1sSXwROQxHbfRWBGzhgiRIznZJj4.png",
-                imageBuilder: (context, imageProvider) => Container(
-                  width: 50,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: imageProvider,
-                      fit: BoxFit.cover,
-                    ),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                child: CachedNetworkImage(
+                  imageUrl:
+                  item['image'] !=null ?
+                      "${STORAGE_URL}${item['image']}":
+                    "https://www.kindpng.com/picc/m/99-997900_headshot-silhouette-person-placeholder-hd-png-download.png"
+          ,
+                  height: 125,
+                  width: 125,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) => CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => Image(
+                      image: AssetImage('assets/images/placeHolder.jpg'),
                   ),
                 ),
-                placeholder: (context, url) => CircularProgressIndicator(),
-                errorWidget: (context, url, error) => Icon(Icons.error),
               ),
               SizedBox(
                 width: 30,
@@ -155,7 +164,9 @@ Widget buildCardsItem(
                                 ),
                               ),
                             ),
-                            onTap: () {},
+                            onTap: () {
+                              navigateTo(context, AppointmentScreen(item['id']));
+                            },
                           ),
                           Spacer(),
                           Row(

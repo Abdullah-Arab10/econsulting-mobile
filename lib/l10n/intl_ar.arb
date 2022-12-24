@@ -45,5 +45,13 @@
   "profileDetails" : "تفاصيل الملف الشخصي",
   "date" : "التاريخ",
   "book" : "احجز",
-  "appointmentStart" : "وقت الموعد"
+  "appointmentStart" : "وقت الموعد",
+  "requiredEmail" : "الايميل فارغ",
+  "emailFormat" : "شكل ايميل غير صالح",
+  "requiredPassword" : "يرجى ادخال كلمة السر",
+  "passwordMin" : "ادخل كلمة السر من 6 او اكثر",
+  "min" : "ادخل من 3 او اكثر",
+  "loginError" : "الايميل او كلمة السر غير صالحين",
+  "logoutSuccess" : "تم تسجيل الخروج بنجاح",
+  "logout" : "تسجيل الخروج"
 }

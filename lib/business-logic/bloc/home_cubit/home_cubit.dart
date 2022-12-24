@@ -37,29 +37,6 @@ class HomeCubit extends Cubit<HomeStates> {
     ProfileScreen()
   ];
 
-  List<BottomNavigationBarItem> bottomItem =
-  [
-    BottomNavigationBarItem(
-        icon: Icon(
-          Icons.home_filled,
-        ),
-        label: t.home
-
-    ),
-    BottomNavigationBarItem(
-        icon: Icon(
-          Icons.favorite,
-        ),
-        label: t.favorite
-    ),
-    BottomNavigationBarItem(
-        icon: Icon(
-          Icons.person,
-        ),
-        label: t.profile
-    ),
-  ];
-
   bool isFavorite = false;
   IconData favorite = Icons.favorite_border;
 
@@ -77,10 +54,9 @@ class HomeCubit extends Cubit<HomeStates> {
     emit(HomeGetConsultantsLoadingState());
 
     DioHelper.getData(url: GET_CONSULTANTS_LIST,).then((value) {
-       //print(value.data);
-    var  a = json.decode(value.data);
-      print(a);
-      print('jhj');
+
+      homeModel = HomeModel.fromJson(value.data);
+
       emit(HomeGetConsultantsSuccessState());
     },).catchError((error){
       print(error.toString());
