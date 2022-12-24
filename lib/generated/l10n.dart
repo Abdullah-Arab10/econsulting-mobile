@@ -230,6 +230,386 @@ class S {
       args: [],
     );
   }
+
+  /// `Email Address`
+  String get emailAddress {
+    return Intl.message(
+      'Email Address',
+      name: 'emailAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get password {
+    return Intl.message(
+      'Password',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `LOGIN`
+  String get login {
+    return Intl.message(
+      'LOGIN',
+      name: 'login',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Don't have an account?`
+  String get account {
+    return Intl.message(
+      'Don\'t have an account?',
+      name: 'account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register Now`
+  String get registerNow {
+    return Intl.message(
+      'Register Now',
+      name: 'registerNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `First Name`
+  String get firstName {
+    return Intl.message(
+      'First Name',
+      name: 'firstName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last Name`
+  String get lastName {
+    return Intl.message(
+      'Last Name',
+      name: 'lastName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address`
+  String get address {
+    return Intl.message(
+      'Address',
+      name: 'address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone`
+  String get phone {
+    return Intl.message(
+      'Phone',
+      name: 'phone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Shift Start`
+  String get shiftStart {
+    return Intl.message(
+      'Shift Start',
+      name: 'shiftStart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Shift End`
+  String get shiftEnd {
+    return Intl.message(
+      'Shift End',
+      name: 'shiftEnd',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bio`
+  String get bio {
+    return Intl.message(
+      'Bio',
+      name: 'bio',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select any consultation`
+  String get selectConsultation {
+    return Intl.message(
+      'Select any consultation',
+      name: 'selectConsultation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `REGISTER`
+  String get register {
+    return Intl.message(
+      'REGISTER',
+      name: 'register',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register as`
+  String get registerAs {
+    return Intl.message(
+      'Register as',
+      name: 'registerAs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `consultant`
+  String get consultant {
+    return Intl.message(
+      'consultant',
+      name: 'consultant',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register as`
+  String get registerAsu {
+    return Intl.message(
+      'Register as',
+      name: 'registerAsu',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `user`
+  String get user {
+    return Intl.message(
+      'user',
+      name: 'user',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home Page`
+  String get homePage {
+    return Intl.message(
+      'Home Page',
+      name: 'homePage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search a consultant`
+  String get search {
+    return Intl.message(
+      'Search a consultant',
+      name: 'search',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Categories`
+  String get categories {
+    return Intl.message(
+      'Categories',
+      name: 'categories',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile`
+  String get profile {
+    return Intl.message(
+      'Profile',
+      name: 'profile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Favorite`
+  String get favorite {
+    return Intl.message(
+      'Favorite',
+      name: 'favorite',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home`
+  String get home {
+    return Intl.message(
+      'Home',
+      name: 'home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `TRANSFER`
+  String get transfer {
+    return Intl.message(
+      'TRANSFER',
+      name: 'transfer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Money Amount`
+  String get moneyAmount {
+    return Intl.message(
+      'Money Amount',
+      name: 'moneyAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile Details`
+  String get profileDetails {
+    return Intl.message(
+      'Profile Details',
+      name: 'profileDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `date`
+  String get date {
+    return Intl.message(
+      'date',
+      name: 'date',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `BOOK`
+  String get book {
+    return Intl.message(
+      'BOOK',
+      name: 'book',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Appointment Start`
+  String get appointmentStart {
+    return Intl.message(
+      'Appointment Start',
+      name: 'appointmentStart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `email must not be empty`
+  String get requiredEmail {
+    return Intl.message(
+      'email must not be empty',
+      name: 'requiredEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `invalid email format`
+  String get emailFormat {
+    return Intl.message(
+      'invalid email format',
+      name: 'emailFormat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `password must not be empty`
+  String get requiredPassword {
+    return Intl.message(
+      'password must not be empty',
+      name: 'requiredPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `min length is 6`
+  String get passwordMin {
+    return Intl.message(
+      'min length is 6',
+      name: 'passwordMin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `min length is 3`
+  String get min {
+    return Intl.message(
+      'min length is 3',
+      name: 'min',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `invalid email or password`
+  String get loginError {
+    return Intl.message(
+      'invalid email or password',
+      name: 'loginError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `logout successfully`
+  String get logoutSuccess {
+    return Intl.message(
+      'logout successfully',
+      name: 'logoutSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `LOGOUT`
+  String get logout {
+    return Intl.message(
+      'LOGOUT',
+      name: 'logout',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

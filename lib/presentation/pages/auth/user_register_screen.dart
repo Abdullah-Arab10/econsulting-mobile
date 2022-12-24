@@ -3,6 +3,7 @@
 
 import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_states.dart';
+import 'package:e_consulting_flutter/generated/l10n.dart';
 import 'package:e_consulting_flutter/presentation/themes/colors.dart';
 import 'package:e_consulting_flutter/presentation/widgets/change_profile_image.dart';
 import 'package:e_consulting_flutter/presentation/widgets/default_button.dart';
@@ -37,6 +38,7 @@ class UserRegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var t = S.of(context);
     return BlocConsumer<AuthCubit,AuthStates>(
       listener: (context, state) {
         if(state is LoginLoadingState)
@@ -109,7 +111,7 @@ class UserRegisterScreen extends StatelessWidget {
                       defaultFormField(
                         controller: firstNameController,
                         keyboardType: TextInputType.text,
-                        label: 'First Name',
+                        label: t.firstName,
                         prefix: Icons.first_page,
                         validate: (value) {
                           if(value != null && value.isEmpty){
@@ -127,7 +129,7 @@ class UserRegisterScreen extends StatelessWidget {
                       defaultFormField(
                         controller: lastNameController,
                         keyboardType: TextInputType.text,
-                        label: 'Last Name',
+                        label: t.lastName,
                         prefix: Icons.last_page,
                         validate: (value) {
                           if(value != null && value.isEmpty){
@@ -145,7 +147,7 @@ class UserRegisterScreen extends StatelessWidget {
                       defaultFormField(
                         controller: addressController,
                         keyboardType: TextInputType.text,
-                        label: 'Address',
+                        label: t.address,
                         prefix: Icons.house_outlined,
                         validate: (value) {
                           if(value != null && value.isEmpty){
@@ -163,7 +165,7 @@ class UserRegisterScreen extends StatelessWidget {
                       defaultFormField(
                         controller: phoneController,
                         keyboardType: TextInputType.text,
-                        label: 'Phone',
+                        label: t.phone,
                         prefix: Icons.phone,
                         validate: (value) {
                           if(value != null && value.isEmpty){
@@ -181,7 +183,7 @@ class UserRegisterScreen extends StatelessWidget {
                       defaultFormField(
                         controller: emailController,
                         keyboardType: TextInputType.emailAddress,
-                        label: 'Email Address',
+                        label: t.emailAddress,
                         prefix: Icons.email,
                         validate: (value) {
                           isEmailCorrect = isEmail(value!);
@@ -206,7 +208,7 @@ class UserRegisterScreen extends StatelessWidget {
                       defaultFormField(
                         controller: passwordController,
                         keyboardType: TextInputType.visiblePassword,
-                        label: 'Password',
+                        label: t.password,
                         prefix: Icons.lock,
                         suffix: AuthCubit.get(context).suffix,
                         validate: (value) {
@@ -251,8 +253,9 @@ class UserRegisterScreen extends StatelessWidget {
                               );
                             }
                           },
-                          text: 'register',
+                          text: t.register,
                           radius: 50,
+                            color: AppColors.primaryColor
                         ),
                         fallback: (context) => Center(child: CircularProgressIndicator()),
                       ),

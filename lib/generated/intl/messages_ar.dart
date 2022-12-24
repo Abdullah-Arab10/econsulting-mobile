@@ -32,27 +32,73 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "account": MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
+        "address": MessageLookupByLibrary.simpleMessage("العنوان"),
         "alanTuring": MessageLookupByLibrary.simpleMessage("ألان تورينغ"),
+        "appointmentStart": MessageLookupByLibrary.simpleMessage("وقت الموعد"),
+        "bio": MessageLookupByLibrary.simpleMessage("الوصف"),
+        "book": MessageLookupByLibrary.simpleMessage("احجز"),
+        "categories": MessageLookupByLibrary.simpleMessage("التصنيفات"),
         "civilEngineers":
             MessageLookupByLibrary.simpleMessage("المهندسين المدنيون"),
+        "consultant": MessageLookupByLibrary.simpleMessage("كخبير"),
         "consultantsList":
             MessageLookupByLibrary.simpleMessage("قائمة الاستشاريين"),
+        "date": MessageLookupByLibrary.simpleMessage("التاريخ"),
         "dentists": MessageLookupByLibrary.simpleMessage("أطباء الأسنان"),
         "doctors": MessageLookupByLibrary.simpleMessage("الأطباء"),
         "economics": MessageLookupByLibrary.simpleMessage("الاقتصاديون"),
+        "emailAddress":
+            MessageLookupByLibrary.simpleMessage("عنوان البريد الالكتروني"),
+        "emailFormat":
+            MessageLookupByLibrary.simpleMessage("شكل ايميل غير صالح"),
+        "favorite": MessageLookupByLibrary.simpleMessage("المفضلة"),
+        "firstName": MessageLookupByLibrary.simpleMessage("الاسم الاول"),
         "heroBorn": m0,
         "heroCount": m1,
+        "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
+        "homePage": MessageLookupByLibrary.simpleMessage("الصفحة الرئيسية"),
         "itemTotal": m2,
+        "lastName": MessageLookupByLibrary.simpleMessage("الاسم الثاني"),
         "lawyers": MessageLookupByLibrary.simpleMessage("المحامون"),
+        "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+        "loginError": MessageLookupByLibrary.simpleMessage(
+            "الايميل او كلمة السر غير صالحين"),
         "loginSuccess":
             MessageLookupByLibrary.simpleMessage("تم تسحيل الدخول بنجاح"),
+        "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
+        "logoutSuccess":
+            MessageLookupByLibrary.simpleMessage("تم تسجيل الخروج بنجاح"),
+        "min": MessageLookupByLibrary.simpleMessage("ادخل من 3 او اكثر"),
+        "moneyAmount": MessageLookupByLibrary.simpleMessage("المبلغ"),
+        "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+        "passwordMin":
+            MessageLookupByLibrary.simpleMessage("ادخل كلمة السر من 6 او اكثر"),
+        "phone": MessageLookupByLibrary.simpleMessage("الرقم"),
+        "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
+        "profileDetails":
+            MessageLookupByLibrary.simpleMessage("تفاصيل الملف الشخصي"),
+        "register": MessageLookupByLibrary.simpleMessage("سجل"),
+        "registerAs": MessageLookupByLibrary.simpleMessage("سجل"),
+        "registerAsu": MessageLookupByLibrary.simpleMessage("سجل"),
+        "registerNow": MessageLookupByLibrary.simpleMessage("سجل الآن"),
+        "requiredEmail": MessageLookupByLibrary.simpleMessage("الايميل فارغ"),
+        "requiredPassword":
+            MessageLookupByLibrary.simpleMessage("يرجى ادخال كلمة السر"),
+        "search": MessageLookupByLibrary.simpleMessage("ابحث عن خبير"),
+        "selectConsultation":
+            MessageLookupByLibrary.simpleMessage("اختر اي خبرة"),
         "settings": MessageLookupByLibrary.simpleMessage("الاعدادات"),
         "settingsScreen":
             MessageLookupByLibrary.simpleMessage("شاشة الاعدادات"),
+        "shiftEnd": MessageLookupByLibrary.simpleMessage("انتهاء عند"),
+        "shiftStart": MessageLookupByLibrary.simpleMessage("ابتداء من"),
         "softwareEngineers":
             MessageLookupByLibrary.simpleMessage("مهندسين البرمجيات"),
         "therapists": MessageLookupByLibrary.simpleMessage("الأطباء النفسيون"),
         "title": MessageLookupByLibrary.simpleMessage("مرحبا"),
+        "transfer": MessageLookupByLibrary.simpleMessage("تحويل"),
+        "user": MessageLookupByLibrary.simpleMessage("كمستخدم"),
         "wozniakBio": m3
       };
 }

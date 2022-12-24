@@ -1,17 +1,16 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
-// import 'package:dropdownfield/dropdownfield.dart';
-
-import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_states.dart';
+import 'package:e_consulting_flutter/generated/l10n.dart';
+import 'package:e_consulting_flutter/presentation/pages/auth/login_screen.dart';
 import 'package:e_consulting_flutter/presentation/themes/colors.dart';
 import 'package:e_consulting_flutter/presentation/widgets/change_profile_image.dart';
 import 'package:e_consulting_flutter/presentation/widgets/default_button.dart';
 import 'package:e_consulting_flutter/presentation/widgets/default_dropdown_button_form_field.dart';
 import 'package:e_consulting_flutter/presentation/widgets/default_form_field.dart';
+import 'package:e_consulting_flutter/presentation/widgets/navigate_to.dart';
 import 'package:e_consulting_flutter/presentation/widgets/select_consultations.dart';
 import 'package:e_consulting_flutter/presentation/widgets/show_toast.dart';
 import 'package:e_consulting_flutter/utils/helpers/images_converter_helper.dart';
@@ -19,7 +18,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:conditional_builder/conditional_builder.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:validators/validators.dart';
 
 class ConsultantRegisterScreen extends StatelessWidget {
@@ -66,21 +64,21 @@ class ConsultantRegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var t = S.of(context);
     return BlocConsumer<AuthCubit, AuthStates>(
       listener: (context, state) {
-        if (state is ConsultantRegisterLoadingState) {
-          // if(state.authLogin!.status)
-          // {
-          //
-          // }else
-          // {
-          //
-          // }
+        if (state is ConsultantRegisterSuccessState) {
+          if(state.authConsultantRegister.status == 200)
+          {
+            showToast(
+                text: 'Hello',
+                state: ToastStates.SUCCESS);
+            navigateTo(context, LoginScreen());
+          }
         }
       },
       builder: (context, state) {
         File? profileImage = AuthCubit.get(context).profileImage;
-        print(profileImage);
         return Scaffold(
           backgroundColor: AppColors.backgroundColor,
           appBar: AppBar(
@@ -149,7 +147,7 @@ class ConsultantRegisterScreen extends StatelessWidget {
                             child: defaultFormField(
                               controller: firstNameController,
                               keyboardType: TextInputType.text,
-                              label: 'First Name',
+                              label: t.firstName,
                               prefix: Icons.first_page,
                               validate: (value) {
                                 if (value != null && value.isEmpty) {
@@ -168,7 +166,7 @@ class ConsultantRegisterScreen extends StatelessWidget {
                             child: defaultFormField(
                               controller: lastNameController,
                               keyboardType: TextInputType.text,
-                              label: 'Last Name',
+                              label: t.lastName,
                               prefix: Icons.last_page,
                               validate: (value) {
                                 if (value != null && value.isEmpty) {
@@ -188,7 +186,7 @@ class ConsultantRegisterScreen extends StatelessWidget {
                       defaultFormField(
                         controller: emailController,
                         keyboardType: TextInputType.emailAddress,
-                        label: 'Email Address',
+                        label: t.emailAddress,
                         prefix: Icons.email,
                         validate: (value) {
                           isEmailCorrect = isEmail(value!);
@@ -208,7 +206,7 @@ class ConsultantRegisterScreen extends StatelessWidget {
                       defaultFormField(
                         controller: passwordController,
                         keyboardType: TextInputType.visiblePassword,
-                        label: 'Password',
+                        label: t.password,
                         prefix: Icons.lock,
                         suffix: AuthCubit.get(context).suffix,
                         validate: (value) {
@@ -235,7 +233,7 @@ class ConsultantRegisterScreen extends StatelessWidget {
                       defaultFormField(
                         controller: addressController,
                         keyboardType: TextInputType.text,
-                        label: 'Address',
+                        label: t.address,
                         prefix: Icons.house_outlined,
                         validate: (value) {
                           if (value != null && value.isEmpty) {
@@ -252,7 +250,7 @@ class ConsultantRegisterScreen extends StatelessWidget {
                       defaultFormField(
                         controller: phoneController,
                         keyboardType: TextInputType.text,
-                        label: 'Phone',
+                        label: t.phone,
                         prefix: Icons.phone,
                         validate: (value) {
                           if (value != null && value.isEmpty) {
@@ -272,7 +270,7 @@ class ConsultantRegisterScreen extends StatelessWidget {
                             child: defaultFormField(
                               controller: shiftStartController,
                               keyboardType: TextInputType.text,
-                              label: 'Shift Start',
+                              label: t.shiftStart,
                               prefix: Icons.calendar_today_outlined,
                               validate: (value) {
                                 if (value != null && value.isEmpty) {
@@ -300,7 +298,7 @@ class ConsultantRegisterScreen extends StatelessWidget {
                             child: defaultFormField(
                               controller: shiftEndController,
                               keyboardType: TextInputType.text,
-                              label: 'Shift End',
+                              label: t.shiftEnd,
                               prefix: Icons.calendar_today_outlined,
                               validate: (value) {
                                 if (value != null && value.isEmpty) {
@@ -329,7 +327,7 @@ class ConsultantRegisterScreen extends StatelessWidget {
                       defaultFormField(
                         controller: bioController,
                         keyboardType: TextInputType.text,
-                        label: 'Bio',
+                        label: t.bio,
                         prefix: Icons.details,
                         validate: (value) {
                           if (value != null && value.isEmpty) {
@@ -345,7 +343,7 @@ class ConsultantRegisterScreen extends StatelessWidget {
                       ),
                       defaultDropdownButtonFormField(
                         items: AuthCubit.get(context).consultations,
-                        label: 'Select any consultation',
+                        label: t.selectConsultation,
                         onChange: (val) {
                           AuthCubit.get(context)
                               .changeSelectedConsultation(val);
@@ -384,8 +382,9 @@ class ConsultantRegisterScreen extends StatelessWidget {
                               );
                             }
                           },
-                          text: 'register',
+                          text: t.register,
                           radius: 50,
+                          color: AppColors.primaryColor
                         ),
                         fallback: (context) =>
                             Center(child: CircularProgressIndicator()),

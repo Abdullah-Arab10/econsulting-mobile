@@ -5,7 +5,6 @@ import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_cubit.d
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/locale_cubit/locale_cubit.dart';
 import 'package:e_consulting_flutter/data/remote/dio_helper.dart';
-import 'package:e_consulting_flutter/presentation/pages/helpers/assets_downloader_screen.dart';
 import 'package:e_consulting_flutter/presentation/pages/home_layout/home_layout_screen.dart';
 import 'package:e_consulting_flutter/presentation/pages/on_boarding_screen.dart';
 import 'package:e_consulting_flutter/shared/constants/bloc_observer.dart';
@@ -26,7 +25,6 @@ void main() {
 
 class ConsultingApp extends StatelessWidget {
   final AppRouter appRouter;
-
   const ConsultingApp({super.key, required this.appRouter});
 
   // This widget is the root of your application.
@@ -34,7 +32,9 @@ class ConsultingApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => LocaleCubit()..getSavedLanguage()),
+        BlocProvider(
+        create: (context) => LocaleCubit()..getSavedLanguage(),
+        ),
         BlocProvider(
           create: (context) => AuthCubit(),
         ),

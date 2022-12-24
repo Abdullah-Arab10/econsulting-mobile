@@ -14,19 +14,18 @@ class DioHelper {
       ),
     );
     dio.interceptors.add(PrettyDioLogger(
-      requestHeader: true,
-      requestBody: true,
-      responseBody: true,
-      responseHeader: false,
-      compact: false,
+      // requestHeader: true,
+      // requestBody: true,
+      // responseBody: true,
+      // responseHeader: false,
+      // compact: false,
     ));
   }
 
   static Future<Response> getData({
     required String url,
     Map<String, dynamic>? query,
-    // String lang = 'ar',
-    // String? token,
+
   }) async {
     return await dio.get(url, queryParameters: query);
   }

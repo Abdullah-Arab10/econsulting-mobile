@@ -6,3 +6,4 @@ const LOGIN = 'auth/login';
 const REGISTER_AS_CONSULTANT = 'auth/register-consultant';
 const REGISTER_AS_USER = 'auth/register';
 const GET_CONSULTANTS_LIST = 'consultant/consultants-list';
+const TRANSFER = 'admin/add-cash';

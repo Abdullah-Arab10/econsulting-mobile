@@ -1,7 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:io';
+
 import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_states.dart';
+import 'package:e_consulting_flutter/presentation/pages/admin/admin_screen.dart';
 import 'package:e_consulting_flutter/presentation/pages/auth/register_type_screen.dart';
 import 'package:e_consulting_flutter/presentation/pages/home_layout/home_layout_screen.dart';
 import 'package:e_consulting_flutter/presentation/themes/colors.dart';
@@ -32,24 +35,30 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var t = S.of(context);
-
     return BlocConsumer<AuthCubit, AuthStates>(
       listener: (context, state) {
         if (state is LoginSuccessState) {
-          if (state.authLogin.status) {
+          if (state.authLogin.status == 200) {
             showToast(text: t.loginSuccess, state: ToastStates.SUCCESS);
+            if (state.authLogin.user.role == 1 ||
+                state.authLogin.user.role == 2) {
+              navigateTo(context, HomeLayoutScreen());
+            } else if (state.authLogin.user.role == 0) {
+              navigateTo(context, AdminScreen());
+            }
           }
-          navigateTo(context, HomeLayoutScreen());
-        }
-      },
+        } else {
+            showToast(text: t.loginError, state: ToastStates.ERROR);
+      }
+        },
       builder: (context, state) {
         return Scaffold(
           backgroundColor: AppColors.backgroundColor,
           appBar: AppBar(
             backgroundColor: AppColors.backgroundColor,
             elevation: 0.0,
-            systemOverlayStyle: SystemUiOverlayStyle(
-                statusBarColor: AppColors.backgroundColor),
+            systemOverlayStyle:
+                SystemUiOverlayStyle(statusBarColor: AppColors.backgroundColor),
           ),
           body: Padding(
             padding: const EdgeInsets.all(20),
@@ -64,7 +73,7 @@ class LoginScreen extends StatelessWidget {
                         alignment: Alignment.topCenter,
                         child: Image(
                           height: 350,
-                            image: AssetImage('assets/images/login.png'),
+                          image: AssetImage('assets/images/login.png'),
                         ),
                       ),
                       const SizedBox(
@@ -73,16 +82,17 @@ class LoginScreen extends StatelessWidget {
                       defaultFormField(
                         controller: emailController,
                         keyboardType: TextInputType.emailAddress,
-                        label: 'Email Address',
+                        label: t.emailAddress,
                         prefix: Icons.email,
                         validate: (value) {
                           isEmailCorrect = isEmail(value!);
                           if (value.isEmpty) {
                             showToast(
-                                text: 'email must not be empty',
+                                text: t.requiredEmail,
                                 state: ToastStates.ERROR);
                           } else if (isEmailCorrect == false) {
-                            showToast(text: 'gg', state: ToastStates.ERROR);
+                            showToast(
+                                text: t.emailFormat, state: ToastStates.ERROR);
                           }
                           return null;
                         },
@@ -93,17 +103,17 @@ class LoginScreen extends StatelessWidget {
                       defaultFormField(
                         controller: passwordController,
                         keyboardType: TextInputType.visiblePassword,
-                        label: 'Password',
+                        label: t.password,
                         prefix: Icons.lock,
                         suffix: AuthCubit.get(context).suffix,
                         validate: (value) {
                           if (value != null && value.isEmpty) {
                             showToast(
-                                text: 'password must not be empty',
+                                text: t.requiredPassword,
                                 state: ToastStates.ERROR);
                           } else if (value!.length <= 5) {
                             showToast(
-                              text: 'ggg',
+                              text: t.passwordMin,
                               state: ToastStates.WARNING,
                             );
                           }
@@ -120,17 +130,17 @@ class LoginScreen extends StatelessWidget {
                       ConditionalBuilder(
                         condition: state is! LoginLoadingState,
                         builder: (context) => defaultButton(
-                          function: () {
-                            if (formKey.currentState!.validate()) {
-                              AuthCubit.get(context).userLogin(
-                                email: emailController.text,
-                                password: passwordController.text,
-                              );
-                            }
-                          },
-                          text: 'login',
-                          radius: 50,
-                        ),
+                            function: () {
+                              if (formKey.currentState!.validate()) {
+                                AuthCubit.get(context).userLogin(
+                                  email: emailController.text,
+                                  password: passwordController.text,
+                                );
+                              }
+                            },
+                            text: t.login,
+                            radius: 50,
+                            color: AppColors.primaryColor),
                         fallback: (context) =>
                             Center(child: CircularProgressIndicator()),
                       ),
@@ -140,8 +150,8 @@ class LoginScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                           Text(
-                            'Don\'t have an account?',
+                          Text(
+                            t.account,
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
                               color: Colors.grey,
@@ -151,7 +161,7 @@ class LoginScreen extends StatelessWidget {
                             function: () {
                               navigateTo(context, RegisterTypeScreen());
                             },
-                            text: 'Register Now',
+                            text: t.registerNow,
                           )
                         ],
                       ),
