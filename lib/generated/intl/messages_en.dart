@@ -51,6 +51,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "doctors": MessageLookupByLibrary.simpleMessage("Doctors"),
         "economics": MessageLookupByLibrary.simpleMessage("Economics"),
         "emailAddress": MessageLookupByLibrary.simpleMessage("Email Address"),
+        "emailFormat":
+            MessageLookupByLibrary.simpleMessage("invalid email format"),
         "favorite": MessageLookupByLibrary.simpleMessage("Favorite"),
         "firstName": MessageLookupByLibrary.simpleMessage("First Name"),
         "heroBorn": m0,
@@ -61,10 +63,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "lastName": MessageLookupByLibrary.simpleMessage("Last Name"),
         "lawyers": MessageLookupByLibrary.simpleMessage("Lawyers"),
         "login": MessageLookupByLibrary.simpleMessage("LOGIN"),
+        "loginError":
+            MessageLookupByLibrary.simpleMessage("invalid email or password"),
         "loginSuccess":
             MessageLookupByLibrary.simpleMessage("Login successfully"),
+        "logout": MessageLookupByLibrary.simpleMessage("LOGOUT"),
+        "logoutSuccess":
+            MessageLookupByLibrary.simpleMessage("logout successfully"),
+        "min": MessageLookupByLibrary.simpleMessage("min length is 3"),
         "moneyAmount": MessageLookupByLibrary.simpleMessage("Money Amount"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "passwordMin": MessageLookupByLibrary.simpleMessage("min length is 6"),
         "phone": MessageLookupByLibrary.simpleMessage("Phone"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "profileDetails":
@@ -73,6 +82,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "registerAs": MessageLookupByLibrary.simpleMessage("Register as"),
         "registerAsu": MessageLookupByLibrary.simpleMessage("Register as"),
         "registerNow": MessageLookupByLibrary.simpleMessage("Register Now"),
+        "requiredEmail":
+            MessageLookupByLibrary.simpleMessage("email must not be empty"),
+        "requiredPassword":
+            MessageLookupByLibrary.simpleMessage("password must not be empty"),
         "search": MessageLookupByLibrary.simpleMessage("Search a consultant"),
         "selectConsultation":
             MessageLookupByLibrary.simpleMessage("Select any consultation"),

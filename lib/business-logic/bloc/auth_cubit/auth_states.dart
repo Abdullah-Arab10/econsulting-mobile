@@ -17,8 +17,8 @@ class LoginSuccessState extends AuthStates{
 class LoginErrorState extends AuthStates
 {
   final String error;
-
-  LoginErrorState(this.error);
+  final LoginModel authLogin;
+  LoginErrorState(this.error,this.authLogin);
 }
 
 class ConsultantRegisterLoadingState extends AuthStates{}

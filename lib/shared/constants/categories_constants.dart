@@ -11,18 +11,6 @@ import 'package:e_consulting_flutter/presentation/pages/categories/software_engi
 import 'package:e_consulting_flutter/presentation/pages/categories/therapists_screen.dart';
 import 'package:flutter/material.dart';
 
-S t = S();
-
-List<String> type = [
-  t.doctors,
-  t.dentists,
-  t.therapists,
-  t.lawyers,
-  t.economics,
-  t.softwareEngineers,
-  t.civilEngineers,
-];
-
 List<IconData> icon = [
   Icons.medical_services_rounded,
   Icons.medication_liquid,

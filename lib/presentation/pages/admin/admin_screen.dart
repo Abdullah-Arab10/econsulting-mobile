@@ -3,6 +3,7 @@
 import 'package:e_consulting_flutter/business-logic/bloc/admin_cubit/admin_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/admin_cubit/admin_states.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_cubit.dart';
+import 'package:e_consulting_flutter/business-logic/bloc/locale_cubit/locale_cubit.dart';
 import 'package:e_consulting_flutter/presentation/themes/colors.dart';
 import 'package:e_consulting_flutter/presentation/widgets/default_button.dart';
 import 'package:e_consulting_flutter/presentation/widgets/default_form_field.dart';
@@ -46,6 +47,38 @@ class AdminScreen extends StatelessWidget {
               elevation: 0.0,
               systemOverlayStyle: SystemUiOverlayStyle(
                   statusBarColor: AppColors.backgroundColor),
+            ),
+            drawer: Drawer(
+              backgroundColor: AppColors.backgroundColor,
+              elevation: 0.0,
+              child: BlocBuilder<LocaleCubit, ChangeLocaleState>(
+                builder: (context, state) {
+                  if (state is ChangeLocaleState) {
+                    return Padding(
+                      padding: const EdgeInsets.only(
+                          top:100),
+                      child: ListTile(
+                          leading: ElevatedButton(
+                            onPressed: () {
+                              BlocProvider.of<LocaleCubit>(context)
+                                  .changeLanguage('en');
+                            },
+                            child: Text('ENGLISH'),
+                          ),
+                          trailing: ElevatedButton(
+                            onPressed: () {
+                              BlocProvider.of<LocaleCubit>(context)
+                                  .changeLanguage('ar');
+                            },
+                            child: Text('Arabic'),
+                          )
+                      ),
+                    );
+                  } else {
+                    return SizedBox();
+                  }
+                },
+              ),
             ),
             body: Padding(
               padding: const EdgeInsets.all(20),
@@ -116,6 +149,7 @@ class AdminScreen extends StatelessWidget {
                             },
                             text: t.transfer,
                             radius: 50,
+                              color: AppColors.primaryColor
                           ),
                           fallback: (context) =>
                               Center(child: CircularProgressIndicator()),

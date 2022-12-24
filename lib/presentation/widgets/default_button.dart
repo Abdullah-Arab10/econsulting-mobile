@@ -6,15 +6,16 @@ import 'package:flutter/material.dart';
 Widget defaultButton({
   double width = double.infinity,
   double radius = 0.0,
-  required VoidCallback function,
+  VoidCallback? function,
   required String text,
   bool isUpperCase = true,
+  Color? color,
 }) =>
     Container(
       height: 40,
       width: width,
       decoration: BoxDecoration(
-        color: AppColors.primaryColor,
+        color: color,
         borderRadius: BorderRadius.circular(
           radius,
         ),

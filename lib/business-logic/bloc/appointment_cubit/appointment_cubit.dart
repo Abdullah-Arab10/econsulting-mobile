@@ -14,10 +14,14 @@ class AppointmentCubit extends Cubit<AppointmentStates>
   void bookAppointment({
     required String date,
     required String start,
+    required int consultantId,
+    required int clientId,
   }) {
-    DioHelper.postData(url: '', data: {
-      '' : date,
-      '' : start,
+    DioHelper.postData(url: 'appointment/book', data: {
+      'date' : date,
+      'appointmentStart' : start,
+      'consultantId' : consultantId,
+      'clientId' : clientId
     });
   }
 }

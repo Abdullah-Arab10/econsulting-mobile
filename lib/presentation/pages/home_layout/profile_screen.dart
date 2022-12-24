@@ -2,8 +2,13 @@
 
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_states.dart';
+import 'package:e_consulting_flutter/main.dart';
+import 'package:e_consulting_flutter/presentation/pages/auth/login_screen.dart';
 import 'package:e_consulting_flutter/presentation/themes/colors.dart';
+import 'package:e_consulting_flutter/presentation/widgets/default_button.dart';
 import 'package:e_consulting_flutter/presentation/widgets/default_form_field.dart';
+import 'package:e_consulting_flutter/presentation/widgets/navigate_to.dart';
+import 'package:e_consulting_flutter/presentation/widgets/show_toast.dart';
 import 'package:e_consulting_flutter/utils/helpers/images_converter_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,21 +49,66 @@ class ProfileScreen extends StatelessWidget {
                   return Padding(
                     padding: const EdgeInsets.only(
                         top:100),
-                    child: ListTile(
-                        leading: ElevatedButton(
-                          onPressed: () {
-                            BlocProvider.of<LocaleCubit>(context)
-                                .changeLanguage('en');
-                          },
-                          child: Text('ENGLISH'),
-                        ),
-                        trailing: ElevatedButton(
-                          onPressed: () {
-                            BlocProvider.of<LocaleCubit>(context)
-                                .changeLanguage('ar');
-                          },
-                          child: Text('Arabic'),
-                        )
+                    child: Expanded(
+                      child: Column(
+                        children: [
+                          Text(
+                            'Application Language',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 20,
+
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Container(
+                            width: 200,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                BlocProvider.of<LocaleCubit>(context)
+                                    .changeLanguage('en');
+                              },
+                              child: Text('ENGLISH'),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Container(
+                            width: 200,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                BlocProvider.of<LocaleCubit>(context)
+                                    .changeLanguage('ar');
+                              },
+                              child: Text('Arabic'),
+                            ),
+                          ),
+                          Expanded(
+                            child: Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.only(
+                                  bottom: 10
+                                ),
+                                child: defaultButton(
+                                    text: t.logout,
+                                  function: ()
+                                  {
+                                    showToast(text: t.logoutSuccess, state: ToastStates.SUCCESS);
+                                    navigateTo(context, LoginScreen());
+                                  },
+                                  width: 200,
+                                  color: AppColors.errorColor,
+                                  radius: 50
+                                ),
+                              )
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 } else {

@@ -255,6 +255,7 @@ class UserRegisterScreen extends StatelessWidget {
                           },
                           text: t.register,
                           radius: 50,
+                            color: AppColors.primaryColor
                         ),
                         fallback: (context) => Center(child: CircularProgressIndicator()),
                       ),

@@ -71,5 +71,13 @@
   "profileDetails" : "Profile Details",
   "date" : "date",
   "book" : "BOOK",
-  "appointmentStart" : "Appointment Start"
+  "appointmentStart" : "Appointment Start",
+  "requiredEmail" : "email must not be empty",
+  "emailFormat" : "invalid email format",
+  "requiredPassword" : "password must not be empty",
+  "passwordMin" : "min length is 6",
+  "min" : "min length is 3",
+  "loginError" : "invalid email or password",
+  "logoutSuccess" : "logout successfully",
+  "logout" : "LOGOUT"
 }

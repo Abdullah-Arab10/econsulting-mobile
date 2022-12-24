@@ -3,6 +3,7 @@
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/appointment_cubit/appointment_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/appointment_cubit/appointment_states.dart';
+import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_cubit.dart';
 import 'package:e_consulting_flutter/generated/l10n.dart';
 import 'package:e_consulting_flutter/presentation/themes/colors.dart';
 import 'package:e_consulting_flutter/presentation/widgets/default_button.dart';
@@ -15,7 +16,8 @@ import 'package:intl/intl.dart';
 import 'package:validators/validators.dart';
 
 class AppointmentScreen extends StatelessWidget {
-  AppointmentScreen({super.key});
+  final int id;
+  AppointmentScreen(this.id);
 
   var dateController = TextEditingController();
 
@@ -28,6 +30,7 @@ class AppointmentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var t = S.of(context);
+    print(BlocProvider.of<AuthCubit>(context).authLogin.user.id);
     return BlocProvider(
       create: (context) => AppointmentCubit(),
       child: BlocConsumer<AppointmentCubit,AppointmentStates>(
@@ -128,11 +131,14 @@ class AppointmentScreen extends StatelessWidget {
                                 AppointmentCubit.get(context).bookAppointment(
                                   date: dateController.text,
                                   start: shiftStartController.text,
+                                  consultantId: id,
+                                  clientId: BlocProvider.of<AuthCubit>(context).authLogin.user.id
                                 );
                               }
                             },
                             text: t.book,
                             radius: 50,
+                              color: AppColors.primaryColor
                           ),
                           fallback: (context) =>
                               Center(child: CircularProgressIndicator()),

@@ -83,12 +83,25 @@ class HomeScreen extends StatelessWidget {
                     height: 140,
                     child: ListView.separated(
                         scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) => buildCategoriesItem(
-                          type[index],
+                        itemBuilder: (context, index)
+                        {
+                          var t = S.of(context);
+                          List<String> type = [
+                            t.doctors,
+                            t.dentists,
+                            t.therapists,
+                            t.lawyers,
+                            t.economics,
+                            t.softwareEngineers,
+                            t.civilEngineers,
+                          ];
+                          return buildCategoriesItem(
+                            type[index],
                           icon[index],
                           widgets[index],
                           context,
-                        ),
+                        );
+                        },
                         separatorBuilder: (context, index) => SizedBox(width: 10,),
                         itemCount: 7
                     ),

@@ -530,6 +530,86 @@ class S {
       args: [],
     );
   }
+
+  /// `email must not be empty`
+  String get requiredEmail {
+    return Intl.message(
+      'email must not be empty',
+      name: 'requiredEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `invalid email format`
+  String get emailFormat {
+    return Intl.message(
+      'invalid email format',
+      name: 'emailFormat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `password must not be empty`
+  String get requiredPassword {
+    return Intl.message(
+      'password must not be empty',
+      name: 'requiredPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `min length is 6`
+  String get passwordMin {
+    return Intl.message(
+      'min length is 6',
+      name: 'passwordMin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `min length is 3`
+  String get min {
+    return Intl.message(
+      'min length is 3',
+      name: 'min',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `invalid email or password`
+  String get loginError {
+    return Intl.message(
+      'invalid email or password',
+      name: 'loginError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `logout successfully`
+  String get logoutSuccess {
+    return Intl.message(
+      'logout successfully',
+      name: 'logoutSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `LOGOUT`
+  String get logout {
+    return Intl.message(
+      'LOGOUT',
+      name: 'logout',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
