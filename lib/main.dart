@@ -5,6 +5,8 @@ import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_cubit.d
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/locale_cubit/locale_cubit.dart';
 import 'package:e_consulting_flutter/data/remote/dio_helper.dart';
+import 'package:e_consulting_flutter/presentation/pages/consultant/calendar.dart';
+import 'package:e_consulting_flutter/presentation/pages/hero_list.dart';
 import 'package:e_consulting_flutter/presentation/pages/home_layout/home_layout_screen.dart';
 import 'package:e_consulting_flutter/presentation/pages/on_boarding_screen.dart';
 import 'package:e_consulting_flutter/shared/constants/bloc_observer.dart';
@@ -33,7 +35,7 @@ class ConsultingApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-        create: (context) => LocaleCubit()..getSavedLanguage(),
+          create: (context) => LocaleCubit()..getSavedLanguage(),
         ),
         BlocProvider(
           create: (context) => AuthCubit(),
@@ -70,7 +72,7 @@ class ConsultingApp extends StatelessWidget {
             }
             return alternativeLang.first;
           },
-          home: OnBoardingScreen(),
+          home: ConsultantCalendar(),
         );
       }),
     );

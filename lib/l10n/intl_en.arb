@@ -79,5 +79,6 @@
   "min" : "min length is 3",
   "loginError" : "invalid email or password",
   "logoutSuccess" : "logout successfully",
-  "logout" : "LOGOUT"
+  "logout" : "LOGOUT",
+  "appointmentCalendar": "Appointment Calendar"
 }

@@ -36,6 +36,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
         "address": MessageLookupByLibrary.simpleMessage("Address"),
         "alanTuring": MessageLookupByLibrary.simpleMessage("Alan Turing"),
+        "appointmentCalendar":
+            MessageLookupByLibrary.simpleMessage("Appointment Calendar"),
         "appointmentStart":
             MessageLookupByLibrary.simpleMessage("Appointment Start"),
         "bio": MessageLookupByLibrary.simpleMessage("Bio"),

@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 class AppRouter {
   Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case HOME_ROUTE:
-        return MaterialPageRoute(builder: (_) => HeroList());
-        break;
+      // case HOME_ROUTE:
+      //   return MaterialPageRoute(builder: (_) => HeroList());
+      //   break;
       case SETTINGS_ROUTE:
         return MaterialPageRoute(builder: (_) => ProfileScreen());
         break;
