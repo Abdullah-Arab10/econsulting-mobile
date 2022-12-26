@@ -610,6 +610,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Appointment Calendar`
+  String get appointmentCalendar {
+    return Intl.message(
+      'Appointment Calendar',
+      name: 'appointmentCalendar',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

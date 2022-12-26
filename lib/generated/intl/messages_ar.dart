@@ -35,6 +35,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "account": MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
         "address": MessageLookupByLibrary.simpleMessage("العنوان"),
         "alanTuring": MessageLookupByLibrary.simpleMessage("ألان تورينغ"),
+        "appointmentCalendar":
+            MessageLookupByLibrary.simpleMessage("روزنامة المواعيد"),
         "appointmentStart": MessageLookupByLibrary.simpleMessage("وقت الموعد"),
         "bio": MessageLookupByLibrary.simpleMessage("الوصف"),
         "book": MessageLookupByLibrary.simpleMessage("احجز"),
