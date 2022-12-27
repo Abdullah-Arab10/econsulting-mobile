@@ -38,6 +38,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "alanTuring": MessageLookupByLibrary.simpleMessage("Alan Turing"),
         "appointmentCalendar":
             MessageLookupByLibrary.simpleMessage("Appointment Calendar"),
+        "appointmentCreatedSuccessfully": MessageLookupByLibrary.simpleMessage(
+            "Appointment booked successfully"),
         "appointmentStart":
             MessageLookupByLibrary.simpleMessage("Appointment Start"),
         "bio": MessageLookupByLibrary.simpleMessage("Bio"),
@@ -46,9 +48,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "civilEngineers":
             MessageLookupByLibrary.simpleMessage("Civil Engineers"),
         "consultant": MessageLookupByLibrary.simpleMessage("consultant"),
+        "consultantNotAvailable": MessageLookupByLibrary.simpleMessage(
+            "Consultant is not available!"),
+        "consultantNotFound":
+            MessageLookupByLibrary.simpleMessage("Consultant is not found!"),
         "consultantsList":
             MessageLookupByLibrary.simpleMessage("Consultants List"),
         "date": MessageLookupByLibrary.simpleMessage("date"),
+        "dateRequired":
+            MessageLookupByLibrary.simpleMessage("Date must not be empty"),
         "dentists": MessageLookupByLibrary.simpleMessage("Dentists"),
         "doctors": MessageLookupByLibrary.simpleMessage("Doctors"),
         "economics": MessageLookupByLibrary.simpleMessage("Economics"),
@@ -99,9 +107,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "softwareEngineers":
             MessageLookupByLibrary.simpleMessage("Software Engineers"),
         "therapists": MessageLookupByLibrary.simpleMessage("Therapists"),
+        "timeRequired":
+            MessageLookupByLibrary.simpleMessage("Time must not be empty"),
         "title": MessageLookupByLibrary.simpleMessage("Hello"),
         "transfer": MessageLookupByLibrary.simpleMessage("TRANSFER"),
         "user": MessageLookupByLibrary.simpleMessage("user"),
-        "wozniakBio": m3
+        "userNotFound":
+            MessageLookupByLibrary.simpleMessage("User is not found!"),
+        "wozniakBio": m3,
+        "youHaveAnotherAppointmentError": MessageLookupByLibrary.simpleMessage(
+            "Sorry,you have another appointment in same time"),
+        "youHaveNoEnoughCashError": MessageLookupByLibrary.simpleMessage(
+            "Sorry,you don\'t have enough cash")
       };
 }

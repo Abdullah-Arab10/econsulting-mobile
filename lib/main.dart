@@ -72,7 +72,7 @@ class ConsultingApp extends StatelessWidget {
             }
             return alternativeLang.first;
           },
-          home: ConsultantCalendar(),
+          home: OnBoardingScreen(),
         );
       }),
     );

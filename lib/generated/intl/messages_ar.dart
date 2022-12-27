@@ -37,6 +37,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "alanTuring": MessageLookupByLibrary.simpleMessage("ألان تورينغ"),
         "appointmentCalendar":
             MessageLookupByLibrary.simpleMessage("روزنامة المواعيد"),
+        "appointmentCreatedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("تم حجز الموعد بنجاح"),
         "appointmentStart": MessageLookupByLibrary.simpleMessage("وقت الموعد"),
         "bio": MessageLookupByLibrary.simpleMessage("الوصف"),
         "book": MessageLookupByLibrary.simpleMessage("احجز"),
@@ -44,9 +46,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "civilEngineers":
             MessageLookupByLibrary.simpleMessage("المهندسين المدنيون"),
         "consultant": MessageLookupByLibrary.simpleMessage("كخبير"),
+        "consultantNotAvailable": MessageLookupByLibrary.simpleMessage(
+            "الخبير غير متوفر في هذا الوقت"),
+        "consultantNotFound":
+            MessageLookupByLibrary.simpleMessage("الخبير غير موجود"),
         "consultantsList":
             MessageLookupByLibrary.simpleMessage("قائمة الاستشاريين"),
         "date": MessageLookupByLibrary.simpleMessage("التاريخ"),
+        "dateRequired": MessageLookupByLibrary.simpleMessage(
+            "التاريخ لا يجب ان يكون فارغا"),
         "dentists": MessageLookupByLibrary.simpleMessage("أطباء الأسنان"),
         "doctors": MessageLookupByLibrary.simpleMessage("الأطباء"),
         "economics": MessageLookupByLibrary.simpleMessage("الاقتصاديون"),
@@ -98,9 +106,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "softwareEngineers":
             MessageLookupByLibrary.simpleMessage("مهندسين البرمجيات"),
         "therapists": MessageLookupByLibrary.simpleMessage("الأطباء النفسيون"),
+        "timeRequired": MessageLookupByLibrary.simpleMessage("الوقت مطلوب"),
         "title": MessageLookupByLibrary.simpleMessage("مرحبا"),
         "transfer": MessageLookupByLibrary.simpleMessage("تحويل"),
         "user": MessageLookupByLibrary.simpleMessage("كمستخدم"),
-        "wozniakBio": m3
+        "userNotFound":
+            MessageLookupByLibrary.simpleMessage("المستخدم غير موجود"),
+        "wozniakBio": m3,
+        "youHaveAnotherAppointmentError": MessageLookupByLibrary.simpleMessage(
+            "عذرا,لديك موعد آخر في نفس الوقت"),
+        "youHaveNoEnoughCashError":
+            MessageLookupByLibrary.simpleMessage("عذرا, ليس لديك رصيد كافي")
       };
 }
