@@ -4,10 +4,14 @@ import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_cubit.d
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_states.dart';
 import 'package:e_consulting_flutter/data/models/home_model/home_data_model.dart';
 import 'package:e_consulting_flutter/data/models/home_model/home_model.dart';
+import 'package:e_consulting_flutter/data/models/search/search_data_model.dart';
+import 'package:e_consulting_flutter/presentation/pages/details_screen.dart';
+import 'package:e_consulting_flutter/presentation/pages/search_screen.dart';
 import 'package:e_consulting_flutter/presentation/themes/colors.dart';
 import 'package:e_consulting_flutter/presentation/widgets/consultants_cards.dart';
 import 'package:e_consulting_flutter/presentation/widgets/default_form_field.dart';
 import 'package:e_consulting_flutter/presentation/widgets/list_view_cards.dart';
+import 'package:e_consulting_flutter/presentation/widgets/navigate_to.dart';
 import 'package:e_consulting_flutter/presentation/widgets/show_toast.dart';
 import 'package:e_consulting_flutter/shared/constants/categories_constants.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +31,10 @@ class HomeScreen extends StatelessWidget {
     var t=S.of(context);
     return BlocConsumer<HomeCubit,HomeStates>(
       listener: (context, state) {
-
+        if(state is HomeGetConsultantsDetailsSuccessState)
+        {
+          navigateTo(context, DetailsScreen());
+        }
       },
       builder: (context, state) {
         return Scaffold(
@@ -67,6 +74,10 @@ class HomeScreen extends StatelessWidget {
                               state: ToastStates.ERROR
                           );
                         }
+                      },
+                      onTap: (){
+                        SearchDataModel.search = [];
+                        navigateTo(context, SearchScreen());
                       },
                     ),
                   ),

@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:e_consulting_flutter/data/models/home_model/home_data_model.dart';
-import 'package:e_consulting_flutter/data/models/home_model/therapists_model.dart';
 import 'package:e_consulting_flutter/presentation/widgets/consultants_cards.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +20,7 @@ class TherapistsScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: categoriesBuilder(therapists),
+      body: categoriesBuilder(therapists, context),
     );
   }
 }

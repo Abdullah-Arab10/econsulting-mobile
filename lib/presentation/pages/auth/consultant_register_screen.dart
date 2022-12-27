@@ -41,6 +41,8 @@ class ConsultantRegisterScreen extends StatelessWidget {
 
   var skillController = TextEditingController();
 
+  var appointmentCost = TextEditingController();
+
   var formKey = GlobalKey<FormState>();
 
   bool isPassword = true;
@@ -73,7 +75,7 @@ class ConsultantRegisterScreen extends StatelessWidget {
             showToast(
                 text: 'Hello',
                 state: ToastStates.SUCCESS);
-            navigateTo(context, LoginScreen());
+            navigateAndFinish(context, LoginScreen());
           }
         }
       },
@@ -360,6 +362,23 @@ class ConsultantRegisterScreen extends StatelessWidget {
                         },
                       ),
                       const SizedBox(
+                        height: 16,
+                      ),
+                      defaultFormField(
+                        controller: appointmentCost,
+                        keyboardType: TextInputType.number,
+                        label: t.appointmentCost,
+                        prefix: Icons.monetization_on,
+                        validate: (value) {
+                          if (value != null && value.isEmpty) {
+                            showToast(
+                                text: 'details must not be empty',
+                                state: ToastStates.ERROR);
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(
                         height: 20,
                       ),
                       ConditionalBuilder(
@@ -379,6 +398,7 @@ class ConsultantRegisterScreen extends StatelessWidget {
                                 skill: selectConsultations(context),
                                 email: emailController.text,
                                 password: passwordController.text,
+                                appointmentCost: appointmentCost.hashCode,
                               );
                             }
                           },

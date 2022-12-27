@@ -6,6 +6,7 @@ import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_cubit.d
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_states.dart';
 import 'package:e_consulting_flutter/generated/l10n.dart';
 import 'package:e_consulting_flutter/presentation/pages/appointment_screen.dart';
+import 'package:e_consulting_flutter/presentation/pages/details_screen.dart';
 import 'package:e_consulting_flutter/presentation/themes/colors.dart';
 import 'package:e_consulting_flutter/presentation/widgets/navigate_to.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,12 +16,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../shared/constants/global_constants.dart';
 
 Widget buildCategoriesItem(
-    type,
+  type,
   IconData icons,
   Widget widgets,
   context,
-)
-{
+) {
   return Column(
     children: [
       InkWell(
@@ -47,7 +47,7 @@ Widget buildCategoriesItem(
         width: 105,
         alignment: Alignment.center,
         child: Text(
-            type,
+          type,
           maxLines: 2,
           style: TextStyle(
               overflow: TextOverflow.ellipsis,
@@ -62,156 +62,171 @@ Widget buildCategoriesItem(
 
 Widget buildCardsItem(
   item,
+    context,
 ) =>
-    BlocConsumer<HomeCubit, HomeStates>(
-      listener: (context, state) {},
-      builder: (context, state) {
-        return Container(
-          decoration: BoxDecoration(
-              color: AppColors.greyColor,
-              borderRadius: BorderRadius.circular(16)),
-          padding: EdgeInsets.all(10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-                child: CachedNetworkImage(
-                  imageUrl:
-                  item['image'] !=null ?
-                      "${STORAGE_URL}${item['image']}":
-                    "https://www.kindpng.com/picc/m/99-997900_headshot-silhouette-person-placeholder-hd-png-download.png"
-          ,
-                  height: 125,
-                  width: 125,
-                  fit: BoxFit.cover,
-                  placeholder: (context, url) => CircularProgressIndicator(),
-                  errorWidget: (context, url, error) => Image(
+    InkWell(
+      child: Container(
+            decoration: BoxDecoration(
+                color: AppColors.greyColor,
+                borderRadius: BorderRadius.circular(16)),
+            padding: EdgeInsets.all(10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  child: CachedNetworkImage(
+                    imageUrl: item['image'] != null
+                        ? "${STORAGE_URL}${item['image']}"
+                        : "https://www.kindpng.com/picc/m/99-997900_headshot-silhouette-person-placeholder-hd-png-download.png",
+                    height: 125,
+                    width: 125,
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Image(
                       image: AssetImage('assets/images/placeHolder.jpg'),
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                width: 30,
-              ),
-              Expanded(
-                child: Container(
-                  height: 150,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            '${item['first_name']}',
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.w600),
-                          ),
-                          Spacer(),
-                          IconButton(
-                            onPressed: () {
-                              HomeCubit.get(context).changeFavoriteIcon();
-                            },
-                            icon: Icon(
-                              HomeCubit.get(context).favorite,
+                SizedBox(
+                  width: 30,
+                ),
+                Expanded(
+                  child: Container(
+                    height: 150,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              '${item['first_name']}',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.w600),
                             ),
+                            Spacer(),
+                            IconButton(
+                              onPressed: () {
+
+                              },
+                              icon: Icon(
+                                Icons.favorite,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Text(
+                          '${item['skill']}',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.grey,
                           ),
-                        ],
-                      ),
-                      Text(
-                        '${item['skill']}',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.grey,
                         ),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        '${item['bio']}',
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.grey,
+                        SizedBox(
+                          height: 5,
                         ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: [
-                          InkWell(
-                            child: Container(
-                              width: 70,
-                              height: 30,
-                              decoration: BoxDecoration(
-                                  color: AppColors.primaryColor,
-                                  borderRadius: BorderRadius.circular(50)),
-                              child: Center(
-                                child: Text(
-                                  'Book',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 14,
-                                      color: AppColors.secondaryColor),
+                        Text(
+                          '${item['bio']}',
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          children: [
+                            InkWell(
+                              child: Container(
+                                width: 70,
+                                height: 30,
+                                decoration: BoxDecoration(
+                                    color: AppColors.primaryColor,
+                                    borderRadius: BorderRadius.circular(50)),
+                                child: Center(
+                                  child: Text(
+                                    t.book,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 14,
+                                        color: AppColors.secondaryColor),
+                                  ),
                                 ),
                               ),
+                              onTap: () {
+                                navigateTo(
+                                    context, AppointmentScreen(item['id']));
+                              },
                             ),
-                            onTap: () {
-                              navigateTo(context, AppointmentScreen(item['id']));
-                            },
-                          ),
-                          Spacer(),
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.star,
-                                color: Colors.amber,
-                              ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                '${item['rating']}',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 10,
-                                    color: Colors.grey),
-                              ),
-                              SizedBox(
-                                width: 7,
-                              ),
-                              Text(
-                                '(135 Reviews)',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 10,
-                                    color: Colors.grey
+                            Spacer(),
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.amber,
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Text(
+                                  '${item['rating']}',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 10,
+                                      color: Colors.grey),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  '${item['avgRating']}',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 10,
+                                      color: Colors.grey
+                                      //color: Colors.grey
+                                      ),
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Text(
+                                  t.review,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 10,
+                                      color: Colors.grey
                                     //color: Colors.grey
-                                    ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    ],
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        );
+      onTap: (){
+        HomeCubit.get(context).getConsultantDetails(id: item['id']);
       },
     );
+
 Widget myDivider() => Padding(
-      padding: const EdgeInsetsDirectional.only(top: 20, bottom: 20),
+      padding: const EdgeInsetsDirectional.all(
+          20
+      ),
       child: Container(
         color: Colors.grey[300],
         width: double.infinity,
@@ -219,11 +234,12 @@ Widget myDivider() => Padding(
       ),
     );
 
-Widget categoriesBuilder(list) => ConditionalBuilder(
+Widget categoriesBuilder(list,context) => ConditionalBuilder(
       condition: list.isNotEmpty,
       builder: (context) => ListView.separated(
         itemBuilder: (context, index) => buildCardsItem(
           list[index],
+          context
         ),
         separatorBuilder: (context, index) => SizedBox(
           height: 20,

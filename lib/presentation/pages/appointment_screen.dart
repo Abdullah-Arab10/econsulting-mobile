@@ -30,7 +30,7 @@ class AppointmentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var t = S.of(context);
-    print(BlocProvider.of<AuthCubit>(context).authLogin.user.id);
+    print(BlocProvider.of<AuthCubit>(context).authLogin!.user.id);
     return BlocProvider(
       create: (context) => AppointmentCubit(),
       child: BlocConsumer<AppointmentCubit,AppointmentStates>(

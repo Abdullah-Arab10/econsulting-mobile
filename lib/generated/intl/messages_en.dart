@@ -36,16 +36,23 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
         "address": MessageLookupByLibrary.simpleMessage("Address"),
         "alanTuring": MessageLookupByLibrary.simpleMessage("Alan Turing"),
+        "applicationLanguage":
+            MessageLookupByLibrary.simpleMessage("Application Language"),
+        "appointmentCost":
+            MessageLookupByLibrary.simpleMessage("Appointment Cost"),
         "appointmentStart":
             MessageLookupByLibrary.simpleMessage("Appointment Start"),
         "bio": MessageLookupByLibrary.simpleMessage("Bio"),
         "book": MessageLookupByLibrary.simpleMessage("BOOK"),
+        "calendar": MessageLookupByLibrary.simpleMessage("Calendar"),
         "categories": MessageLookupByLibrary.simpleMessage("Categories"),
         "civilEngineers":
             MessageLookupByLibrary.simpleMessage("Civil Engineers"),
         "consultant": MessageLookupByLibrary.simpleMessage("consultant"),
         "consultantsList":
             MessageLookupByLibrary.simpleMessage("Consultants List"),
+        "consultationType":
+            MessageLookupByLibrary.simpleMessage("Consultation Type"),
         "date": MessageLookupByLibrary.simpleMessage("date"),
         "dentists": MessageLookupByLibrary.simpleMessage("Dentists"),
         "doctors": MessageLookupByLibrary.simpleMessage("Doctors"),
@@ -86,6 +93,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("email must not be empty"),
         "requiredPassword":
             MessageLookupByLibrary.simpleMessage("password must not be empty"),
+        "review": MessageLookupByLibrary.simpleMessage("Review"),
         "search": MessageLookupByLibrary.simpleMessage("Search a consultant"),
         "selectConsultation":
             MessageLookupByLibrary.simpleMessage("Select any consultation"),

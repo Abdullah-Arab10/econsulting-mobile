@@ -35,15 +35,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "account": MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
         "address": MessageLookupByLibrary.simpleMessage("العنوان"),
         "alanTuring": MessageLookupByLibrary.simpleMessage("ألان تورينغ"),
+        "applicationLanguage":
+            MessageLookupByLibrary.simpleMessage("لغة البرنامج"),
+        "appointmentCost": MessageLookupByLibrary.simpleMessage("تكلفة الجلسة"),
         "appointmentStart": MessageLookupByLibrary.simpleMessage("وقت الموعد"),
         "bio": MessageLookupByLibrary.simpleMessage("الوصف"),
         "book": MessageLookupByLibrary.simpleMessage("احجز"),
+        "calendar": MessageLookupByLibrary.simpleMessage("المواعيد"),
         "categories": MessageLookupByLibrary.simpleMessage("التصنيفات"),
         "civilEngineers":
             MessageLookupByLibrary.simpleMessage("المهندسين المدنيون"),
         "consultant": MessageLookupByLibrary.simpleMessage("كخبير"),
         "consultantsList":
             MessageLookupByLibrary.simpleMessage("قائمة الاستشاريين"),
+        "consultationType": MessageLookupByLibrary.simpleMessage("نوع الخبرة"),
         "date": MessageLookupByLibrary.simpleMessage("التاريخ"),
         "dentists": MessageLookupByLibrary.simpleMessage("أطباء الأسنان"),
         "doctors": MessageLookupByLibrary.simpleMessage("الأطباء"),
@@ -85,6 +90,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "requiredEmail": MessageLookupByLibrary.simpleMessage("الايميل فارغ"),
         "requiredPassword":
             MessageLookupByLibrary.simpleMessage("يرجى ادخال كلمة السر"),
+        "review": MessageLookupByLibrary.simpleMessage("مراجعة"),
         "search": MessageLookupByLibrary.simpleMessage("ابحث عن خبير"),
         "selectConsultation":
             MessageLookupByLibrary.simpleMessage("اختر اي خبرة"),

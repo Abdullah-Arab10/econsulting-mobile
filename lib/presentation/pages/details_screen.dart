@@ -1,16 +1,28 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_states.dart';
 import 'package:e_consulting_flutter/generated/l10n.dart';
 import 'package:e_consulting_flutter/presentation/themes/colors.dart';
+import 'package:e_consulting_flutter/presentation/widgets/default_button.dart';
 import 'package:e_consulting_flutter/presentation/widgets/default_form_field.dart';
+import 'package:e_consulting_flutter/presentation/widgets/select_consultations.dart';
+import 'package:e_consulting_flutter/shared/constants/global_constants.dart';
 import 'package:e_consulting_flutter/utils/helpers/images_converter_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class DetailsScreen extends StatelessWidget {
+class DetailsScreen extends StatefulWidget {
   const DetailsScreen({super.key});
+
+  @override
+  State<DetailsScreen> createState() => _DetailsScreenState();
+}
+
+class _DetailsScreenState extends State<DetailsScreen> {
+
+  double start = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +32,7 @@ class DetailsScreen extends StatelessWidget {
       },
       builder: (context, state) {
         var t = S.of(context);
-        var image = ImageConverter.dataFromBase64String('');
+        var cubit = BlocProvider.of<HomeCubit>(context).detailsModel.data;
         return Scaffold(
           appBar: AppBar(
             title: Text(
@@ -45,10 +57,23 @@ class DetailsScreen extends StatelessWidget {
                           radius: 80,
                           backgroundColor: AppColors.primaryColor,
                         ),
-                        CircleAvatar(
-                          radius: 77,
-                          //backgroundImage: MemoryImage,
-                          backgroundImage: MemoryImage(image),
+                        Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100)
+                          ),
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          child: CachedNetworkImage(
+                            imageUrl: cubit.image != null
+                                ? "$STORAGE_URL${cubit.image}"
+                                : "https://www.kindpng.com/picc/m/99-997900_headshot-silhouette-person-placeholder-hd-png-download.png",
+                            height: 154,
+                            width: 154,
+                            fit: BoxFit.cover,
+                            placeholder: (context, url) => CircularProgressIndicator(),
+                            errorWidget: (context, url, error) => Image(
+                              image: AssetImage('assets/images/placeHolder.jpg'),
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -60,9 +85,9 @@ class DetailsScreen extends StatelessWidget {
                     children: [
                       Expanded(
                         child: defaultFormField(
-                          initial: 'Ali',
+                          initial: cubit.firstName,
                           enable: false,
-                          label: 'First Name',
+                          label: t.firstName,
                           prefix: Icons.first_page,
                         ),
                       ),
@@ -71,9 +96,9 @@ class DetailsScreen extends StatelessWidget {
                       ),
                       Expanded(
                         child: defaultFormField(
-                          initial: 'Fadel',
+                          initial: cubit.lastName,
                           enable: false,
-                          label: 'Last Name',
+                          label: t.lastName,
                           prefix: Icons.last_page,
                         ),
                       ),
@@ -83,27 +108,27 @@ class DetailsScreen extends StatelessWidget {
                     height: 20,
                   ),
                   defaultFormField(
-                    initial: 'ali@gmail.com',
+                    initial: cubit.email,
                     enable: false,
-                    label: 'Email Address',
+                    label: t.emailAddress,
                     prefix: Icons.email,
                   ),
                   const SizedBox(
                     height: 20,
                   ),
                   defaultFormField(
-                    initial: 'nabek',
+                    initial: cubit.address,
                     enable: false,
-                    label: 'Address',
+                    label: t.address,
                     prefix: Icons.house_outlined,
                   ),
                   const SizedBox(
                     height: 20,
                   ),
                   defaultFormField(
-                    initial: '09999999999',
+                    initial: cubit.phone,
                     enable: false,
-                    label: 'Phone',
+                    label: t.phone,
                     prefix: Icons.phone,
                   ),
                   const SizedBox(
@@ -113,9 +138,9 @@ class DetailsScreen extends StatelessWidget {
                     children: [
                       Expanded(
                         child: defaultFormField(
-                          initial: '1:30',
+                          initial: cubit.shiftStart,
                           enable: false,
-                          label: 'Shift Start',
+                          label: t.shiftStart,
                           prefix: Icons.calendar_today_outlined,
                         ),
                       ),
@@ -124,9 +149,9 @@ class DetailsScreen extends StatelessWidget {
                       ),
                       Expanded(
                         child: defaultFormField(
-                          initial: '3:30',
+                          initial: cubit.shiftEnd,
                           enable: false,
-                          label: 'Shift End',
+                          label: t.shiftEnd,
                           prefix: Icons.calendar_today_outlined,
                         ),
                       ),
@@ -136,19 +161,82 @@ class DetailsScreen extends StatelessWidget {
                     height: 20,
                   ),
                   defaultFormField(
-                    initial: 'bio',
+                    initial: cubit.bio,
                     enable: false,
-                    label: 'Bio',
+                    label: t.bio,
                     prefix: Icons.details,
                   ),
                   const SizedBox(
                     height: 20,
                   ),
                   defaultFormField(
-                    initial: 'consultation type',
+                    initial: selectSkill(cubit.skill),
                     enable: false,
-                    label: 'Consultation',
+                    label: t.consultationType,
                     prefix: Icons.merge_type,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                        color: AppColors.greyColor,
+                      borderRadius: BorderRadius.circular(50)
+                    ),
+                    child: Column(
+                      children: [
+                        Text(
+                          'Rating',
+                          style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              '${start.round()}',
+                              style: TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                              size: 30,
+                            ),
+                          ],
+                        ),
+                        Slider(
+                            value: start,
+                            max: 5,
+                            min: 1,
+                            onChanged: (value) {
+                              setState(() {
+                                start = value;
+                              });
+                            }),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        defaultButton(
+                          text: 'Submit',
+                          color: AppColors.primaryColor,
+                          radius: 50,
+                          function: (){},
+                          width: 330
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),

@@ -19,7 +19,7 @@ class CivilEngineersScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: categoriesBuilder(civil_engineers),
+      body: categoriesBuilder(civil_engineers, context),
     );
   }
 }

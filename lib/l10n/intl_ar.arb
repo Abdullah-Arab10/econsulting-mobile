@@ -53,5 +53,10 @@
   "min" : "ادخل من 3 او اكثر",
   "loginError" : "الايميل او كلمة السر غير صالحين",
   "logoutSuccess" : "تم تسجيل الخروج بنجاح",
-  "logout" : "تسجيل الخروج"
+  "logout" : "تسجيل الخروج",
+  "review" : "مراجعة",
+  "applicationLanguage" : "لغة البرنامج",
+  "consultationType" : "نوع الخبرة",
+  "appointmentCost" : "تكلفة الجلسة",
+  "calendar" : "المواعيد"
 }

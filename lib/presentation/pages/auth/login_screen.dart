@@ -42,9 +42,9 @@ class LoginScreen extends StatelessWidget {
             showToast(text: t.loginSuccess, state: ToastStates.SUCCESS);
             if (state.authLogin.user.role == 1 ||
                 state.authLogin.user.role == 2) {
-              navigateTo(context, HomeLayoutScreen());
+              navigateAndFinish(context, HomeLayoutScreen());
             } else if (state.authLogin.user.role == 0) {
-              navigateTo(context, AdminScreen());
+              navigateAndFinish(context, AdminScreen());
             }
           }
         } else {

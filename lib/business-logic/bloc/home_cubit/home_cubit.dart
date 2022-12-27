@@ -3,7 +3,10 @@
 import 'dart:convert';
 
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_states.dart';
+import 'package:e_consulting_flutter/data/models/details/consultant_details_model.dart';
+import 'package:e_consulting_flutter/data/models/details/details_model.dart';
 import 'package:e_consulting_flutter/data/models/home_model/home_model.dart';
+import 'package:e_consulting_flutter/data/models/search/search_model.dart';
 import 'package:e_consulting_flutter/data/remote/dio_helper.dart';
 import 'package:e_consulting_flutter/generated/l10n.dart';
 import 'package:e_consulting_flutter/presentation/pages/home_layout/favorite_screen.dart';
@@ -28,8 +31,6 @@ class HomeCubit extends Cubit<HomeStates> {
     currentIndex = index;
     emit(HomeBottomNavState());
   }
-
-  List<String> titles = ['Home Page', 'Favorite Page', 'Profile'];
 
   List<Widget> screens = [
     HomeScreen(),
@@ -61,6 +62,51 @@ class HomeCubit extends Cubit<HomeStates> {
     },).catchError((error){
       print(error.toString());
       emit(HomeGetConsultantsErrorState(error.toString()));
+    });
+  }
+
+  late DetailsModel detailsModel;
+
+  void getConsultantDetails({
+  required int id,
+}){
+
+    emit(HomeGetConsultantsDetailsLoadingState());
+
+    DioHelper.getData(url: '$DETAILS$id' ,).then((value) {
+
+      detailsModel = DetailsModel.fromJson(value.data, value.statusCode);
+
+
+
+      emit(HomeGetConsultantsDetailsSuccessState());
+    },).catchError((error){
+      print(error.toString());
+      emit(HomeGetConsultantsDetailsErrorState(error.toString()));
+    });
+  }
+
+  late SearchModel searchModel;
+
+  void postSearch({
+  required String value,
+})
+  {
+    emit(SearchGetConsultantLoading());
+
+    DioHelper.postData(
+        url: SEARCH,
+        data: {
+          'username' : value
+        }
+    ).then((value) {
+      print(value.data);
+      searchModel = SearchModel.fromJson(value.data);
+      //print(SearchModel.fromJson(value.data));
+      emit(SearchGetConsultantSuccess());
+    },).catchError((error){
+      print(error.toString());
+      emit(SearchGetConsultantError());
     });
   }
 

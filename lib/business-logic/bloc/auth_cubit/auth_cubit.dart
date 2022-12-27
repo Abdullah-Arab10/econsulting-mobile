@@ -22,11 +22,14 @@ class AuthCubit extends Cubit<AuthStates> {
     required String email,
     required String password,
   }) {
+    emit(LoginLoadingState());
+
     DioHelper.postData(url: LOGIN, data: {
       'email': email,
       'password': password,
     }).then((value) {
       authLogin = LoginModel.fromJson(value.data, value.statusCode);
+      print(authLogin);
       emit(LoginSuccessState(authLogin));
     }).catchError((error) {
       print(error.toString());
@@ -37,29 +40,47 @@ class AuthCubit extends Cubit<AuthStates> {
   late AuthUserRegister authUserRegister;
 
   void userRegister({
-    required String first_name,
-    required String last_name,
+    required String firstName,
+    required String lastName,
     required String email,
     required String password,
     required String address,
     required String phone,
     File? image,
-  }) {
+  }) async {
     emit(UserRegisterLoadingState());
 
-    DioHelper.postData(url: REGISTER_AS_USER, data: {
-      'first_name': first_name,
-      'last_name': last_name,
-      'email': email,
-      'password': password,
-      'address': address,
-      'phone': phone,
-      'image': image,
-    }).then((value) {
-      authUserRegister = AuthUserRegister.fromJson(value.data);
+    FormData form;
+
+    if(image != null){
+      form = FormData.fromMap({
+        "image": await MultipartFile.fromFile(pickedFile!.path,
+            filename: upload(), contentType: MediaType("image", "jpg")),
+        'firstName': firstName,
+        'lastName': lastName,
+        'email': email,
+        'password': password,
+        'address': address,
+        'phone': phone,
+      });
+    } else{
+      form = FormData.fromMap({
+        "image": null,
+        'firstName': firstName,
+        'lastName': lastName,
+        'email': email,
+        'password': password,
+        'address': address,
+        'phone': phone,
+      });
+    }
+
+    DioHelper.postForm(url: REGISTER_AS_USER, data: form).then((value) {
+      authUserRegister = AuthUserRegister.fromJson(value.data, value.statusCode);
       emit(UserRegisterSuccessState(authUserRegister));
     }).catchError((error) {
-      emit(UserRegisterErrorState(error));
+      print(error.toString());
+      emit(UserRegisterErrorState(error.toString()));
     });
   }
 
@@ -76,11 +97,13 @@ class AuthCubit extends Cubit<AuthStates> {
   }
 
   List<String> consultations = [
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
+    'Doctors',
+    'Dentists',
+    'Therapists',
+    'Lawyers',
+    'Economics',
+    'Software Engineers',
+    'Civil Engineers'
   ];
 
   String selectedConsultation = '';
@@ -122,6 +145,7 @@ class AuthCubit extends Cubit<AuthStates> {
     required int skill,
     required String shiftStart,
     required String shiftEnd,
+    required int appointmentCost,
   }) async {
     emit(ConsultantRegisterLoadingState());
     FormData form;

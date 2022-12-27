@@ -610,6 +610,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Review`
+  String get review {
+    return Intl.message(
+      'Review',
+      name: 'review',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Application Language`
+  String get applicationLanguage {
+    return Intl.message(
+      'Application Language',
+      name: 'applicationLanguage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Consultation Type`
+  String get consultationType {
+    return Intl.message(
+      'Consultation Type',
+      name: 'consultationType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Appointment Cost`
+  String get appointmentCost {
+    return Intl.message(
+      'Appointment Cost',
+      name: 'appointmentCost',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Calendar`
+  String get calendar {
+    return Intl.message(
+      'Calendar',
+      name: 'calendar',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

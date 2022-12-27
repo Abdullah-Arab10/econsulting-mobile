@@ -1,4 +1,4 @@
-class UserData
+class ConsultantData
 {
   late int id;
   late String firstName;
@@ -13,8 +13,9 @@ class UserData
   late String shiftStart;
   late String shiftEnd;
 
-  UserData.fromJson(Map<String,dynamic> json)
+  ConsultantData.fromJson(dynamic json)
   {
+json=json[0];
     id = json['id'];
     firstName = json['first_name'];
     lastName = json['last_name'];
