@@ -8,12 +8,16 @@ import 'package:e_consulting_flutter/generated/l10n.dart';
 import 'package:e_consulting_flutter/presentation/themes/colors.dart';
 import 'package:e_consulting_flutter/presentation/widgets/default_button.dart';
 import 'package:e_consulting_flutter/presentation/widgets/default_form_field.dart';
+import 'package:e_consulting_flutter/presentation/widgets/navigate_to.dart';
 import 'package:e_consulting_flutter/presentation/widgets/show_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:validators/validators.dart';
+
+import 'home_layout/home_layout_screen.dart';
 
 class AppointmentScreen extends StatelessWidget {
   final int id;
@@ -30,12 +34,38 @@ class AppointmentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var t = S.of(context);
-    print(BlocProvider.of<AuthCubit>(context).authLogin!.user.id);
     return BlocProvider(
       create: (context) => AppointmentCubit(),
-      child: BlocConsumer<AppointmentCubit,AppointmentStates>(
+      child: BlocConsumer<AppointmentCubit, AppointmentStates>(
         listener: (context, state) {
-
+          if (state is BookAppointmentSuccessState) {
+            if (state.appointmentModel.status == 200) {
+              showToast(
+                  text: t.appointmentCreatedSuccessfully,
+                  state: ToastStates.SUCCESS);
+              navigateTo(context, HomeLayoutScreen());
+            }
+          } else if (state is BookAppointmentErrorState) {
+            if (state.appointmentErrorModel.errorId == 0) {
+              showToast(text: t.consultantNotFound, state: ToastStates.ERROR);
+            }
+            if (state.appointmentErrorModel.errorId == 1) {
+              showToast(text: t.userNotFound, state: ToastStates.ERROR);
+            }
+            if (state.appointmentErrorModel.errorId == 2) {
+              showToast(
+                  text: t.consultantNotAvailable, state: ToastStates.ERROR);
+            }
+            if (state.appointmentErrorModel.errorId == 3) {
+              showToast(
+                  text: t.youHaveAnotherAppointmentError,
+                  state: ToastStates.ERROR);
+            }
+            if (state.appointmentErrorModel.errorId == 4) {
+              showToast(
+                  text: t.youHaveNoEnoughCashError, state: ToastStates.ERROR);
+            }
+          }
         },
         builder: (context, state) {
           return Scaffold(
@@ -66,33 +96,32 @@ class AppointmentScreen extends StatelessWidget {
                           height: 40,
                         ),
                         defaultFormField(
-                          controller: dateController,
-                          keyboardType: TextInputType.emailAddress,
-                          label: t.date,
-                          prefix: Icons.calendar_today,
-                          validate: (value) {
-                            isEmailCorrect = isEmail(value!);
-                            if (value.isEmpty) {
-                              showToast(
-                                  text: 'email must not be empty',
-                                  state: ToastStates.ERROR);
-                            } else if (isEmailCorrect == false) {
-                              showToast(text: 'gg', state: ToastStates.ERROR);
-                            }
-                            return null;
-                          },
-                            onTap: (){
+                            controller: dateController,
+                            label: t.date,
+                            prefix: Icons.calendar_today,
+                            validate: (value) {
+                              if (value!.isEmpty) {
+                                showToast(
+                                    text: t.dateRequired,
+                                    state: ToastStates.ERROR);
+                              }
+                              return null;
+                            },
+                            onTap: () {
                               showDatePicker(
-                                  context: context,
-                                  initialDate: DateTime.now(),
-                                  firstDate: DateTime.now(),
-                                  lastDate: DateTime.parse('2022-12-31')
+                                context: context,
+                                // DateTime.parse(DateFormat.yMd('en')
+                                //   .format(DateTime.now()))
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime.now(),
+                                lastDate: DateTime.parse('2024-12-31'),
                               ).then((value) {
-                                dateController.text = DateFormat.yMd().format(value!);
+                                var formattedDate =
+                                    DateFormat.yMd('en').format(value!);
+                                dateController.text = formattedDate;
                               });
                               print(dateController.text);
-                            }
-                        ),
+                            }),
                         const SizedBox(
                           height: 15,
                         ),
@@ -104,7 +133,7 @@ class AppointmentScreen extends StatelessWidget {
                           validate: (value) {
                             if (value != null && value.isEmpty) {
                               showToast(
-                                  text: 'money must not be empty',
+                                  text: t.timeRequired,
                                   state: ToastStates.ERROR);
                             }
                             return null;
@@ -126,20 +155,22 @@ class AppointmentScreen extends StatelessWidget {
                         ConditionalBuilder(
                           condition: state is! BookAppointmentLoadingState,
                           builder: (context) => defaultButton(
-                            function: () {
-                              if (formKey.currentState!.validate()) {
-                                AppointmentCubit.get(context).bookAppointment(
-                                  date: dateController.text,
-                                  start: shiftStartController.text,
-                                  consultantId: id,
-                                  clientId: BlocProvider.of<AuthCubit>(context).authLogin.user.id
-                                );
-                              }
-                            },
-                            text: t.book,
-                            radius: 50,
-                              color: AppColors.primaryColor
-                          ),
+                              function: () {
+                                if (formKey.currentState!.validate()) {
+                                  AppointmentCubit.get(context).bookAppointment(
+                                      date: dateController.text,
+                                      start: shiftStartController.text,
+                                      consultantId: id,
+                                      clientId:
+                                          BlocProvider.of<AuthCubit>(context)
+                                              .authLogin
+                                              .user
+                                              .id);
+                                }
+                              },
+                              text: t.book,
+                              radius: 50,
+                              color: AppColors.primaryColor),
                           fallback: (context) =>
                               Center(child: CircularProgressIndicator()),
                         ),

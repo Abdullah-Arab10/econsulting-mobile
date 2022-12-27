@@ -84,5 +84,14 @@
   "applicationLanguage" : "Application Language",
   "consultationType" : "Consultation Type",
   "appointmentCost" : "Appointment Cost",
-  "calendar" : "Calendar"
+  "calendar" : "Calendar",
+  "appointmentCalendar": "Appointment Calendar",
+  "dateRequired": "Date must not be empty",
+  "userNotFound": "User is not found!",
+  "consultantNotFound": "Consultant is not found!",
+  "consultantNotAvailable": "Consultant is not available!",
+  "youHaveAnotherAppointmentError": "Sorry,you have another appointment in same time",
+  "youHaveNoEnoughCashError": "Sorry,you don't have enough cash",
+  "appointmentCreatedSuccessfully": "Appointment booked successfully",
+  "timeRequired": "Time must not be empty"
 }

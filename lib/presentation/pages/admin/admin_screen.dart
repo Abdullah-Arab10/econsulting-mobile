@@ -3,8 +3,6 @@
 import 'package:e_consulting_flutter/business-logic/bloc/admin_cubit/admin_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/admin_cubit/admin_states.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_cubit.dart';
-import 'package:e_consulting_flutter/business-logic/bloc/locale_cubit/locale_cubit.dart';
-import 'package:e_consulting_flutter/presentation/pages/auth/login_screen.dart';
 import 'package:e_consulting_flutter/presentation/themes/colors.dart';
 import 'package:e_consulting_flutter/presentation/widgets/default_button.dart';
 import 'package:e_consulting_flutter/presentation/widgets/default_form_field.dart';
@@ -59,66 +57,21 @@ class AdminScreen extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.only(
                           top:100),
-                      child: Expanded(
-                        child: Column(
-                          children: [
-                            Text(
-                              t.applicationLanguage,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 20,
-
-                              ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Container(
-                              width: 200,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  BlocProvider.of<LocaleCubit>(context)
-                                      .changeLanguage('en');
-                                },
-                                child: Text('ENGLISH'),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Container(
-                              width: 200,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  BlocProvider.of<LocaleCubit>(context)
-                                      .changeLanguage('ar');
-                                },
-                                child: Text('Arabic'),
-                              ),
-                            ),
-                            Expanded(
-                              child: Align(
-                                  alignment: Alignment.bottomCenter,
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.only(
-                                        bottom: 10
-                                    ),
-                                    child: defaultButton(
-                                        text: t.logout,
-                                        function: ()
-                                        {
-                                          showToast(text: t.logoutSuccess, state: ToastStates.SUCCESS);
-                                          navigateAndFinish(context, LoginScreen());
-                                        },
-                                        width: 200,
-                                        color: AppColors.errorColor,
-                                        radius: 50
-                                    ),
-                                  )
-                              ),
-                            ),
-                          ],
-                        ),
+                      child: ListTile(
+                          leading: ElevatedButton(
+                            onPressed: () {
+                              BlocProvider.of<LocaleCubit>(context)
+                                  .changeLanguage('en');
+                            },
+                            child: Text('ENGLISH'),
+                          ),
+                          trailing: ElevatedButton(
+                            onPressed: () {
+                              BlocProvider.of<LocaleCubit>(context)
+                                  .changeLanguage('ar');
+                            },
+                            child: Text('Arabic'),
+                          )
                       ),
                     );
                   } else {

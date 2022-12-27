@@ -58,5 +58,14 @@
   "applicationLanguage" : "لغة البرنامج",
   "consultationType" : "نوع الخبرة",
   "appointmentCost" : "تكلفة الجلسة",
-  "calendar" : "المواعيد"
+  "calendar" : "المواعيد",
+  "appointmentCalendar": "روزنامة المواعيد",
+  "dateRequired": "التاريخ لا يجب ان يكون فارغا",
+  "userNotFound": "المستخدم غير موجود",
+  "consultantNotFound": "الخبير غير موجود",
+  "consultantNotAvailable": "الخبير غير متوفر في هذا الوقت",
+  "youHaveAnotherAppointmentError": "عذرا,لديك موعد آخر في نفس الوقت",
+  "youHaveNoEnoughCashError": "عذرا, ليس لديك رصيد كافي",
+  "appointmentCreatedSuccessfully": "تم حجز الموعد بنجاح",
+  "timeRequired": "الوقت مطلوب"
 }
