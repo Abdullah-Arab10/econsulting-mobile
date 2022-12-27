@@ -4,10 +4,12 @@
 import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_states.dart';
 import 'package:e_consulting_flutter/generated/l10n.dart';
+import 'package:e_consulting_flutter/presentation/pages/auth/login_screen.dart';
 import 'package:e_consulting_flutter/presentation/themes/colors.dart';
 import 'package:e_consulting_flutter/presentation/widgets/change_profile_image.dart';
 import 'package:e_consulting_flutter/presentation/widgets/default_button.dart';
 import 'package:e_consulting_flutter/presentation/widgets/default_form_field.dart';
+import 'package:e_consulting_flutter/presentation/widgets/navigate_to.dart';
 import 'package:e_consulting_flutter/presentation/widgets/show_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -41,15 +43,14 @@ class UserRegisterScreen extends StatelessWidget {
     var t = S.of(context);
     return BlocConsumer<AuthCubit,AuthStates>(
       listener: (context, state) {
-        if(state is LoginLoadingState)
-        {
-          // if(AuthCubit.get(context).authLogin.status)
-          // {
-          //
-          // }else
-          // {
-          //
-          // }
+        if (state is UserRegisterSuccessState) {
+          if(state.authUserRegister.status == 200)
+          {
+            showToast(
+                text: 'Hello',
+                state: ToastStates.SUCCESS);
+            navigateAndFinish(context, LoginScreen());
+          }
         }
       },
       builder: (context, state) {
@@ -243,8 +244,8 @@ class UserRegisterScreen extends StatelessWidget {
                           function: (){
                             if(formKey.currentState!.validate()){
                               AuthCubit.get(context).userRegister(
-                                first_name: firstNameController.text,
-                                last_name: lastNameController.text,
+                                firstName: firstNameController.text,
+                                lastName: lastNameController.text,
                                 email: emailController.text,
                                 password: passwordController.text,
                                 address: addressController.text,

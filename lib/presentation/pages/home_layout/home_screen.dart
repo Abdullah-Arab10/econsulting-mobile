@@ -4,10 +4,14 @@ import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_cubit.d
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_states.dart';
 import 'package:e_consulting_flutter/data/models/home_model/home_data_model.dart';
 import 'package:e_consulting_flutter/data/models/home_model/home_model.dart';
+import 'package:e_consulting_flutter/data/models/search/search_data_model.dart';
+import 'package:e_consulting_flutter/presentation/pages/details_screen.dart';
+import 'package:e_consulting_flutter/presentation/pages/search_screen.dart';
 import 'package:e_consulting_flutter/presentation/themes/colors.dart';
 import 'package:e_consulting_flutter/presentation/widgets/consultants_cards.dart';
 import 'package:e_consulting_flutter/presentation/widgets/default_form_field.dart';
 import 'package:e_consulting_flutter/presentation/widgets/list_view_cards.dart';
+import 'package:e_consulting_flutter/presentation/widgets/navigate_to.dart';
 import 'package:e_consulting_flutter/presentation/widgets/show_toast.dart';
 import 'package:e_consulting_flutter/shared/constants/categories_constants.dart';
 import 'package:flutter/material.dart';
@@ -17,26 +21,26 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:e_consulting_flutter/generated/l10n.dart';
 
 class HomeScreen extends StatelessWidget {
-
   HomeScreen({super.key});
 
   var searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    var t=S.of(context);
-    return BlocConsumer<HomeCubit,HomeStates>(
+    var t = S.of(context);
+    return BlocConsumer<HomeCubit, HomeStates>(
       listener: (context, state) {
-
+        if (state is HomeGetConsultantsDetailsSuccessState) {
+          navigateTo(context, DetailsScreen());
+        }
       },
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
             backgroundColor: AppColors.backgroundColor,
             elevation: 0.0,
-            systemOverlayStyle: SystemUiOverlayStyle(
-                statusBarColor: AppColors.backgroundColor
-            ),
+            systemOverlayStyle:
+                SystemUiOverlayStyle(statusBarColor: AppColors.backgroundColor),
             title: Text(
               t.homePage,
               style: TextStyle(
@@ -51,40 +55,39 @@ class HomeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(
-                        top: 10
-                    ),
+                    padding: const EdgeInsets.only(top: 10),
                     child: defaultFormField(
                       controller: searchController,
                       keyboardType: TextInputType.text,
                       label: t.search,
                       prefix: Icons.search,
                       validate: (value) {
-                        if(value!.isEmpty)
-                        {
+                        if (value!.isEmpty) {
                           showToast(
-                              text: 'Search must not be empty',
-                              state: ToastStates.ERROR
-                          );
+                              text: t.searchRequired, state: ToastStates.ERROR);
                         }
+                      },
+                      onTap: () {
+                        SearchDataModel.search = [];
+                        navigateTo(context, SearchScreen());
                       },
                     ),
                   ),
-                  SizedBox(height: 20,),
+                  SizedBox(
+                    height: 20,
+                  ),
                   Text(
                     t.categories,
-                    style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 20
-                    ),
+                    style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Container(
                     height: 140,
                     child: ListView.separated(
                         scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index)
-                        {
+                        itemBuilder: (context, index) {
                           var t = S.of(context);
                           List<String> type = [
                             t.doctors,
@@ -97,14 +100,15 @@ class HomeScreen extends StatelessWidget {
                           ];
                           return buildCategoriesItem(
                             type[index],
-                          icon[index],
-                          widgets[index],
-                          context,
-                        );
+                            icon[index],
+                            widgets[index],
+                            context,
+                          );
                         },
-                        separatorBuilder: (context, index) => SizedBox(width: 10,),
-                        itemCount: 7
-                    ),
+                        separatorBuilder: (context, index) => SizedBox(
+                              width: 10,
+                            ),
+                        itemCount: 7),
                   ),
                   Align(
                       alignment: Alignment.center,
@@ -135,5 +139,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
-

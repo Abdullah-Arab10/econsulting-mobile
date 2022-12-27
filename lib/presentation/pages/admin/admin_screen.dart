@@ -3,10 +3,10 @@
 import 'package:e_consulting_flutter/business-logic/bloc/admin_cubit/admin_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/admin_cubit/admin_states.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_cubit.dart';
-import 'package:e_consulting_flutter/business-logic/bloc/locale_cubit/locale_cubit.dart';
 import 'package:e_consulting_flutter/presentation/themes/colors.dart';
 import 'package:e_consulting_flutter/presentation/widgets/default_button.dart';
 import 'package:e_consulting_flutter/presentation/widgets/default_form_field.dart';
+import 'package:e_consulting_flutter/presentation/widgets/navigate_to.dart';
 import 'package:e_consulting_flutter/presentation/widgets/show_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,8 +15,9 @@ import 'package:conditional_builder/conditional_builder.dart';
 import 'package:validators/validators.dart';
 import 'package:e_consulting_flutter/generated/l10n.dart';
 
-class AdminScreen extends StatelessWidget {
+import '../../../business-logic/bloc/locale_cubit/locale_cubit.dart';
 
+class AdminScreen extends StatelessWidget {
   var emailController = TextEditingController();
 
   var moneyController = TextEditingController();
@@ -34,9 +35,7 @@ class AdminScreen extends StatelessWidget {
       child: BlocConsumer<AdminCubit, AdminStates>(
         listener: (context, state) {
           if (state is AdminTransferSuccessState) {
-            showToast(
-                text: 'success',
-                state: ToastStates.SUCCESS);
+            showToast(text: 'success', state: ToastStates.SUCCESS);
           }
         },
         builder: (context, state) {
@@ -55,24 +54,22 @@ class AdminScreen extends StatelessWidget {
                 builder: (context, state) {
                   if (state is ChangeLocaleState) {
                     return Padding(
-                      padding: const EdgeInsets.only(
-                          top:100),
+                      padding: const EdgeInsets.only(top: 100),
                       child: ListTile(
                           leading: ElevatedButton(
                             onPressed: () {
                               BlocProvider.of<LocaleCubit>(context)
                                   .changeLanguage('en');
                             },
-                            child: Text('ENGLISH'),
+                            child: Text(t.english),
                           ),
                           trailing: ElevatedButton(
                             onPressed: () {
                               BlocProvider.of<LocaleCubit>(context)
                                   .changeLanguage('ar');
                             },
-                            child: Text('Arabic'),
-                          )
-                      ),
+                            child: Text(t.arabic),
+                          )),
                     );
                   } else {
                     return SizedBox();
@@ -108,10 +105,12 @@ class AdminScreen extends StatelessWidget {
                             isEmailCorrect = isEmail(value!);
                             if (value.isEmpty) {
                               showToast(
-                                  text: 'email must not be empty',
+                                  text: t.requiredEmail,
                                   state: ToastStates.ERROR);
                             } else if (isEmailCorrect == false) {
-                              showToast(text: 'gg', state: ToastStates.ERROR);
+                              showToast(
+                                  text: t.emailFormat,
+                                  state: ToastStates.ERROR);
                             }
                             return null;
                           },
@@ -127,7 +126,7 @@ class AdminScreen extends StatelessWidget {
                           validate: (value) {
                             if (value != null && value.isEmpty) {
                               showToast(
-                                  text: 'money must not be empty',
+                                  text: t.requiredMoney,
                                   state: ToastStates.ERROR);
                             }
                             return null;
@@ -139,18 +138,17 @@ class AdminScreen extends StatelessWidget {
                         ConditionalBuilder(
                           condition: state is! AdminTransferLoadingState,
                           builder: (context) => defaultButton(
-                            function: () {
-                              if (formKey.currentState!.validate()) {
-                                AdminCubit.get(context).adminTransfer(
-                                  email: emailController.text,
-                                  moneyAmount: moneyController.text,
-                                );
-                              }
-                            },
-                            text: t.transfer,
-                            radius: 50,
-                              color: AppColors.primaryColor
-                          ),
+                              function: () {
+                                if (formKey.currentState!.validate()) {
+                                  AdminCubit.get(context).adminTransfer(
+                                    email: emailController.text,
+                                    moneyAmount: moneyController.text,
+                                  );
+                                }
+                              },
+                              text: t.transfer,
+                              radius: 50,
+                              color: AppColors.primaryColor),
                           fallback: (context) =>
                               Center(child: CircularProgressIndicator()),
                         ),

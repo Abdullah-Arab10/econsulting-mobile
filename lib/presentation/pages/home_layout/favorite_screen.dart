@@ -19,7 +19,7 @@ class FavoriteScreen extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             title: Text(
-              cubit.titles[1],
+              t.favorite,
               style: TextStyle(
                 fontWeight: FontWeight.w700,
               ),

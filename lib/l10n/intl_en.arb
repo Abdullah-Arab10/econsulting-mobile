@@ -80,6 +80,11 @@
   "loginError" : "invalid email or password",
   "logoutSuccess" : "logout successfully",
   "logout" : "LOGOUT",
+  "review" : "Review",
+  "applicationLanguage" : "Application Language",
+  "consultationType" : "Consultation Type",
+  "appointmentCost" : "Appointment Cost",
+  "calendar" : "Calendar",
   "appointmentCalendar": "Appointment Calendar",
   "dateRequired": "Date must not be empty",
   "userNotFound": "User is not found!",
@@ -88,5 +93,11 @@
   "youHaveAnotherAppointmentError": "Sorry,you have another appointment in same time",
   "youHaveNoEnoughCashError": "Sorry,you don't have enough cash",
   "appointmentCreatedSuccessfully": "Appointment booked successfully",
-  "timeRequired": "Time must not be empty"
+  "timeRequired": "Time must not be empty",
+  "arabic": "Arabic",
+  "english": "English",
+  "requiredMoney": "Money must not be empty",
+  "sendRating":"send rating",
+  "searchRequired": "Search must not be empty",
+  "searchPage": "Search Page"
 }

@@ -9,6 +9,7 @@ Widget listViewCard({
     shrinkWrap: true,
     itemBuilder: (context, index) => buildCardsItem(
       screen[index],
+      context
     ),
     separatorBuilder: (context, index) => SizedBox(height: 20,),
     itemCount: screen.length

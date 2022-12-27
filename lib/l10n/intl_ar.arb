@@ -54,6 +54,11 @@
   "loginError" : "الايميل او كلمة السر غير صالحين",
   "logoutSuccess" : "تم تسجيل الخروج بنجاح",
   "logout" : "تسجيل الخروج",
+  "review" : "مراجعة",
+  "applicationLanguage" : "لغة البرنامج",
+  "consultationType" : "نوع الخبرة",
+  "appointmentCost" : "تكلفة الجلسة",
+  "calendar" : "المواعيد",
   "appointmentCalendar": "روزنامة المواعيد",
   "dateRequired": "التاريخ لا يجب ان يكون فارغا",
   "userNotFound": "المستخدم غير موجود",
@@ -62,5 +67,11 @@
   "youHaveAnotherAppointmentError": "عذرا,لديك موعد آخر في نفس الوقت",
   "youHaveNoEnoughCashError": "عذرا, ليس لديك رصيد كافي",
   "appointmentCreatedSuccessfully": "تم حجز الموعد بنجاح",
-  "timeRequired": "الوقت مطلوب"
+  "timeRequired": "الوقت مطلوب",
+  "arabic": "عربي",
+  "english": "انكليزي",
+  "requiredMoney": "المبلغ لا يجب ان يكون فارغا",
+  "sendRating": "أرسل التقييم",
+  "searchRequired": "حقل البحث لا يجب ان يكون فارغا",
+  "searchPage": "صفحة البحث"
 }

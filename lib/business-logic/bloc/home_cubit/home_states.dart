@@ -15,3 +15,19 @@ class HomeGetConsultantsErrorState extends HomeStates{
 }
 
 class ChangeFavoriteIconState extends HomeStates{}
+
+class HomeGetConsultantsDetailsSuccessState extends HomeStates{}
+
+class HomeGetConsultantsDetailsLoadingState extends HomeStates{}
+
+class HomeGetConsultantsDetailsErrorState extends HomeStates{
+  final String error;
+
+  HomeGetConsultantsDetailsErrorState(this.error);
+}
+
+class SearchGetConsultantLoading extends HomeStates{}
+
+class SearchGetConsultantSuccess extends HomeStates{}
+
+class SearchGetConsultantError extends HomeStates{}

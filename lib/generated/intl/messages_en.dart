@@ -36,14 +36,20 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
         "address": MessageLookupByLibrary.simpleMessage("Address"),
         "alanTuring": MessageLookupByLibrary.simpleMessage("Alan Turing"),
+        "applicationLanguage":
+            MessageLookupByLibrary.simpleMessage("Application Language"),
         "appointmentCalendar":
             MessageLookupByLibrary.simpleMessage("Appointment Calendar"),
+        "appointmentCost":
+            MessageLookupByLibrary.simpleMessage("Appointment Cost"),
         "appointmentCreatedSuccessfully": MessageLookupByLibrary.simpleMessage(
             "Appointment booked successfully"),
         "appointmentStart":
             MessageLookupByLibrary.simpleMessage("Appointment Start"),
+        "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
         "bio": MessageLookupByLibrary.simpleMessage("Bio"),
         "book": MessageLookupByLibrary.simpleMessage("BOOK"),
+        "calendar": MessageLookupByLibrary.simpleMessage("Calendar"),
         "categories": MessageLookupByLibrary.simpleMessage("Categories"),
         "civilEngineers":
             MessageLookupByLibrary.simpleMessage("Civil Engineers"),
@@ -54,6 +60,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Consultant is not found!"),
         "consultantsList":
             MessageLookupByLibrary.simpleMessage("Consultants List"),
+        "consultationType":
+            MessageLookupByLibrary.simpleMessage("Consultation Type"),
         "date": MessageLookupByLibrary.simpleMessage("date"),
         "dateRequired":
             MessageLookupByLibrary.simpleMessage("Date must not be empty"),
@@ -63,6 +71,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "emailAddress": MessageLookupByLibrary.simpleMessage("Email Address"),
         "emailFormat":
             MessageLookupByLibrary.simpleMessage("invalid email format"),
+        "english": MessageLookupByLibrary.simpleMessage("English"),
         "favorite": MessageLookupByLibrary.simpleMessage("Favorite"),
         "firstName": MessageLookupByLibrary.simpleMessage("First Name"),
         "heroBorn": m0,
@@ -94,11 +103,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "registerNow": MessageLookupByLibrary.simpleMessage("Register Now"),
         "requiredEmail":
             MessageLookupByLibrary.simpleMessage("email must not be empty"),
+        "requiredMoney":
+            MessageLookupByLibrary.simpleMessage("Money must not be empty"),
         "requiredPassword":
             MessageLookupByLibrary.simpleMessage("password must not be empty"),
+        "review": MessageLookupByLibrary.simpleMessage("Review"),
         "search": MessageLookupByLibrary.simpleMessage("Search a consultant"),
+        "searchPage": MessageLookupByLibrary.simpleMessage("Search Page"),
+        "searchRequired":
+            MessageLookupByLibrary.simpleMessage("Search must not be empty"),
         "selectConsultation":
             MessageLookupByLibrary.simpleMessage("Select any consultation"),
+        "sendRating": MessageLookupByLibrary.simpleMessage("send rating"),
         "settings": MessageLookupByLibrary.simpleMessage("settings"),
         "settingsScreen":
             MessageLookupByLibrary.simpleMessage("settings screen"),

@@ -10,6 +10,7 @@ Widget defaultFormField({
   required IconData prefix,
   String? Function(String?)? validate,
   Function(String?)? onChange,
+  Function(String?)? onSubmit,
   VoidCallback? suffixPressed,
   bool isPassword = false,
   IconData? suffix,
@@ -23,6 +24,7 @@ Widget defaultFormField({
       keyboardType: keyboardType,
       validator: validate,
       onChanged: onChange,
+      onFieldSubmitted: onSubmit,
       onTap: onTap,
       obscureText: isPassword,
       decoration: InputDecoration(

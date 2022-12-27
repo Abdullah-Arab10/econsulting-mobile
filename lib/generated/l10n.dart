@@ -611,6 +611,56 @@ class S {
     );
   }
 
+  /// `Review`
+  String get review {
+    return Intl.message(
+      'Review',
+      name: 'review',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Application Language`
+  String get applicationLanguage {
+    return Intl.message(
+      'Application Language',
+      name: 'applicationLanguage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Consultation Type`
+  String get consultationType {
+    return Intl.message(
+      'Consultation Type',
+      name: 'consultationType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Appointment Cost`
+  String get appointmentCost {
+    return Intl.message(
+      'Appointment Cost',
+      name: 'appointmentCost',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Calendar`
+  String get calendar {
+    return Intl.message(
+      'Calendar',
+      name: 'calendar',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Appointment Calendar`
   String get appointmentCalendar {
     return Intl.message(
@@ -696,6 +746,66 @@ class S {
     return Intl.message(
       'Time must not be empty',
       name: 'timeRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Arabic`
+  String get arabic {
+    return Intl.message(
+      'Arabic',
+      name: 'arabic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `English`
+  String get english {
+    return Intl.message(
+      'English',
+      name: 'english',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Money must not be empty`
+  String get requiredMoney {
+    return Intl.message(
+      'Money must not be empty',
+      name: 'requiredMoney',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `send rating`
+  String get sendRating {
+    return Intl.message(
+      'send rating',
+      name: 'sendRating',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search must not be empty`
+  String get searchRequired {
+    return Intl.message(
+      'Search must not be empty',
+      name: 'searchRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search Page`
+  String get searchPage {
+    return Intl.message(
+      'Search Page',
+      name: 'searchPage',
       desc: '',
       args: [],
     );
