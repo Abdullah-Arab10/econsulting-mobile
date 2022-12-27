@@ -48,9 +48,9 @@ class LoginScreen extends StatelessWidget {
             }
           }
         } else {
-            showToast(text: t.loginError, state: ToastStates.ERROR);
-      }
-        },
+          showToast(text: t.loginError, state: ToastStates.ERROR);
+        }
+      },
       builder: (context, state) {
         return Scaffold(
           backgroundColor: AppColors.backgroundColor,

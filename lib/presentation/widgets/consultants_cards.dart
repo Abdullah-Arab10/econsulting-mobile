@@ -62,171 +62,166 @@ Widget buildCategoriesItem(
 
 Widget buildCardsItem(
   item,
-    context,
+  context,
 ) =>
     InkWell(
       child: Container(
-            decoration: BoxDecoration(
-                color: AppColors.greyColor,
-                borderRadius: BorderRadius.circular(16)),
-            padding: EdgeInsets.all(10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  child: CachedNetworkImage(
-                    imageUrl: item['image'] != null
-                        ? "${STORAGE_URL}${item['image']}"
-                        : "https://www.kindpng.com/picc/m/99-997900_headshot-silhouette-person-placeholder-hd-png-download.png",
-                    height: 125,
-                    width: 125,
-                    fit: BoxFit.cover,
-                    placeholder: (context, url) => CircularProgressIndicator(),
-                    errorWidget: (context, url, error) => Image(
-                      image: AssetImage('assets/images/placeHolder.jpg'),
-                    ),
-                  ),
+        decoration: BoxDecoration(
+            color: AppColors.greyColor,
+            borderRadius: BorderRadius.circular(16)),
+        padding: EdgeInsets.all(10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              child: CachedNetworkImage(
+                imageUrl: item['image'] != null
+                    ? "${STORAGE_URL}${item['image']}"
+                    : "https://www.kindpng.com/picc/m/99-997900_headshot-silhouette-person-placeholder-hd-png-download.png",
+                height: 125,
+                width: 125,
+                fit: BoxFit.cover,
+                placeholder: (context, url) => CircularProgressIndicator(),
+                errorWidget: (context, url, error) => Image(
+                  image: AssetImage('assets/images/placeHolder.jpg'),
                 ),
-                SizedBox(
-                  width: 30,
-                ),
-                Expanded(
-                  child: Container(
-                    height: 150,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+              ),
+            ),
+            SizedBox(
+              width: 30,
+            ),
+            Expanded(
+              child: Container(
+                height: 150,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
                       children: [
-                        Row(
-                          children: [
-                            Text(
-                              '${item['first_name']}',
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.w600),
-                            ),
-                            Spacer(),
-                            IconButton(
-                              onPressed: () {
-
-                              },
-                              icon: Icon(
-                                Icons.favorite,
-                              ),
-                            ),
-                          ],
-                        ),
                         Text(
-                          '${item['skill']}',
+                          '${item['first_name']}',
                           style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.grey,
+                              fontSize: 20, fontWeight: FontWeight.w600),
+                        ),
+                        Spacer(),
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.favorite,
                           ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          '${item['bio']}',
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontSize: 11,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.grey,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          children: [
-                            InkWell(
-                              child: Container(
-                                width: 70,
-                                height: 30,
-                                decoration: BoxDecoration(
-                                    color: AppColors.primaryColor,
-                                    borderRadius: BorderRadius.circular(50)),
-                                child: Center(
-                                  child: Text(
-                                    t.book,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 14,
-                                        color: AppColors.secondaryColor),
-                                  ),
-                                ),
-                              ),
-                              onTap: () {
-                                navigateTo(
-                                    context, AppointmentScreen(item['id']));
-                              },
-                            ),
-                            Spacer(),
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.star,
-                                  color: Colors.amber,
-                                ),
-                                SizedBox(
-                                  width: 3,
-                                ),
-                                Text(
-                                  '${item['rating']}',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 10,
-                                      color: Colors.grey),
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Text(
-                                  '${item['avgRating']}',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 10,
-                                      color: Colors.grey
-                                      //color: Colors.grey
-                                      ),
-                                ),
-                                SizedBox(
-                                  width: 3,
-                                ),
-                                Text(
-                                  t.review,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 10,
-                                      color: Colors.grey
-                                    //color: Colors.grey
-                                  ),
-                                ),
-                              ],
-                            )
-                          ],
                         ),
                       ],
                     ),
-                  ),
+                    Text(
+                      '${item['skill']}',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.grey,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      '${item['bio']}',
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.grey,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      children: [
+                        InkWell(
+                          child: Container(
+                            width: 70,
+                            height: 30,
+                            decoration: BoxDecoration(
+                                color: AppColors.primaryColor,
+                                borderRadius: BorderRadius.circular(50)),
+                            child: Center(
+                              child: Text(
+                                t.book,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 14,
+                                    color: AppColors.secondaryColor),
+                              ),
+                            ),
+                          ),
+                          onTap: () {
+                            navigateTo(context, AppointmentScreen(item['id']));
+                          },
+                        ),
+                        Spacer(),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                            ),
+                            SizedBox(
+                              width: 3,
+                            ),
+                            Text(
+                              '${item['rating']}',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 10,
+                                  color: Colors.grey),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              '${item['avgRating']}',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 10,
+                                  color: Colors.grey
+                                  //color: Colors.grey
+                                  ),
+                            ),
+                            SizedBox(
+                              width: 3,
+                            ),
+                            Text(
+                              t.review,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 10,
+                                  color: Colors.grey
+                                  //color: Colors.grey
+                                  ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
-          ),
-      onTap: (){
+          ],
+        ),
+      ),
+      onTap: () {
         HomeCubit.get(context).getConsultantDetails(id: item['id']);
       },
     );
 
 Widget myDivider() => Padding(
-      padding: const EdgeInsetsDirectional.all(
-          20
-      ),
+      padding: const EdgeInsetsDirectional.all(20),
       child: Container(
         color: Colors.grey[300],
         width: double.infinity,
@@ -234,13 +229,10 @@ Widget myDivider() => Padding(
       ),
     );
 
-Widget categoriesBuilder(list,context) => ConditionalBuilder(
+Widget categoriesBuilder(list, context) => ConditionalBuilder(
       condition: list.isNotEmpty,
       builder: (context) => ListView.separated(
-        itemBuilder: (context, index) => buildCardsItem(
-          list[index],
-          context
-        ),
+        itemBuilder: (context, index) => buildCardsItem(list[index], context),
         separatorBuilder: (context, index) => SizedBox(
           height: 20,
         ),

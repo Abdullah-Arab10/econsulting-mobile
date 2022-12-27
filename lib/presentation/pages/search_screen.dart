@@ -23,9 +23,7 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var t = S.of(context);
     return BlocConsumer<HomeCubit, HomeStates>(
-      listener: (context, state) {
-
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
@@ -34,7 +32,7 @@ class SearchScreen extends StatelessWidget {
             systemOverlayStyle:
                 SystemUiOverlayStyle(statusBarColor: AppColors.backgroundColor),
             title: Text(
-              'Search Page',
+              t.searchPage,
               style: TextStyle(
                 fontWeight: FontWeight.w700,
               ),
@@ -55,8 +53,7 @@ class SearchScreen extends StatelessWidget {
                       onSubmit: (value) {
                         if (value!.isEmpty) {
                           showToast(
-                              text: 'Search must not be empty',
-                              state: ToastStates.ERROR);
+                              text: t.searchRequired, state: ToastStates.ERROR);
                         } else {
                           SearchDataModel.search = [];
                           HomeCubit.get(context).postSearch(value: value);

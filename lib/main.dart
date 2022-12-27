@@ -33,7 +33,7 @@ class ConsultingApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-        create: (context) => LocaleCubit()..getSavedLanguage(),
+          create: (context) => LocaleCubit()..getSavedLanguage(),
         ),
         BlocProvider(
           create: (context) => AuthCubit(),

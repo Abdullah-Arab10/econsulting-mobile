@@ -21,15 +21,12 @@ class DetailsScreen extends StatefulWidget {
 }
 
 class _DetailsScreenState extends State<DetailsScreen> {
-
   double start = 2;
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<HomeCubit,HomeStates>(
-      listener: (context, state) {
-
-      },
+    return BlocConsumer<HomeCubit, HomeStates>(
+      listener: (context, state) {},
       builder: (context, state) {
         var t = S.of(context);
         var cubit = BlocProvider.of<HomeCubit>(context).detailsModel.data;
@@ -59,8 +56,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         ),
                         Container(
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(100)
-                          ),
+                              borderRadius: BorderRadius.circular(100)),
                           clipBehavior: Clip.antiAliasWithSaveLayer,
                           child: CachedNetworkImage(
                             imageUrl: cubit.image != null
@@ -69,9 +65,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             height: 154,
                             width: 154,
                             fit: BoxFit.cover,
-                            placeholder: (context, url) => CircularProgressIndicator(),
+                            placeholder: (context, url) =>
+                                CircularProgressIndicator(),
                             errorWidget: (context, url, error) => Image(
-                              image: AssetImage('assets/images/placeHolder.jpg'),
+                              image:
+                                  AssetImage('assets/images/placeHolder.jpg'),
                             ),
                           ),
                         ),
@@ -182,8 +180,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     padding: EdgeInsets.all(16),
                     decoration: BoxDecoration(
                         color: AppColors.greyColor,
-                      borderRadius: BorderRadius.circular(50)
-                    ),
+                        borderRadius: BorderRadius.circular(50)),
                     child: Column(
                       children: [
                         Text(
@@ -229,12 +226,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           height: 10,
                         ),
                         defaultButton(
-                          text: 'Submit',
-                          color: AppColors.primaryColor,
-                          radius: 50,
-                          function: (){},
-                          width: 330
-                        ),
+                            text: t.sendRating,
+                            color: AppColors.primaryColor,
+                            radius: 50,
+                            function: () {},
+                            width: 330),
                       ],
                     ),
                   ),
