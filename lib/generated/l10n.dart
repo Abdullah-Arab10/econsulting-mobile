@@ -660,6 +660,156 @@ class S {
       args: [],
     );
   }
+
+  /// `Appointment Calendar`
+  String get appointmentCalendar {
+    return Intl.message(
+      'Appointment Calendar',
+      name: 'appointmentCalendar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Date must not be empty`
+  String get dateRequired {
+    return Intl.message(
+      'Date must not be empty',
+      name: 'dateRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User is not found!`
+  String get userNotFound {
+    return Intl.message(
+      'User is not found!',
+      name: 'userNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Consultant is not found!`
+  String get consultantNotFound {
+    return Intl.message(
+      'Consultant is not found!',
+      name: 'consultantNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Consultant is not available!`
+  String get consultantNotAvailable {
+    return Intl.message(
+      'Consultant is not available!',
+      name: 'consultantNotAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sorry,you have another appointment in same time`
+  String get youHaveAnotherAppointmentError {
+    return Intl.message(
+      'Sorry,you have another appointment in same time',
+      name: 'youHaveAnotherAppointmentError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sorry,you don't have enough cash`
+  String get youHaveNoEnoughCashError {
+    return Intl.message(
+      'Sorry,you don\'t have enough cash',
+      name: 'youHaveNoEnoughCashError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Appointment booked successfully`
+  String get appointmentCreatedSuccessfully {
+    return Intl.message(
+      'Appointment booked successfully',
+      name: 'appointmentCreatedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Time must not be empty`
+  String get timeRequired {
+    return Intl.message(
+      'Time must not be empty',
+      name: 'timeRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Arabic`
+  String get arabic {
+    return Intl.message(
+      'Arabic',
+      name: 'arabic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `English`
+  String get english {
+    return Intl.message(
+      'English',
+      name: 'english',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Money must not be empty`
+  String get requiredMoney {
+    return Intl.message(
+      'Money must not be empty',
+      name: 'requiredMoney',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `send rating`
+  String get sendRating {
+    return Intl.message(
+      'send rating',
+      name: 'sendRating',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search must not be empty`
+  String get searchRequired {
+    return Intl.message(
+      'Search must not be empty',
+      name: 'searchRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search Page`
+  String get searchPage {
+    return Intl.message(
+      'Search Page',
+      name: 'searchPage',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

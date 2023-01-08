@@ -37,8 +37,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "alanTuring": MessageLookupByLibrary.simpleMessage("ألان تورينغ"),
         "applicationLanguage":
             MessageLookupByLibrary.simpleMessage("لغة البرنامج"),
+        "appointmentCalendar":
+            MessageLookupByLibrary.simpleMessage("روزنامة المواعيد"),
         "appointmentCost": MessageLookupByLibrary.simpleMessage("تكلفة الجلسة"),
+        "appointmentCreatedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("تم حجز الموعد بنجاح"),
         "appointmentStart": MessageLookupByLibrary.simpleMessage("وقت الموعد"),
+        "arabic": MessageLookupByLibrary.simpleMessage("عربي"),
         "bio": MessageLookupByLibrary.simpleMessage("الوصف"),
         "book": MessageLookupByLibrary.simpleMessage("احجز"),
         "calendar": MessageLookupByLibrary.simpleMessage("المواعيد"),
@@ -46,10 +51,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "civilEngineers":
             MessageLookupByLibrary.simpleMessage("المهندسين المدنيون"),
         "consultant": MessageLookupByLibrary.simpleMessage("كخبير"),
+        "consultantNotAvailable": MessageLookupByLibrary.simpleMessage(
+            "الخبير غير متوفر في هذا الوقت"),
+        "consultantNotFound":
+            MessageLookupByLibrary.simpleMessage("الخبير غير موجود"),
         "consultantsList":
             MessageLookupByLibrary.simpleMessage("قائمة الاستشاريين"),
         "consultationType": MessageLookupByLibrary.simpleMessage("نوع الخبرة"),
         "date": MessageLookupByLibrary.simpleMessage("التاريخ"),
+        "dateRequired": MessageLookupByLibrary.simpleMessage(
+            "التاريخ لا يجب ان يكون فارغا"),
         "dentists": MessageLookupByLibrary.simpleMessage("أطباء الأسنان"),
         "doctors": MessageLookupByLibrary.simpleMessage("الأطباء"),
         "economics": MessageLookupByLibrary.simpleMessage("الاقتصاديون"),
@@ -57,6 +68,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("عنوان البريد الالكتروني"),
         "emailFormat":
             MessageLookupByLibrary.simpleMessage("شكل ايميل غير صالح"),
+        "english": MessageLookupByLibrary.simpleMessage("انكليزي"),
         "favorite": MessageLookupByLibrary.simpleMessage("المفضلة"),
         "firstName": MessageLookupByLibrary.simpleMessage("الاسم الاول"),
         "heroBorn": m0,
@@ -88,12 +100,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "registerAsu": MessageLookupByLibrary.simpleMessage("سجل"),
         "registerNow": MessageLookupByLibrary.simpleMessage("سجل الآن"),
         "requiredEmail": MessageLookupByLibrary.simpleMessage("الايميل فارغ"),
+        "requiredMoney":
+            MessageLookupByLibrary.simpleMessage("المبلغ لا يجب ان يكون فارغا"),
         "requiredPassword":
             MessageLookupByLibrary.simpleMessage("يرجى ادخال كلمة السر"),
         "review": MessageLookupByLibrary.simpleMessage("مراجعة"),
         "search": MessageLookupByLibrary.simpleMessage("ابحث عن خبير"),
+        "searchPage": MessageLookupByLibrary.simpleMessage("صفحة البحث"),
+        "searchRequired": MessageLookupByLibrary.simpleMessage(
+            "حقل البحث لا يجب ان يكون فارغا"),
         "selectConsultation":
             MessageLookupByLibrary.simpleMessage("اختر اي خبرة"),
+        "sendRating": MessageLookupByLibrary.simpleMessage("أرسل التقييم"),
         "settings": MessageLookupByLibrary.simpleMessage("الاعدادات"),
         "settingsScreen":
             MessageLookupByLibrary.simpleMessage("شاشة الاعدادات"),
@@ -102,9 +120,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "softwareEngineers":
             MessageLookupByLibrary.simpleMessage("مهندسين البرمجيات"),
         "therapists": MessageLookupByLibrary.simpleMessage("الأطباء النفسيون"),
+        "timeRequired": MessageLookupByLibrary.simpleMessage("الوقت مطلوب"),
         "title": MessageLookupByLibrary.simpleMessage("مرحبا"),
         "transfer": MessageLookupByLibrary.simpleMessage("تحويل"),
         "user": MessageLookupByLibrary.simpleMessage("كمستخدم"),
-        "wozniakBio": m3
+        "userNotFound":
+            MessageLookupByLibrary.simpleMessage("المستخدم غير موجود"),
+        "wozniakBio": m3,
+        "youHaveAnotherAppointmentError": MessageLookupByLibrary.simpleMessage(
+            "عذرا,لديك موعد آخر في نفس الوقت"),
+        "youHaveNoEnoughCashError":
+            MessageLookupByLibrary.simpleMessage("عذرا, ليس لديك رصيد كافي")
       };
 }

@@ -20,7 +20,10 @@ class LawyersScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: categoriesBuilder(lawyers, context),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: cardsBuilder(lawyers, context, 'List of Lawyers is empty'),
+      ),
     );
   }
 }

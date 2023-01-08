@@ -27,6 +27,7 @@ Widget defaultFormField({
       onFieldSubmitted: onSubmit,
       onTap: onTap,
       obscureText: isPassword,
+      //maxLines: null,
       decoration: InputDecoration(
         labelText: label,
         labelStyle: TextStyle(

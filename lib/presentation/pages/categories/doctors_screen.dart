@@ -19,7 +19,10 @@ class DoctorsScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: categoriesBuilder(doctors, context),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: cardsBuilder(doctors, context, 'List of Doctors is empty'),
+      ),
     );
   }
 }

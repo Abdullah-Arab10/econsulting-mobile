@@ -3,8 +3,6 @@
 import 'package:e_consulting_flutter/business-logic/bloc/admin_cubit/admin_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/admin_cubit/admin_states.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_cubit.dart';
-import 'package:e_consulting_flutter/business-logic/bloc/locale_cubit/locale_cubit.dart';
-import 'package:e_consulting_flutter/presentation/pages/auth/login_screen.dart';
 import 'package:e_consulting_flutter/presentation/themes/colors.dart';
 import 'package:e_consulting_flutter/presentation/widgets/default_button.dart';
 import 'package:e_consulting_flutter/presentation/widgets/default_form_field.dart';
@@ -17,8 +15,9 @@ import 'package:conditional_builder/conditional_builder.dart';
 import 'package:validators/validators.dart';
 import 'package:e_consulting_flutter/generated/l10n.dart';
 
-class AdminScreen extends StatelessWidget {
+import '../../../business-logic/bloc/locale_cubit/locale_cubit.dart';
 
+class AdminScreen extends StatelessWidget {
   var emailController = TextEditingController();
 
   var moneyController = TextEditingController();
@@ -36,9 +35,7 @@ class AdminScreen extends StatelessWidget {
       child: BlocConsumer<AdminCubit, AdminStates>(
         listener: (context, state) {
           if (state is AdminTransferSuccessState) {
-            showToast(
-                text: 'success',
-                state: ToastStates.SUCCESS);
+            showToast(text: 'success', state: ToastStates.SUCCESS);
           }
         },
         builder: (context, state) {
@@ -57,69 +54,22 @@ class AdminScreen extends StatelessWidget {
                 builder: (context, state) {
                   if (state is ChangeLocaleState) {
                     return Padding(
-                      padding: const EdgeInsets.only(
-                          top:100),
-                      child: Expanded(
-                        child: Column(
-                          children: [
-                            Text(
-                              t.applicationLanguage,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 20,
-
-                              ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Container(
-                              width: 200,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  BlocProvider.of<LocaleCubit>(context)
-                                      .changeLanguage('en');
-                                },
-                                child: Text('ENGLISH'),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Container(
-                              width: 200,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  BlocProvider.of<LocaleCubit>(context)
-                                      .changeLanguage('ar');
-                                },
-                                child: Text('Arabic'),
-                              ),
-                            ),
-                            Expanded(
-                              child: Align(
-                                  alignment: Alignment.bottomCenter,
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.only(
-                                        bottom: 10
-                                    ),
-                                    child: defaultButton(
-                                        text: t.logout,
-                                        function: ()
-                                        {
-                                          showToast(text: t.logoutSuccess, state: ToastStates.SUCCESS);
-                                          navigateAndFinish(context, LoginScreen());
-                                        },
-                                        width: 200,
-                                        color: AppColors.errorColor,
-                                        radius: 50
-                                    ),
-                                  )
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      padding: const EdgeInsets.only(top: 100),
+                      child: ListTile(
+                          leading: ElevatedButton(
+                            onPressed: () {
+                              BlocProvider.of<LocaleCubit>(context)
+                                  .changeLanguage('en');
+                            },
+                            child: Text(t.english),
+                          ),
+                          trailing: ElevatedButton(
+                            onPressed: () {
+                              BlocProvider.of<LocaleCubit>(context)
+                                  .changeLanguage('ar');
+                            },
+                            child: Text(t.arabic),
+                          )),
                     );
                   } else {
                     return SizedBox();
@@ -155,10 +105,12 @@ class AdminScreen extends StatelessWidget {
                             isEmailCorrect = isEmail(value!);
                             if (value.isEmpty) {
                               showToast(
-                                  text: 'email must not be empty',
+                                  text: t.requiredEmail,
                                   state: ToastStates.ERROR);
                             } else if (isEmailCorrect == false) {
-                              showToast(text: 'gg', state: ToastStates.ERROR);
+                              showToast(
+                                  text: t.emailFormat,
+                                  state: ToastStates.ERROR);
                             }
                             return null;
                           },
@@ -174,7 +126,7 @@ class AdminScreen extends StatelessWidget {
                           validate: (value) {
                             if (value != null && value.isEmpty) {
                               showToast(
-                                  text: 'money must not be empty',
+                                  text: t.requiredMoney,
                                   state: ToastStates.ERROR);
                             }
                             return null;
@@ -186,18 +138,17 @@ class AdminScreen extends StatelessWidget {
                         ConditionalBuilder(
                           condition: state is! AdminTransferLoadingState,
                           builder: (context) => defaultButton(
-                            function: () {
-                              if (formKey.currentState!.validate()) {
-                                AdminCubit.get(context).adminTransfer(
-                                  email: emailController.text,
-                                  moneyAmount: moneyController.text,
-                                );
-                              }
-                            },
-                            text: t.transfer,
-                            radius: 50,
-                              color: AppColors.primaryColor
-                          ),
+                              function: () {
+                                if (formKey.currentState!.validate()) {
+                                  AdminCubit.get(context).adminTransfer(
+                                    email: emailController.text,
+                                    moneyAmount: moneyController.text,
+                                  );
+                                }
+                              },
+                              text: t.transfer,
+                              radius: 50,
+                              color: AppColors.primaryColor),
                           fallback: (context) =>
                               Center(child: CircularProgressIndicator()),
                         ),

@@ -24,8 +24,8 @@ class DentistsScreen extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: categoriesBuilder(dentists, context),
+        padding: const EdgeInsets.all(16),
+        child: cardsBuilder(dentists, context, 'List of Dentists is empty'),
       ),
     );
   }

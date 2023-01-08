@@ -9,7 +9,7 @@ class CivilEngineersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Map<String,dynamic>> civil_engineers = HomeDataModel.civil_engineers;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -19,7 +19,10 @@ class CivilEngineersScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: categoriesBuilder(civil_engineers, context),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: cardsBuilder(HomeDataModel.civil_engineers, context, 'List of Civil Engineers is empty'),
+      ),
     );
   }
 }

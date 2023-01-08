@@ -29,11 +29,11 @@ class AuthCubit extends Cubit<AuthStates> {
       'password': password,
     }).then((value) {
       authLogin = LoginModel.fromJson(value.data, value.statusCode);
-      print(authLogin);
+
       emit(LoginSuccessState(authLogin));
     }).catchError((error) {
       print(error.toString());
-      emit(LoginErrorState(error.toString(),authLogin));
+      emit(LoginErrorState(error.toString(), authLogin));
     });
   }
 
@@ -52,7 +52,7 @@ class AuthCubit extends Cubit<AuthStates> {
 
     FormData form;
 
-    if(image != null){
+    if (image != null) {
       form = FormData.fromMap({
         "image": await MultipartFile.fromFile(pickedFile!.path,
             filename: upload(), contentType: MediaType("image", "jpg")),
@@ -63,7 +63,7 @@ class AuthCubit extends Cubit<AuthStates> {
         'address': address,
         'phone': phone,
       });
-    } else{
+    } else {
       form = FormData.fromMap({
         "image": null,
         'firstName': firstName,
@@ -76,7 +76,8 @@ class AuthCubit extends Cubit<AuthStates> {
     }
 
     DioHelper.postForm(url: REGISTER_AS_USER, data: form).then((value) {
-      authUserRegister = AuthUserRegister.fromJson(value.data, value.statusCode);
+      authUserRegister =
+          AuthUserRegister.fromJson(value.data, value.statusCode);
       emit(UserRegisterSuccessState(authUserRegister));
     }).catchError((error) {
       print(error.toString());
@@ -149,7 +150,7 @@ class AuthCubit extends Cubit<AuthStates> {
   }) async {
     emit(ConsultantRegisterLoadingState());
     FormData form;
-    if(image != null){
+    if (image != null) {
       form = FormData.fromMap({
         "image": await MultipartFile.fromFile(pickedFile!.path,
             filename: upload(), contentType: MediaType("image", "jpg")),
@@ -163,9 +164,10 @@ class AuthCubit extends Cubit<AuthStates> {
         'skill': skill,
         'shiftStart': shiftStart,
         'shiftEnd': shiftEnd,
+        'appointmentCost' : appointmentCost
       });
-    } else{
-    form = FormData.fromMap({
+    } else {
+      form = FormData.fromMap({
         "image": null,
         'firstName': firstName,
         'lastName': lastName,
@@ -177,10 +179,12 @@ class AuthCubit extends Cubit<AuthStates> {
         'skill': skill,
         'shiftStart': shiftStart,
         'shiftEnd': shiftEnd,
+        'appointmentCost' : appointmentCost
       });
     }
     DioHelper.postForm(url: REGISTER_AS_CONSULTANT, data: form).then((value) {
-      authConsultantRegister = AuthConsultantRegister.fromJson(value.data, value.statusCode);
+      authConsultantRegister =
+          AuthConsultantRegister.fromJson(value.data, value.statusCode);
       emit(ConsultantRegisterSuccessState(authConsultantRegister));
     }).catchError((error) {
       print(error.toString());
@@ -188,6 +192,5 @@ class AuthCubit extends Cubit<AuthStates> {
     });
   }
 }
-class A extends AuthCubit{
 
-}
+class A extends AuthCubit {}

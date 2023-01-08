@@ -30,4 +30,38 @@ class SearchGetConsultantLoading extends HomeStates{}
 
 class SearchGetConsultantSuccess extends HomeStates{}
 
-class SearchGetConsultantError extends HomeStates{}
+class SearchGetConsultantError extends HomeStates{
+  final String error;
+
+  SearchGetConsultantError(this.error);
+}
+
+class ConsultantRatingLoading extends HomeStates{}
+
+class ConsultantRatingSuccess extends HomeStates{}
+
+class ConsultantRatingError extends HomeStates{
+  final String error;
+
+  ConsultantRatingError(this.error);
+}
+
+class FavoriteLoadingState extends HomeStates{}
+
+class FavoriteSuccessState extends HomeStates{}
+
+class FavoriteErrorState extends HomeStates{
+  final String error;
+
+  FavoriteErrorState(this.error);
+}
+
+class GetFavoriteListLoadingState extends HomeStates{}
+
+class GetFavoriteListSuccessState extends HomeStates{}
+
+class GetFavoriteListErrorState extends HomeStates{
+  final String error;
+
+  GetFavoriteListErrorState(this.error);
+}

@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_states.dart';
 import 'package:e_consulting_flutter/generated/l10n.dart';
@@ -9,7 +10,6 @@ import 'package:e_consulting_flutter/presentation/widgets/default_button.dart';
 import 'package:e_consulting_flutter/presentation/widgets/default_form_field.dart';
 import 'package:e_consulting_flutter/presentation/widgets/select_consultations.dart';
 import 'package:e_consulting_flutter/shared/constants/global_constants.dart';
-import 'package:e_consulting_flutter/utils/helpers/images_converter_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,15 +21,12 @@ class DetailsScreen extends StatefulWidget {
 }
 
 class _DetailsScreenState extends State<DetailsScreen> {
-
   double start = 2;
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<HomeCubit,HomeStates>(
-      listener: (context, state) {
-
-      },
+    return BlocConsumer<HomeCubit, HomeStates>(
+      listener: (context, state) {},
       builder: (context, state) {
         var t = S.of(context);
         var cubit = BlocProvider.of<HomeCubit>(context).detailsModel.data;
@@ -59,8 +56,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         ),
                         Container(
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(100)
-                          ),
+                              borderRadius: BorderRadius.circular(100)),
                           clipBehavior: Clip.antiAliasWithSaveLayer,
                           child: CachedNetworkImage(
                             imageUrl: cubit.image != null
@@ -69,9 +65,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             height: 154,
                             width: 154,
                             fit: BoxFit.cover,
-                            placeholder: (context, url) => CircularProgressIndicator(),
+                            placeholder: (context, url) =>
+                                CircularProgressIndicator(),
                             errorWidget: (context, url, error) => Image(
-                              image: AssetImage('assets/images/placeHolder.jpg'),
+                              image:
+                                  AssetImage('assets/images/placeHolder.jpg'),
                             ),
                           ),
                         ),
@@ -170,7 +168,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     height: 20,
                   ),
                   defaultFormField(
-                    initial: selectSkill(cubit.skill),
+                    initial: selectSkill(context,cubit.skill),
                     enable: false,
                     label: t.consultationType,
                     prefix: Icons.merge_type,
@@ -182,8 +180,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     padding: EdgeInsets.all(16),
                     decoration: BoxDecoration(
                         color: AppColors.greyColor,
-                      borderRadius: BorderRadius.circular(50)
-                    ),
+                        borderRadius: BorderRadius.circular(50)),
                     child: Column(
                       children: [
                         Text(
@@ -229,12 +226,20 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           height: 10,
                         ),
                         defaultButton(
-                          text: 'Submit',
-                          color: AppColors.primaryColor,
-                          radius: 50,
-                          function: (){},
-                          width: 330
-                        ),
+                            text: t.sendRating,
+                            color: AppColors.primaryColor,
+                            radius: 50,
+                            function: () {
+                              HomeCubit.get(context).postConsultantRating(
+                                  rating: start,
+                                  consultantId: cubit.id,
+                                clientId: BlocProvider.of<AuthCubit>(context)
+                                    .authLogin
+                                    .user
+                                    .id
+                              );
+                            },
+                            width: 330),
                       ],
                     ),
                   ),

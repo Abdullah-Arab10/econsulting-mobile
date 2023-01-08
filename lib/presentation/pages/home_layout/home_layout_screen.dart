@@ -3,9 +3,7 @@
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_states.dart';
 import 'package:e_consulting_flutter/generated/l10n.dart';
-import 'package:e_consulting_flutter/presentation/themes/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeLayoutScreen extends StatelessWidget {
@@ -13,6 +11,7 @@ class HomeLayoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return BlocConsumer<HomeCubit, HomeStates>(
       listener: (context, state) {},
       builder: (context, state) {
@@ -23,7 +22,7 @@ class HomeLayoutScreen extends StatelessWidget {
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: cubit.currentIndex,
             onTap: (value) {
-              cubit.changeIndex(value);
+              cubit.changeIndex(context,value);
             },
             items: [
               BottomNavigationBarItem(

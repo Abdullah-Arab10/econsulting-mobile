@@ -3,7 +3,6 @@
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_states.dart';
 import 'package:e_consulting_flutter/data/models/home_model/home_data_model.dart';
-import 'package:e_consulting_flutter/data/models/home_model/home_model.dart';
 import 'package:e_consulting_flutter/data/models/search/search_data_model.dart';
 import 'package:e_consulting_flutter/presentation/pages/details_screen.dart';
 import 'package:e_consulting_flutter/presentation/pages/search_screen.dart';
@@ -21,18 +20,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:e_consulting_flutter/generated/l10n.dart';
 
 class HomeScreen extends StatelessWidget {
-
   HomeScreen({super.key});
 
   var searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    var t=S.of(context);
-    return BlocConsumer<HomeCubit,HomeStates>(
+    var t = S.of(context);
+    return BlocConsumer<HomeCubit, HomeStates>(
       listener: (context, state) {
-        if(state is HomeGetConsultantsDetailsSuccessState)
-        {
+        if (state is HomeGetConsultantsDetailsSuccessState) {
           navigateTo(context, DetailsScreen());
         }
       },
@@ -41,9 +38,9 @@ class HomeScreen extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: AppColors.backgroundColor,
             elevation: 0.0,
-            systemOverlayStyle: SystemUiOverlayStyle(
-                statusBarColor: AppColors.backgroundColor
-            ),
+            systemOverlayStyle:
+                SystemUiOverlayStyle(statusBarColor: AppColors.backgroundColor, statusBarIconBrightness: Brightness.dark
+                ),
             title: Text(
               t.homePage,
               style: TextStyle(
@@ -58,44 +55,39 @@ class HomeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(
-                        top: 10
-                    ),
+                    padding: const EdgeInsets.only(top: 10),
                     child: defaultFormField(
                       controller: searchController,
                       keyboardType: TextInputType.text,
                       label: t.search,
                       prefix: Icons.search,
                       validate: (value) {
-                        if(value!.isEmpty)
-                        {
+                        if (value!.isEmpty) {
                           showToast(
-                              text: 'Search must not be empty',
-                              state: ToastStates.ERROR
-                          );
+                              text: t.searchRequired, state: ToastStates.ERROR);
                         }
                       },
-                      onTap: (){
+                      onTap: () {
                         SearchDataModel.search = [];
                         navigateTo(context, SearchScreen());
                       },
                     ),
                   ),
-                  SizedBox(height: 20,),
+                  SizedBox(
+                    height: 20,
+                  ),
                   Text(
                     t.categories,
-                    style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 20
-                    ),
+                    style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Container(
-                    height: 140,
+                    height: 105,
                     child: ListView.separated(
                         scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index)
-                        {
+                        itemBuilder: (context, index) {
                           var t = S.of(context);
                           List<String> type = [
                             t.doctors,
@@ -108,20 +100,24 @@ class HomeScreen extends StatelessWidget {
                           ];
                           return buildCategoriesItem(
                             type[index],
-                          icon[index],
-                          widgets[index],
-                          context,
-                        );
+                            icon[index],
+                            widgets[index],
+                            context,
+                          );
                         },
-                        separatorBuilder: (context, index) => SizedBox(width: 10,),
-                        itemCount: 7
-                    ),
+                        separatorBuilder: (context, index) => SizedBox(
+                              width: 10,
+                            ),
+                        itemCount: 7),
+                  ),
+                  SizedBox(
+                    height: 15,
                   ),
                   Align(
                       alignment: Alignment.center,
                       child: title(t.consultantsList)),
                   SizedBox(
-                    height: 15,
+                    height: 5,
                   ),
                   title(t.doctors),
                   listViewCard(screen: HomeDataModel.doctors),
@@ -146,5 +142,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
-

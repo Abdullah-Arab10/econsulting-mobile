@@ -5,6 +5,7 @@ import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_cubit.d
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_states.dart';
 import 'package:e_consulting_flutter/data/models/search/search_data_model.dart';
 import 'package:e_consulting_flutter/generated/l10n.dart';
+import 'package:e_consulting_flutter/presentation/pages/details_screen.dart';
 import 'package:e_consulting_flutter/presentation/themes/colors.dart';
 import 'package:e_consulting_flutter/presentation/widgets/default_form_field.dart';
 import 'package:e_consulting_flutter/presentation/widgets/list_view_cards.dart';
@@ -24,7 +25,10 @@ class SearchScreen extends StatelessWidget {
     var t = S.of(context);
     return BlocConsumer<HomeCubit, HomeStates>(
       listener: (context, state) {
-
+        if(state is HomeGetConsultantsDetailsSuccessState)
+        {
+          navigateTo(context, DetailsScreen());
+        }
       },
       builder: (context, state) {
         return Scaffold(
@@ -34,14 +38,14 @@ class SearchScreen extends StatelessWidget {
             systemOverlayStyle:
                 SystemUiOverlayStyle(statusBarColor: AppColors.backgroundColor),
             title: Text(
-              'Search Page',
+              t.searchPage,
               style: TextStyle(
                 fontWeight: FontWeight.w700,
               ),
             ),
           ),
           body: Padding(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(16),
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -55,8 +59,7 @@ class SearchScreen extends StatelessWidget {
                       onSubmit: (value) {
                         if (value!.isEmpty) {
                           showToast(
-                              text: 'Search must not be empty',
-                              state: ToastStates.ERROR);
+                              text: t.searchRequired, state: ToastStates.ERROR);
                         } else {
                           SearchDataModel.search = [];
                           HomeCubit.get(context).postSearch(value: value);
@@ -73,7 +76,7 @@ class SearchScreen extends StatelessWidget {
                       screen: SearchDataModel.search,
                     ),
                     fallback: (context) =>
-                        Center(child: CircularProgressIndicator()),
+                        LinearProgressIndicator(),
                   ),
                 ],
               ),

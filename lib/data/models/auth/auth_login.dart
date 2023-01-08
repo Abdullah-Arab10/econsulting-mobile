@@ -5,7 +5,7 @@ class LoginModel {
   late String message;
   late UserData user;
   late String token;
-
+  static List<int> favoriteList = [];
   LoginModel();
 
   LoginModel.fromJson(Map<String, dynamic> json, int? statusCode) {
@@ -13,5 +13,8 @@ class LoginModel {
     message = json['message'];
     user = (json['user'] != null ? UserData.fromJson(json['user']) : null)!;
     token = json['token'];
+    json['favoriteList'].forEach((element) {
+      favoriteList.add(element);
+    });
   }
 }

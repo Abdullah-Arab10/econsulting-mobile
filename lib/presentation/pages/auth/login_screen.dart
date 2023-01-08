@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:io';
 
 import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_states.dart';
+import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_cubit.dart';
 import 'package:e_consulting_flutter/presentation/pages/admin/admin_screen.dart';
 import 'package:e_consulting_flutter/presentation/pages/auth/register_type_screen.dart';
 import 'package:e_consulting_flutter/presentation/pages/home_layout/home_layout_screen.dart';
@@ -42,15 +42,16 @@ class LoginScreen extends StatelessWidget {
             showToast(text: t.loginSuccess, state: ToastStates.SUCCESS);
             if (state.authLogin.user.role == 1 ||
                 state.authLogin.user.role == 2) {
+              HomeCubit.get(context).currentIndex = 0;
               navigateAndFinish(context, HomeLayoutScreen());
             } else if (state.authLogin.user.role == 0) {
               navigateAndFinish(context, AdminScreen());
             }
           }
-        } else {
-            showToast(text: t.loginError, state: ToastStates.ERROR);
-      }
-        },
+        } else if(state is LoginErrorState) {
+          showToast(text: t.loginError, state: ToastStates.ERROR);
+        }
+      },
       builder: (context, state) {
         return Scaffold(
           backgroundColor: AppColors.backgroundColor,
