@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_states.dart';
 import 'package:e_consulting_flutter/generated/l10n.dart';
@@ -9,7 +10,6 @@ import 'package:e_consulting_flutter/presentation/widgets/default_button.dart';
 import 'package:e_consulting_flutter/presentation/widgets/default_form_field.dart';
 import 'package:e_consulting_flutter/presentation/widgets/select_consultations.dart';
 import 'package:e_consulting_flutter/shared/constants/global_constants.dart';
-import 'package:e_consulting_flutter/utils/helpers/images_converter_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -168,7 +168,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     height: 20,
                   ),
                   defaultFormField(
-                    initial: selectSkill(cubit.skill),
+                    initial: selectSkill(context,cubit.skill),
                     enable: false,
                     label: t.consultationType,
                     prefix: Icons.merge_type,
@@ -229,7 +229,16 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             text: t.sendRating,
                             color: AppColors.primaryColor,
                             radius: 50,
-                            function: () {},
+                            function: () {
+                              HomeCubit.get(context).postConsultantRating(
+                                  rating: start,
+                                  consultantId: cubit.id,
+                                clientId: BlocProvider.of<AuthCubit>(context)
+                                    .authLogin
+                                    .user
+                                    .id
+                              );
+                            },
                             width: 330),
                       ],
                     ),

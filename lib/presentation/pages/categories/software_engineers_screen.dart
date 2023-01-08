@@ -20,7 +20,10 @@ class SoftwareEngineersScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: categoriesBuilder(software_engineers, context),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: cardsBuilder(software_engineers, context, 'List of Software Engineers is empty'),
+      ),
     );
   }
 }

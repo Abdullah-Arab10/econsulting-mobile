@@ -39,7 +39,7 @@ class ConsultingApp extends StatelessWidget {
           create: (context) => AuthCubit(),
         ),
         BlocProvider(
-          create: (context) => HomeCubit()..getHomeData(),
+          create: (context) => HomeCubit()..getHomeData(context),
         )
       ],
       child: BlocBuilder<LocaleCubit, ChangeLocaleState>(
@@ -70,7 +70,9 @@ class ConsultingApp extends StatelessWidget {
             }
             return alternativeLang.first;
           },
-          home: OnBoardingScreen(),
+          home: Directionality(
+            textDirection: TextDirection.ltr,
+              child: OnBoardingScreen()),
         );
       }),
     );

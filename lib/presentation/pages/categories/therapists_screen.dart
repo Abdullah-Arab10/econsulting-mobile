@@ -20,7 +20,10 @@ class TherapistsScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: categoriesBuilder(therapists, context),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: cardsBuilder(therapists, context, 'List of Therapists is empty'),
+      ),
     );
   }
 }

@@ -13,8 +13,10 @@ class OnBoardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
+
       appBar: AppBar(
         backgroundColor: AppColors.primaryColor,
         elevation: 0.0,
@@ -29,7 +31,7 @@ class OnBoardingScreen extends StatelessWidget {
               padding: const EdgeInsetsDirectional.only(start: 16),
               child: Text(
                 'Want to know',
-                style: TextStyle(fontSize: 60, fontWeight: FontWeight.w700),
+                style: TextStyle(fontSize: 50, fontWeight: FontWeight.w700),
               ),
             ),
             SizedBox(
@@ -42,7 +44,7 @@ class OnBoardingScreen extends StatelessWidget {
                 children: [
                   Text(
                     'what',
-                    style: TextStyle(fontSize: 60, fontWeight: FontWeight.w700),
+                    style: TextStyle(fontSize: 50, fontWeight: FontWeight.w700),
                   ),
                   Spacer(),
                   CircleAvatar(
@@ -124,7 +126,7 @@ class OnBoardingScreen extends StatelessWidget {
                 ),
                 Text(
                   'experts',
-                  style: TextStyle(fontSize: 60, fontWeight: FontWeight.w700),
+                  style: TextStyle(fontSize: 50, fontWeight: FontWeight.w700),
                 ),
                 Spacer(),
               ],
@@ -132,71 +134,103 @@ class OnBoardingScreen extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
+            Padding(
+              padding: const EdgeInsetsDirectional.only(
+                start: 16
+              ),
+              child: Text(
+                'say?',
+                style: TextStyle(
+                    fontSize: 50, fontWeight: FontWeight.w700),
+              ),
+            ),
             Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  left: 16,
-                ),
-                child: Row(
+              child: Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'say?',
-                            style: TextStyle(
-                                fontSize: 60, fontWeight: FontWeight.w700),
-                          ),
-                          SizedBox(
-                            height: 35,
-                          ),
-                          Padding(
-                            padding:
-                                const EdgeInsetsDirectional.only(start: 90),
-                            child: Container(
-                              height: 75,
-                              width: 175,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(50),
-                                gradient: LinearGradient(
-                                  colors: [
-                                    AppColors.backgroundColor,
-                                    AppColors.backgroundColor.withOpacity(.3)
-                                  ],
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                ),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  'Just book',
-                                  style: TextStyle(
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.w700
+                    Padding(
+                      padding: EdgeInsetsDirectional.only(
+                        start: 80
+                      ),
+                      child: SizedBox(
+                        height: 175,
+                        width: 280,
+                        child: Stack(
+                          children: [
+                            Align(
+                              alignment: Alignment.topRight,
+                              child: CircleAvatar(
+                                backgroundColor: AppColors.purpleColor,
+                                radius: 75,
+                                child: Container(
+                                  alignment: Alignment.bottomCenter,
+                                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(100),
+                                  ),
+                                  child: Image(
+                                    height: 140,
+                                    image: AssetImage('assets/images/picture_1.png'),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                            Align(
+                              alignment: Alignment.bottomLeft,
+                              child: Container(
+                                height: 90,
+                                width: 170,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(50),
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      AppColors.backgroundColor,
+                                      AppColors.backgroundColor.withOpacity(.3)
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'Just book',
+                                    style: TextStyle(
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.w700
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     Padding(
-                      padding:
-                          const EdgeInsetsDirectional.only(end: 16, bottom: 50),
-                      child: CircleAvatar(
-                        backgroundColor: AppColors.purpleColor,
-                        radius: 70,
-                        child: Container(
-                          alignment: Alignment.bottomCenter,
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
-                          ),
-                          child: Image(
-                            height: 130,
-                            image: AssetImage('assets/images/picture_1.png'),
+                      padding: EdgeInsetsDirectional.only(
+                        top: 60
+                      ),
+                      child: Container(
+                        height: 50,
+                        width: 200,
+                        decoration: BoxDecoration(
+                          color: AppColors.secondaryColor,
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: MaterialButton(
+                          onPressed: () {
+                            navigateTo(context, RegisterTypeScreen());
+                          },
+                          child: Text(
+                            'Register',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 23,
+                              fontWeight: FontWeight.w700,
+                              color: AppColors.backgroundColor,
+                            ),
                           ),
                         ),
                       ),
@@ -205,46 +239,15 @@ class OnBoardingScreen extends StatelessWidget {
                 ),
               ),
             ),
-            // SizedBox(
-            //   height: 10,
-            // ),
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.all(50),
-                child: Container(
-                  height: 50,
-                  width: 200,
-                  decoration: BoxDecoration(
-                    color: AppColors.secondaryColor,
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  child: MaterialButton(
-                    onPressed: () {
-                      navigateTo(context, RegisterTypeScreen());
-                    },
-                    child: Text(
-                      'Register',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 23,
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.backgroundColor,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
             Padding(
-              padding: const EdgeInsetsDirectional.all(20),
+              padding: const EdgeInsetsDirectional.all(16),
               child: Row(
                 children: [
                   Text(
                     'Have an account?',
                     style: TextStyle(
-                        color: AppColors.secondaryColor,
-                        fontSize: 20,
+                      color: AppColors.secondaryColor,
+                      fontSize: 20,
                       fontWeight: FontWeight.w700,
                     ),
                   ),

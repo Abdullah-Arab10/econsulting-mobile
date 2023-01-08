@@ -28,3 +28,11 @@ Widget title(title) => Column(
     SizedBox(height: 10,),
   ],
 );
+
+// Widget listViewUserCard() => ListView.separated(
+//     physics: NeverScrollableScrollPhysics(),
+//     shrinkWrap: true,
+//     itemBuilder: (context, index) => buildUserCardsItem(),
+//     separatorBuilder: (context, index) => SizedBox(height: 20,),
+//     itemCount: 5
+// );

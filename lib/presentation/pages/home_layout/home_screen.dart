@@ -3,7 +3,6 @@
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_states.dart';
 import 'package:e_consulting_flutter/data/models/home_model/home_data_model.dart';
-import 'package:e_consulting_flutter/data/models/home_model/home_model.dart';
 import 'package:e_consulting_flutter/data/models/search/search_data_model.dart';
 import 'package:e_consulting_flutter/presentation/pages/details_screen.dart';
 import 'package:e_consulting_flutter/presentation/pages/search_screen.dart';
@@ -40,7 +39,8 @@ class HomeScreen extends StatelessWidget {
             backgroundColor: AppColors.backgroundColor,
             elevation: 0.0,
             systemOverlayStyle:
-                SystemUiOverlayStyle(statusBarColor: AppColors.backgroundColor),
+                SystemUiOverlayStyle(statusBarColor: AppColors.backgroundColor, statusBarIconBrightness: Brightness.dark
+                ),
             title: Text(
               t.homePage,
               style: TextStyle(
@@ -84,7 +84,7 @@ class HomeScreen extends StatelessWidget {
                     height: 10,
                   ),
                   Container(
-                    height: 140,
+                    height: 105,
                     child: ListView.separated(
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
@@ -110,11 +110,14 @@ class HomeScreen extends StatelessWidget {
                             ),
                         itemCount: 7),
                   ),
+                  SizedBox(
+                    height: 15,
+                  ),
                   Align(
                       alignment: Alignment.center,
                       child: title(t.consultantsList)),
                   SizedBox(
-                    height: 15,
+                    height: 5,
                   ),
                   title(t.doctors),
                   listViewCard(screen: HomeDataModel.doctors),

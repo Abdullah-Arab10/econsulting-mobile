@@ -5,6 +5,7 @@ import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_cubit.d
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_states.dart';
 import 'package:e_consulting_flutter/data/models/search/search_data_model.dart';
 import 'package:e_consulting_flutter/generated/l10n.dart';
+import 'package:e_consulting_flutter/presentation/pages/details_screen.dart';
 import 'package:e_consulting_flutter/presentation/themes/colors.dart';
 import 'package:e_consulting_flutter/presentation/widgets/default_form_field.dart';
 import 'package:e_consulting_flutter/presentation/widgets/list_view_cards.dart';
@@ -23,7 +24,12 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var t = S.of(context);
     return BlocConsumer<HomeCubit, HomeStates>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if(state is HomeGetConsultantsDetailsSuccessState)
+        {
+          navigateTo(context, DetailsScreen());
+        }
+      },
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
@@ -39,7 +45,7 @@ class SearchScreen extends StatelessWidget {
             ),
           ),
           body: Padding(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(16),
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -70,7 +76,7 @@ class SearchScreen extends StatelessWidget {
                       screen: SearchDataModel.search,
                     ),
                     fallback: (context) =>
-                        Center(child: CircularProgressIndicator()),
+                        LinearProgressIndicator(),
                   ),
                 ],
               ),

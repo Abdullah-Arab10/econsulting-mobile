@@ -14,7 +14,6 @@ import 'package:e_consulting_flutter/presentation/widgets/navigate_to.dart';
 import 'package:e_consulting_flutter/presentation/widgets/select_consultations.dart';
 import 'package:e_consulting_flutter/presentation/widgets/show_toast.dart';
 import 'package:e_consulting_flutter/shared/constants/global_constants.dart';
-import 'package:e_consulting_flutter/utils/helpers/images_converter_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:e_consulting_flutter/generated/l10n.dart';
@@ -30,6 +29,7 @@ class ProfileScreen extends StatelessWidget {
       builder: (context, state) {
         var t = S.of(context);
         var cubit = BlocProvider.of<AuthCubit>(context).authLogin.user;
+        print(BlocProvider.of<AuthCubit>(context).authLogin.user.skill);
         return ConditionalBuilder(
           condition: cubit.role == 1,
           builder: (context) => Scaffold(
@@ -279,7 +279,7 @@ class ProfileScreen extends StatelessWidget {
                       height: 20,
                     ),
                     defaultFormField(
-                      initial: selectSkill(cubit.skill),
+                      initial: selectSkill(context,cubit.skill),
                       enable: false,
                       label: t.consultationType,
                       prefix: Icons.merge_type,

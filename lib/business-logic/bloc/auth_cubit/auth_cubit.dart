@@ -29,7 +29,7 @@ class AuthCubit extends Cubit<AuthStates> {
       'password': password,
     }).then((value) {
       authLogin = LoginModel.fromJson(value.data, value.statusCode);
-      print(authLogin);
+
       emit(LoginSuccessState(authLogin));
     }).catchError((error) {
       print(error.toString());
@@ -164,6 +164,7 @@ class AuthCubit extends Cubit<AuthStates> {
         'skill': skill,
         'shiftStart': shiftStart,
         'shiftEnd': shiftEnd,
+        'appointmentCost' : appointmentCost
       });
     } else {
       form = FormData.fromMap({
@@ -178,6 +179,7 @@ class AuthCubit extends Cubit<AuthStates> {
         'skill': skill,
         'shiftStart': shiftStart,
         'shiftEnd': shiftEnd,
+        'appointmentCost' : appointmentCost
       });
     }
     DioHelper.postForm(url: REGISTER_AS_CONSULTANT, data: form).then((value) {

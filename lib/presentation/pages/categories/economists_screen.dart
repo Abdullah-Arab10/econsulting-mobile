@@ -20,7 +20,10 @@ class EconomistsScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: categoriesBuilder(economists, context),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: cardsBuilder(economists, context, 'List of Economists is empty'),
+      ),
     );
   }
 }

@@ -11,14 +11,14 @@ import 'package:e_consulting_flutter/presentation/pages/categories/software_engi
 import 'package:e_consulting_flutter/presentation/pages/categories/therapists_screen.dart';
 import 'package:flutter/material.dart';
 
-List<IconData> icon = [
-  Icons.medical_services_rounded,
-  Icons.medication_liquid,
-  Icons.medical_information_sharp,
-  Icons.admin_panel_settings,
-  Icons.manage_accounts,
-  Icons.engineering_outlined,
-  Icons.engineering
+List<AssetImage> icon = [
+  AssetImage('assets/images/doctor.png'),
+  AssetImage('assets/images/dentist.png'),
+  AssetImage('assets/images/therapist.png'),
+  AssetImage('assets/images/lawyer.png'),
+  AssetImage('assets/images/accounting.png'),
+  AssetImage('assets/images/programmer.png'),
+  AssetImage('assets/images/worker.png'),
 ];
 
 List<Widget> widgets = [

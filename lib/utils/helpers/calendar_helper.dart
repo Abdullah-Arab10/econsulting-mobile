@@ -3,8 +3,10 @@
 
 import 'dart:collection';
 import 'dart:convert';
+import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_cubit.dart';
 import 'package:e_consulting_flutter/data/remote/dio_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 /// Example event class.
@@ -29,8 +31,8 @@ final kEvents = LinkedHashMap<DateTime, List<Event>>(
 );
 
 late Map<String, dynamic> appointments;
-void initAppointmentsCalendar() async {
-  var response = await DioHelper.getData(url: 'appointment/get-appointments/4');
+void initAppointmentsCalendar(id) async {
+  var response = await DioHelper.getData(url: 'appointment/get-appointments/$id');
   appointments = json.decode(response.toString());
   print("init calendar work ");
   List keys = appointments.keys.toList();

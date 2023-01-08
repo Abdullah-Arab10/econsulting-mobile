@@ -382,10 +382,11 @@ class ConsultantRegisterScreen extends StatelessWidget {
                         height: 20,
                       ),
                       ConditionalBuilder(
-                        condition: state is! LoginLoadingState,
+                        condition: state is! ConsultantRegisterLoadingState,
                         builder: (context) => defaultButton(
                           function: () {
                             if (formKey.currentState!.validate()) {
+                              print(appointmentCost.hashCode.bitLength);
                               AuthCubit.get(context).consultantRegister(
                                 firstName: firstNameController.text,
                                 lastName: lastNameController.text,
@@ -398,7 +399,7 @@ class ConsultantRegisterScreen extends StatelessWidget {
                                 skill: selectConsultations(context),
                                 email: emailController.text,
                                 password: passwordController.text,
-                                appointmentCost: appointmentCost.hashCode,
+                                appointmentCost: appointmentCost.hashCode.bitLength
                               );
                             }
                           },
