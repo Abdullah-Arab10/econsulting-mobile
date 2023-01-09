@@ -17,8 +17,10 @@ class Event {
   final String firstName;
   final String lastName;
   final String image;
+  final int clientId;
+  final int consultantId;
   const Event(this.appointmentStart, this.appointmentEnd, this.firstName,
-      this.lastName, this.image);
+      this.lastName, this.image,this.clientId,this.consultantId);
 
   // @override
   // String toString() => title;
@@ -46,7 +48,9 @@ void initAppointmentsCalendar(id) async {
             appointmentDetails.elementAt(index)['appointment_end'],
             appointmentDetails.elementAt(index)['first_name'],
             appointmentDetails.elementAt(index)['last_name'],
-            appointmentDetails.elementAt(index)['image']),
+            appointmentDetails.elementAt(index)['image'],
+          appointmentDetails.elementAt(index)['clientId'],
+      appointmentDetails.elementAt(index)['consultantId'])
       );
     },
   );

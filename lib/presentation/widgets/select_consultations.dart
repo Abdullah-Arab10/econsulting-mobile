@@ -7,25 +7,27 @@ int selectConsultations (context)
 {
   var cubit = AuthCubit.get(context);
 
-  if(cubit.selectedConsultation == 'Doctors')
+  var t = S.of(context);
+
+  if(cubit.selectedConsultation == t.doctor)
   {
     select = 0;
-  }else if(cubit.selectedConsultation == 'Dentists')
+  }else if(cubit.selectedConsultation == t.dentist)
   {
     select = 1;
-  }else if(cubit.selectedConsultation == 'Therapists')
+  }else if(cubit.selectedConsultation == t.therapist)
   {
     select = 2;
-  }else if(cubit.selectedConsultation == 'Lawyers')
+  }else if(cubit.selectedConsultation == t.lawyer)
   {
     select = 3;
-  }else if(cubit.selectedConsultation == 'Economics')
+  }else if(cubit.selectedConsultation == t.economic)
   {
     select = 4;
-  }else if(cubit.selectedConsultation == 'Software Engineers')
+  }else if(cubit.selectedConsultation == t.softwareEngineer)
   {
     select = 5;
-  }else if(cubit.selectedConsultation == 'Civil Engineers')
+  }else if(cubit.selectedConsultation == t.civilEngineer)
   {
     select = 6;
   }
@@ -40,37 +42,37 @@ String selectSkill(context,id)
 
   if(id == 0)
   {
-    skill = t.doctors;
+    skill = t.doctor;
     return skill;
   }
   else if(id == 1)
   {
-    skill = t.dentists;
+    skill = t.dentist;
     return skill;
   }
   else if(id == 2)
   {
-    skill = t.therapists;
+    skill = t.therapist;
     return skill;
   }
   else if(id == 3)
   {
-    skill = t.lawyers;
+    skill = t.lawyer;
     return skill;
   }
   else if(id == 4)
   {
-    skill = t.economics;
+    skill = t.economic;
     return skill;
   }
   else if(id == 5)
   {
-    skill = t.softwareEngineers;
+    skill = t.softwareEngineer;
     return skill;
   }
   else if(id == 6)
   {
-    skill = t.civilEngineers;
+    skill = t.civilEngineer;
     return skill;
   }
   else

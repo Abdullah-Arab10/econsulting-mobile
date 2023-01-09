@@ -58,3 +58,5 @@ class ChangeSelectedConsultationState extends AuthStates{}
 class ConsultantProfileImageSuccessState extends AuthStates{}
 
 class ConsultantProfileImageErrorState extends AuthStates{}
+
+class RemoveIndicatorState extends AuthStates{}

@@ -17,7 +17,6 @@ import 'package:e_consulting_flutter/utils/helpers/images_converter_helper.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:conditional_builder/conditional_builder.dart';
 import 'package:validators/validators.dart';
 
 class ConsultantRegisterScreen extends StatelessWidget {
@@ -51,32 +50,30 @@ class ConsultantRegisterScreen extends StatelessWidget {
 
   bool isEmailCorrect = false;
 
-  testGetImage() async {
-    Dio dio = new Dio();
-    dio.options.contentType = 'multipart/form-data';
-
-    var image;
-    var data = await dio.get("http://10.0.2.2:8000/api/auth/test2");
-    image = ImageConverter.dataFromBase64String(data.data);
-    print(image);
-    return image;
-    // dio
-    //     .post("http://10.0.2.2:8000/api/auth/test", data: data)
-  }
-
   @override
   Widget build(BuildContext context) {
     var t = S.of(context);
+    List<String> consultations = [
+      t.doctor,
+      t.dentist,
+      t.therapist,
+      t.lawyer,
+      t.economic,
+      t.softwareEngineer,
+      t.civilEngineer
+    ];
     return BlocConsumer<AuthCubit, AuthStates>(
       listener: (context, state) {
         if (state is ConsultantRegisterSuccessState) {
           if(state.authConsultantRegister.status == 200)
           {
             showToast(
-                text: 'Hello',
+                text: t.registerSuccessfully,
                 state: ToastStates.SUCCESS);
             navigateAndFinish(context, LoginScreen());
           }
+        }else if(state is ConsultantRegisterErrorState) {
+          showToast(text: t.emailOrPasswordError, state: ToastStates.ERROR);
         }
       },
       builder: (context, state) {
@@ -154,7 +151,7 @@ class ConsultantRegisterScreen extends StatelessWidget {
                               validate: (value) {
                                 if (value != null && value.isEmpty) {
                                   showToast(
-                                      text: 'first name must not be empty',
+                                      text: t.firstNameRequired,
                                       state: ToastStates.ERROR);
                                 }
                                 return null;
@@ -173,7 +170,7 @@ class ConsultantRegisterScreen extends StatelessWidget {
                               validate: (value) {
                                 if (value != null && value.isEmpty) {
                                   showToast(
-                                      text: 'last name must not be empty',
+                                      text: t.lastNameRequired,
                                       state: ToastStates.ERROR);
                                 }
                                 return null;
@@ -194,10 +191,10 @@ class ConsultantRegisterScreen extends StatelessWidget {
                           isEmailCorrect = isEmail(value!);
                           if (value.isEmpty) {
                             showToast(
-                                text: 'email must not be empty',
+                                text: t.requiredEmail,
                                 state: ToastStates.ERROR);
                           } else if (isEmailCorrect == false) {
-                            showToast(text: 'gg', state: ToastStates.ERROR);
+                            showToast(text: t.emailFormat, state: ToastStates.ERROR);
                           }
                           return null;
                         },
@@ -214,11 +211,11 @@ class ConsultantRegisterScreen extends StatelessWidget {
                         validate: (value) {
                           if (value != null && value.isEmpty) {
                             showToast(
-                                text: 'password must not be empty',
+                                text: t.requiredPassword,
                                 state: ToastStates.ERROR);
                           } else if (value!.length <= 5) {
                             showToast(
-                              text: 'ggg',
+                              text: t.passwordMin,
                               state: ToastStates.WARNING,
                             );
                           }
@@ -237,27 +234,19 @@ class ConsultantRegisterScreen extends StatelessWidget {
                         keyboardType: TextInputType.text,
                         label: t.address,
                         prefix: Icons.house_outlined,
-                        validate: (value) {
-                          if (value != null && value.isEmpty) {
-                            showToast(
-                                text: 'address must not be empty',
-                                state: ToastStates.ERROR);
-                          }
-                          return null;
-                        },
                       ),
                       const SizedBox(
                         height: 16,
                       ),
                       defaultFormField(
                         controller: phoneController,
-                        keyboardType: TextInputType.text,
+                        keyboardType: TextInputType.phone,
                         label: t.phone,
                         prefix: Icons.phone,
                         validate: (value) {
                           if (value != null && value.isEmpty) {
                             showToast(
-                                text: 'phone must not be empty',
+                                text: t.phoneRequired,
                                 state: ToastStates.ERROR);
                           }
                           return null;
@@ -277,7 +266,7 @@ class ConsultantRegisterScreen extends StatelessWidget {
                               validate: (value) {
                                 if (value != null && value.isEmpty) {
                                   showToast(
-                                      text: 'shift start must not be empty',
+                                      text: t.shiftStartRequired,
                                       state: ToastStates.ERROR);
                                 }
                                 return null;
@@ -305,7 +294,7 @@ class ConsultantRegisterScreen extends StatelessWidget {
                               validate: (value) {
                                 if (value != null && value.isEmpty) {
                                   showToast(
-                                      text: 'shift end must not be empty',
+                                      text: t.shiftEndRequired,
                                       state: ToastStates.ERROR);
                                 }
                                 return null;
@@ -331,20 +320,12 @@ class ConsultantRegisterScreen extends StatelessWidget {
                         keyboardType: TextInputType.text,
                         label: t.bio,
                         prefix: Icons.details,
-                        validate: (value) {
-                          if (value != null && value.isEmpty) {
-                            showToast(
-                                text: 'details must not be empty',
-                                state: ToastStates.ERROR);
-                          }
-                          return null;
-                        },
                       ),
                       const SizedBox(
                         height: 16,
                       ),
                       defaultDropdownButtonFormField(
-                        items: AuthCubit.get(context).consultations,
+                        items: consultations,
                         label: t.selectConsultation,
                         onChange: (val) {
                           AuthCubit.get(context)
@@ -355,7 +336,7 @@ class ConsultantRegisterScreen extends StatelessWidget {
                           if (AuthCubit.get(context).selectedConsultation ==
                               '') {
                             showToast(
-                                text: 'consultation must not be empty',
+                                text: t.consultationRequired,
                                 state: ToastStates.ERROR);
                           }
                           return null;
@@ -372,7 +353,7 @@ class ConsultantRegisterScreen extends StatelessWidget {
                         validate: (value) {
                           if (value != null && value.isEmpty) {
                             showToast(
-                                text: 'details must not be empty',
+                                text: t.appointmentCostRequired,
                                 state: ToastStates.ERROR);
                           }
                           return null;
@@ -381,12 +362,9 @@ class ConsultantRegisterScreen extends StatelessWidget {
                       const SizedBox(
                         height: 20,
                       ),
-                      ConditionalBuilder(
-                        condition: state is! ConsultantRegisterLoadingState,
-                        builder: (context) => defaultButton(
+                       defaultButton(
                           function: () {
                             if (formKey.currentState!.validate()) {
-                              print(appointmentCost.hashCode.bitLength);
                               AuthCubit.get(context).consultantRegister(
                                 firstName: firstNameController.text,
                                 lastName: lastNameController.text,
@@ -407,9 +385,6 @@ class ConsultantRegisterScreen extends StatelessWidget {
                           radius: 50,
                           color: AppColors.primaryColor
                         ),
-                        fallback: (context) =>
-                            Center(child: CircularProgressIndicator()),
-                      ),
                     ],
                   ),
                 ),

@@ -15,9 +15,15 @@ class AdminCubit extends Cubit<AdminStates>
     required String email,
     required String moneyAmount,
   }) {
+    emit(AdminTransferLoadingState());
     DioHelper.postData(url: TRANSFER, data: {
       'email': email,
       'cash': moneyAmount,
+    }).then((value) {
+      emit(AdminTransferSuccessState());
+    }).catchError((error){
+      print(error.toString());
+      emit(AdminTransferErrorState(error.toString()));
     });
   }
 }

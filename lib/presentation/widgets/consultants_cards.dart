@@ -4,7 +4,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_cubit.dart';
-import 'package:e_consulting_flutter/data/models/favorite/favorite_data_model.dart';
 import 'package:e_consulting_flutter/presentation/pages/appointment_screen.dart';
 import 'package:e_consulting_flutter/presentation/themes/colors.dart';
 import 'package:e_consulting_flutter/presentation/widgets/list_view_cards.dart';
@@ -147,7 +146,7 @@ Widget buildCardsItem(
                     height: 5,
                   ),
                   Text(
-                    '${item['bio']}',
+                    '${item['bio'] ?? ''}',
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
@@ -193,7 +192,7 @@ Widget buildCardsItem(
                             width: 3,
                           ),
                           Text(
-                            '${item['avgRating']}',
+                            '${item['avgRating'] ?? '0'}',
                             style: TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 10,
@@ -203,7 +202,7 @@ Widget buildCardsItem(
                             width: 10,
                           ),
                           Text(
-                            '${item['avgRating']}',
+                            '${item['ratingCount'] ?? '0'}',
                             style: TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 10,

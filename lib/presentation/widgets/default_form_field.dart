@@ -18,6 +18,7 @@ Widget defaultFormField({
   double borderWidth = 2.5,
   String? initial,
   bool? enable,
+  dynamic line = 1,
 }) =>
     TextFormField(
       controller: controller,
@@ -27,7 +28,7 @@ Widget defaultFormField({
       onFieldSubmitted: onSubmit,
       onTap: onTap,
       obscureText: isPassword,
-      //maxLines: null,
+      maxLines: line,
       decoration: InputDecoration(
         labelText: label,
         labelStyle: TextStyle(

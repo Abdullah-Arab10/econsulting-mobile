@@ -37,7 +37,7 @@ class FavoriteScreen extends StatelessWidget {
               child: ConditionalBuilder(
                 condition: state is! GetFavoriteListLoadingState,
                 builder: (context) => cardsBuilder(FavoriteDataModel.favoriteList,
-                    context, 'Favorite List is empty'),
+                    context, t.listIsEmpty),
                 fallback: (context) => Center(child: CircularProgressIndicator()),
               ),
             ));
