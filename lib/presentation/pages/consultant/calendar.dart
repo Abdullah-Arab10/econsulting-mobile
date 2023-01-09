@@ -108,124 +108,218 @@ class _ConsultantCalendarState extends State<ConsultantCalendar> {
                   itemCount: value.length,
                   separatorBuilder: (context, index) => SizedBox(height: 20,),
                   itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: AppColors.greyColor,
-                            borderRadius: BorderRadius.circular(16)),
-                        padding: EdgeInsets.all(10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              clipBehavior: Clip.antiAliasWithSaveLayer,
-                              child: CachedNetworkImage(
-                                imageUrl: value[index].image != null
-                                    ? "$STORAGE_URL${value[index].image}"
-                                    : "https://www.kindpng.com/picc/m/99-997900_headshot-silhouette-person-placeholder-hd-png-download.png",
-                                height: 125,
-                                width: 125,
-                                fit: BoxFit.cover,
-                                placeholder: (context, url) => CircularProgressIndicator(),
-                                errorWidget: (context, url, error) => Image(
-                                  image: AssetImage('assets/images/placeHolder.jpg'),
+                    if(value[index].consultantId == value[index].clientId)
+                    {
+                      return Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: AppColors.greyColor,
+                              borderRadius: BorderRadius.circular(16)),
+                          padding: EdgeInsets.all(10),
+                          child: Expanded(
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                                  child: Image(
+                                    width: 130,
+                                      height: 130,
+                                      image: AssetImage('assets/images/Dreamer.png'),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 30,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.only(
+                                    top: 16
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.calendar_today,
+                                            size: 25,
+                                            color: AppColors.primaryColor,
+                                          ),
+                                          SizedBox(
+                                            width: 5,
+                                          ),
+                                          Text(
+                                            t.vacation,
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w700,
+                                                color: Colors.grey
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            value[index].appointmentStart,
+                                            style: TextStyle(
+                                                fontSize: 16, fontWeight: FontWeight.w600),
+                                          ),
+                                          SizedBox(
+                                            width: 5,
+                                          ),
+                                          Icon(
+                                            Icons.arrow_forward_sharp,
+                                            size: 25,
+                                            color: AppColors.primaryColor,
+                                          ),
+                                          SizedBox(
+                                            width: 5,
+                                          ),
+                                          Text(
+                                            value[index].appointmentEnd,
+                                            style: TextStyle(
+                                                fontSize: 16, fontWeight: FontWeight.w600),
+                                          ),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    }else
+                    {
+                      return Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: AppColors.greyColor,
+                              borderRadius: BorderRadius.circular(16)),
+                          padding: EdgeInsets.all(10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                child: CachedNetworkImage(
+                                  imageUrl: value[index].image != null
+                                      ? "$STORAGE_URL${value[index].image}"
+                                      : "https://www.kindpng.com/picc/m/99-997900_headshot-silhouette-person-placeholder-hd-png-download.png",
+                                  height: 125,
+                                  width: 125,
+                                  fit: BoxFit.cover,
+                                  placeholder: (context, url) => CircularProgressIndicator(),
+                                  errorWidget: (context, url, error) => Image(
+                                    image: AssetImage('assets/images/placeHolder.jpg'),
+                                  ),
                                 ),
                               ),
-                            ),
-                            SizedBox(
-                              width: 30,
-                            ),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.assignment_ind,
-                                        size: 25,
-                                        color: AppColors.primaryColor,
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(
-                                        value[index].firstName,
-                                        style: TextStyle(
-                                            fontSize: 16, fontWeight: FontWeight.w600),
-                                      ),
-                                      SizedBox(
-                                        width: 7,
-                                      ),
-                                      Text(
-                                        value[index].lastName,
-                                        style: TextStyle(
-                                            fontSize: 16, fontWeight: FontWeight.w600),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.calendar_today,
-                                        size: 25,
-                                        color: AppColors.primaryColor,
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(
-                                        'Appointment :',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w700,
-                                          color: Colors.grey
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        value[index].appointmentStart,
-                                        style: TextStyle(
-                                            fontSize: 16, fontWeight: FontWeight.w600),
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Icon(
-                                          Icons.arrow_forward_sharp,
-                                        size: 25,
-                                        color: AppColors.primaryColor,
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(
-                                        value[index].appointmentEnd,
-                                        style: TextStyle(
-                                            fontSize: 16, fontWeight: FontWeight.w600),
-                                      ),
-                                    ],
-                                  )
-                                ],
+                              SizedBox(
+                                width: 30,
                               ),
-                            ),
-                          ],
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.assignment_ind,
+                                          size: 25,
+                                          color: AppColors.primaryColor,
+                                        ),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                        Text(
+                                          value[index].firstName,
+                                          style: TextStyle(
+                                              fontSize: 16, fontWeight: FontWeight.w600),
+                                        ),
+                                        SizedBox(
+                                          width: 7,
+                                        ),
+                                        Text(
+                                          value[index].lastName,
+                                          style: TextStyle(
+                                              fontSize: 16, fontWeight: FontWeight.w600),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.calendar_today,
+                                          size: 25,
+                                          color: AppColors.primaryColor,
+                                        ),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                        Text(
+                                          t.appointment,
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w700,
+                                              color: Colors.grey
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          value[index].appointmentStart,
+                                          style: TextStyle(
+                                              fontSize: 16, fontWeight: FontWeight.w600),
+                                        ),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                        Icon(
+                                          Icons.arrow_forward_sharp,
+                                          size: 25,
+                                          color: AppColors.primaryColor,
+                                        ),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                        Text(
+                                          value[index].appointmentEnd,
+                                          style: TextStyle(
+                                              fontSize: 16, fontWeight: FontWeight.w600),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    );
+                      );
+                    }
                   },
                 );
               },

@@ -6,6 +6,7 @@ import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_cubit.d
 import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_states.dart';
 import 'package:e_consulting_flutter/presentation/pages/auth/login_screen.dart';
 import 'package:e_consulting_flutter/presentation/pages/consultant/calendar.dart';
+import 'package:e_consulting_flutter/presentation/pages/vacation_screen.dart';
 import 'package:e_consulting_flutter/presentation/themes/colors.dart';
 import 'package:e_consulting_flutter/presentation/widgets/consultants_cards.dart';
 import 'package:e_consulting_flutter/presentation/widgets/default_button.dart';
@@ -14,6 +15,7 @@ import 'package:e_consulting_flutter/presentation/widgets/navigate_to.dart';
 import 'package:e_consulting_flutter/presentation/widgets/select_consultations.dart';
 import 'package:e_consulting_flutter/presentation/widgets/show_toast.dart';
 import 'package:e_consulting_flutter/shared/constants/global_constants.dart';
+import 'package:e_consulting_flutter/utils/helpers/cache_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:e_consulting_flutter/generated/l10n.dart';
@@ -64,6 +66,7 @@ class ProfileScreen extends StatelessWidget {
                             ),
                             Container(
                               width: 200,
+                              height: 50,
                               child: ElevatedButton(
                                 onPressed: () {
                                   BlocProvider.of<LocaleCubit>(context)
@@ -80,6 +83,7 @@ class ProfileScreen extends StatelessWidget {
                             ),
                             Container(
                               width: 200,
+                              height: 50,
                               child: ElevatedButton(
                                 onPressed: () {
                                   BlocProvider.of<LocaleCubit>(context)
@@ -99,7 +103,7 @@ class ProfileScreen extends StatelessWidget {
                               height: 10,
                             ),
                             Text(
-                              t.calendar,
+                              t.appointments,
                               style: TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 20,
@@ -110,12 +114,29 @@ class ProfileScreen extends StatelessWidget {
                             ),
                             Container(
                               width: 200,
+                              height: 50,
                               child: ElevatedButton(
                                 onPressed: () {
                                   navigateTo(context, ConsultantCalendar());
                                 },
                                 child: Text(
                                   t.calendar,
+                                  style: TextStyle(fontWeight: FontWeight.w700),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Container(
+                              width: 200,
+                              height: 50,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  navigateTo(context, VacationScreen());
+                                },
+                                child: Text(
+                                  t.takeVacation,
                                   style: TextStyle(fontWeight: FontWeight.w700),
                                 ),
                               ),
@@ -129,12 +150,12 @@ class ProfileScreen extends StatelessWidget {
                                     child: defaultButton(
                                         text: t.logout,
                                         function: () {
-                                          showToast(
-                                              text: t.logoutSuccess,
-                                              state: ToastStates.SUCCESS);
-                                          navigateAndFinish(
-                                              context, LoginScreen());
-                                        },
+                                              showToast(
+                                                  text: t.logoutSuccess,
+                                                  state: ToastStates.SUCCESS);
+                                              navigateAndFinish(
+                                                  context, LoginScreen());
+                                            },
                                         width: 200,
                                         color: AppColors.errorColor,
                                         radius: 50),
@@ -230,6 +251,7 @@ class ProfileScreen extends StatelessWidget {
                       enable: false,
                       label: t.address,
                       prefix: Icons.house_outlined,
+                      line: null
                     ),
                     const SizedBox(
                       height: 20,
@@ -274,6 +296,7 @@ class ProfileScreen extends StatelessWidget {
                       enable: false,
                       label: t.bio,
                       prefix: Icons.details,
+                        line: null
                     ),
                     const SizedBox(
                       height: 20,
@@ -357,12 +380,12 @@ class ProfileScreen extends StatelessWidget {
                                     child: defaultButton(
                                         text: t.logout,
                                         function: () {
-                                          showToast(
-                                              text: t.logoutSuccess,
-                                              state: ToastStates.SUCCESS);
-                                          navigateAndFinish(
-                                              context, LoginScreen());
-                                        },
+                                              showToast(
+                                                  text: t.logoutSuccess,
+                                                  state: ToastStates.SUCCESS);
+                                              navigateAndFinish(
+                                                  context, LoginScreen());
+                                            },
                                         width: 200,
                                         color: AppColors.errorColor,
                                         radius: 50),
@@ -458,6 +481,7 @@ class ProfileScreen extends StatelessWidget {
                       enable: false,
                       label: t.address,
                       prefix: Icons.house_outlined,
+                        line: null
                     ),
                     const SizedBox(
                       height: 20,

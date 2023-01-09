@@ -25,21 +25,39 @@ class RegisterTypeScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            buttonRegisterType(
+            Text(
+              t.registerAs,
+              style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.secondaryColor),
+            ),
+            Image(
+                height: 400,
+                width: double.infinity,
+                image: AssetImage('assets/images/Choice.png')),
+            SizedBox(
+              height: 30,
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.all(33),
+              child: buttonRegisterType(
                 onTap: () {
                   navigateTo(context, ConsultantRegisterScreen());
                 },
-                text1: t.registerAs,
-                text2: t.consultant),
-            SizedBox(
-              height: 40,
+                text1: t.consultant,
+              ),
             ),
-            buttonRegisterType(
+            Padding(
+              padding:
+                  EdgeInsetsDirectional.only(start: 33, end: 33, bottom: 33),
+              child: buttonRegisterType(
                 onTap: () {
                   navigateTo(context, UserRegisterScreen());
                 },
-                text1: t.registerAsu,
-                text2: t.user),
+                text1: t.user,
+              ),
+            ),
           ],
         ),
       ),
@@ -50,32 +68,19 @@ class RegisterTypeScreen extends StatelessWidget {
 Widget buttonRegisterType({
   required VoidCallback? onTap,
   required String text1,
-  required String text2,
 }) =>
     InkWell(
       onTap: onTap,
       child: Container(
-        height: 200,
-        width: 200,
+        height: 50,
+        width: double.infinity,
         decoration: BoxDecoration(
             color: AppColors.primaryColor,
             borderRadius: BorderRadius.circular(50)),
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                text1,
-                style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                text2,
-                style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
-              ),
-            ],
+          child: Text(
+            text1,
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
         ),
       ),

@@ -1,7 +1,6 @@
 // ignore_for_file: constant_identifier_names
-
-//const BASE_URL = "http://10.0.2.2:8000/api/";
-//const STORAGE_URL = "http://10.0.2.2:8000/storage/";
+// const BASE_URL = "http://10.0.2.2:8000/api/";
+// const STORAGE_URL = "http://10.0.2.2:8000/storage/";
 const BASE_URL = "http://192.168.1.14:8000/api/";
 const STORAGE_URL = "http://192.168.1.14:8000/storage/";
 const LOGIN = 'auth/login';
@@ -14,3 +13,4 @@ const SEARCH = 'consultant/search';
 const RATE = 'rate';
 const FAVORITE = 'favorite';
 const GET_FAVORITE = 'getFavorite/';
+const VACATION = 'appointment/vacation';

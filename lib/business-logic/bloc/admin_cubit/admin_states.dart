@@ -6,4 +6,7 @@ class AdminTransferLoadingState extends AdminStates{}
 
 class AdminTransferSuccessState extends AdminStates{}
 
-class AdminTransferErrorState extends AdminStates{}
+class AdminTransferErrorState extends AdminStates{
+  final String error;
+  AdminTransferErrorState(this.error);
+}

@@ -1,5 +1,4 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:e_consulting_flutter/app_router.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_cubit.dart';
@@ -8,24 +7,33 @@ import 'package:e_consulting_flutter/data/remote/dio_helper.dart';
 import 'package:e_consulting_flutter/presentation/pages/home_layout/home_layout_screen.dart';
 import 'package:e_consulting_flutter/presentation/pages/on_boarding_screen.dart';
 import 'package:e_consulting_flutter/shared/constants/bloc_observer.dart';
+import 'package:e_consulting_flutter/utils/helpers/cache_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'generated/l10n.dart';
 import 'presentation/themes/app_theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
+void main() async
+{
+  WidgetsFlutterBinding.ensureInitialized();
+
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
 
   runApp(ConsultingApp(
     appRouter: AppRouter(),
+    //startWidget: widget,
   ));
 }
 
 class ConsultingApp extends StatelessWidget {
   final AppRouter appRouter;
-  const ConsultingApp({super.key, required this.appRouter});
+  //final Widget? startWidget;
+  const ConsultingApp({super.key,
+    required this.appRouter,
+    //this.startWidget,
+  });
 
   // This widget is the root of your application.
   @override

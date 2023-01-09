@@ -29,7 +29,6 @@ class AuthCubit extends Cubit<AuthStates> {
       'password': password,
     }).then((value) {
       authLogin = LoginModel.fromJson(value.data, value.statusCode);
-
       emit(LoginSuccessState(authLogin));
     }).catchError((error) {
       print(error.toString());
@@ -96,16 +95,6 @@ class AuthCubit extends Cubit<AuthStates> {
         isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
     emit(ChangePasswordVisibilityState());
   }
-
-  List<String> consultations = [
-    'Doctors',
-    'Dentists',
-    'Therapists',
-    'Lawyers',
-    'Economics',
-    'Software Engineers',
-    'Civil Engineers'
-  ];
 
   String selectedConsultation = '';
 
@@ -191,6 +180,9 @@ class AuthCubit extends Cubit<AuthStates> {
       emit(ConsultantRegisterErrorState(error.toString()));
     });
   }
-}
 
-class A extends AuthCubit {}
+  void removeIndicator()
+  {
+    emit(RemoveIndicatorState());
+  }
+}

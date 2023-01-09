@@ -14,7 +14,6 @@ import 'package:e_consulting_flutter/presentation/widgets/show_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:conditional_builder/conditional_builder.dart';
 import 'package:validators/validators.dart';
 
 class UserRegisterScreen extends StatelessWidget {
@@ -47,7 +46,7 @@ class UserRegisterScreen extends StatelessWidget {
           if(state.authUserRegister.status == 200)
           {
             showToast(
-                text: 'Hello',
+                text: t.registerSuccessfully,
                 state: ToastStates.SUCCESS);
             navigateAndFinish(context, LoginScreen());
           }
@@ -117,7 +116,7 @@ class UserRegisterScreen extends StatelessWidget {
                         validate: (value) {
                           if(value != null && value.isEmpty){
                             showToast(
-                                text: 'first name must not be empty',
+                                text: t.firstNameRequired,
                                 state: ToastStates.ERROR
                             );
                           }
@@ -135,7 +134,7 @@ class UserRegisterScreen extends StatelessWidget {
                         validate: (value) {
                           if(value != null && value.isEmpty){
                             showToast(
-                                text: 'last name must not be empty',
+                                text: t.lastNameRequired,
                                 state: ToastStates.ERROR
                             );
                           }
@@ -150,28 +149,19 @@ class UserRegisterScreen extends StatelessWidget {
                         keyboardType: TextInputType.text,
                         label: t.address,
                         prefix: Icons.house_outlined,
-                        validate: (value) {
-                          if(value != null && value.isEmpty){
-                            showToast(
-                                text: 'address must not be empty',
-                                state: ToastStates.ERROR
-                            );
-                          }
-                          return null;
-                        },
                       ),
                       const SizedBox(
                         height: 10,
                       ),
                       defaultFormField(
                         controller: phoneController,
-                        keyboardType: TextInputType.text,
+                        keyboardType: TextInputType.phone,
                         label: t.phone,
                         prefix: Icons.phone,
                         validate: (value) {
                           if(value != null && value.isEmpty){
                             showToast(
-                                text: 'phone must not be empty',
+                                text: t.phoneRequired,
                                 state: ToastStates.ERROR
                             );
                           }
@@ -190,13 +180,13 @@ class UserRegisterScreen extends StatelessWidget {
                           isEmailCorrect = isEmail(value!);
                           if(value.isEmpty){
                             showToast(
-                                text: 'email must not be empty',
+                                text: t.requiredEmail,
                                 state: ToastStates.ERROR
                             );
                           }else if(isEmailCorrect == false)
                           {
                             showToast(
-                                text: 'gg',
+                                text: t.emailFormat,
                                 state: ToastStates.ERROR
                             );
                           }
@@ -216,13 +206,13 @@ class UserRegisterScreen extends StatelessWidget {
                           if(value != null && value.isEmpty)
                           {
                             showToast(
-                                text: 'password must not be empty',
+                                text: t.requiredPassword,
                                 state: ToastStates.ERROR
                             );
                           }else if(value!.length <= 5)
                           {
                             showToast(
-                              text: 'ggg',
+                              text: t.passwordMin,
                               state: ToastStates.WARNING,
                             );
                           }
@@ -238,9 +228,7 @@ class UserRegisterScreen extends StatelessWidget {
                       const SizedBox(
                         height: 20,
                       ),
-                      ConditionalBuilder(
-                        condition: state is! LoginLoadingState,
-                        builder: (context) => defaultButton(
+                      defaultButton(
                           function: (){
                             if(formKey.currentState!.validate()){
                               AuthCubit.get(context).userRegister(
@@ -258,8 +246,6 @@ class UserRegisterScreen extends StatelessWidget {
                           radius: 50,
                             color: AppColors.primaryColor
                         ),
-                        fallback: (context) => Center(child: CircularProgressIndicator()),
-                      ),
                     ],
                   ),
                 ),

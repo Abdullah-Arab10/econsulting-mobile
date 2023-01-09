@@ -1,10 +1,10 @@
 // ignore_for_file: prefer_const_constructors
-
-import 'package:conditional_builder/conditional_builder.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/appointment_cubit/appointment_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/appointment_cubit/appointment_states.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_cubit.dart';
+import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_cubit.dart';
 import 'package:e_consulting_flutter/generated/l10n.dart';
+import 'package:e_consulting_flutter/presentation/pages/home_layout/home_layout_screen.dart';
 import 'package:e_consulting_flutter/presentation/themes/colors.dart';
 import 'package:e_consulting_flutter/presentation/widgets/default_button.dart';
 import 'package:e_consulting_flutter/presentation/widgets/default_form_field.dart';
@@ -13,21 +13,24 @@ import 'package:e_consulting_flutter/presentation/widgets/show_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import 'home_layout/home_layout_screen.dart';
-
-class AppointmentScreen extends StatelessWidget {
-  final int id;
-  AppointmentScreen(this.id);
+class VacationScreen extends StatelessWidget {
 
   var dateController = TextEditingController();
 
-  var shiftStartController = TextEditingController();
+  var vacationStartController = TextEditingController();
+
+  var vacationEndController = TextEditingController();
+
+  var repeatController = TextEditingController();
 
   var formKey = GlobalKey<FormState>();
 
   bool isEmailCorrect = false;
+
+  late int repeat;
 
   @override
   Widget build(BuildContext context) {
@@ -36,32 +39,30 @@ class AppointmentScreen extends StatelessWidget {
       create: (context) => AppointmentCubit(),
       child: BlocConsumer<AppointmentCubit, AppointmentStates>(
         listener: (context, state) {
-          if (state is BookAppointmentSuccessState) {
-            if (state.appointmentModel.status == 200) {
+          if (state is BookVacationSuccessState) {
+            if (state.vacationModel.status == 200) {
               showToast(
-                  text: t.appointmentCreatedSuccessfully,
+                  text: t.vacationCreatedSuccessfully,
                   state: ToastStates.SUCCESS);
+              HomeCubit.get(context).currentIndex = 0;
               navigateTo(context, HomeLayoutScreen());
             }
-          } else if (state is BookAppointmentErrorState) {
-            if (state.appointmentErrorModel.errorId == 0) {
+          } else if (state is BookVacationErrorState) {
+            print(state.vacationErrorModel.errorId);
+            if (state.vacationErrorModel.errorId == 0) {
               showToast(text: t.consultantNotFound, state: ToastStates.ERROR);
             }
-            if (state.appointmentErrorModel.errorId == 1) {
-              showToast(text: t.userNotFound, state: ToastStates.ERROR);
+            if (state.vacationErrorModel.errorId == 1) {
+              showToast(text: t.addVacationInYourWorkShifts, state: ToastStates.ERROR);
             }
-            if (state.appointmentErrorModel.errorId == 2) {
+            if (state.vacationErrorModel.errorId == 2) {
               showToast(
-                  text: t.consultantNotAvailable, state: ToastStates.ERROR);
+                  text: t.upcomingVacationInTheSameTime, state: ToastStates.ERROR);
             }
-            if (state.appointmentErrorModel.errorId == 3) {
+            if (state.vacationErrorModel.errorId == 3) {
               showToast(
-                  text: t.youHaveAnotherAppointmentError,
+                  text: t.upcomingAppointments,
                   state: ToastStates.ERROR);
-            }
-            if (state.appointmentErrorModel.errorId == 4) {
-              showToast(
-                  text: t.youHaveNoEnoughCashError, state: ToastStates.ERROR);
             }
           }
         },
@@ -87,7 +88,7 @@ class AppointmentScreen extends StatelessWidget {
                           alignment: Alignment.topCenter,
                           child: Image(
                             height: 350,
-                            image: AssetImage('assets/images/appointment.png'),
+                            image: AssetImage('assets/images/vacation.png'),
                           ),
                         ),
                         const SizedBox(
@@ -108,14 +109,12 @@ class AppointmentScreen extends StatelessWidget {
                             onTap: () {
                               showDatePicker(
                                 context: context,
-                                // DateTime.parse(DateFormat.yMd('en')
-                                //   .format(DateTime.now()))
                                 initialDate: DateTime.now(),
                                 firstDate: DateTime.now(),
                                 lastDate: DateTime.parse('2024-12-31'),
                               ).then((value) {
                                 var formattedDate =
-                                    DateFormat.yMd('en').format(value!);
+                                DateFormat.yMd('en').format(value!);
                                 dateController.text = formattedDate;
                               });
                               print(dateController.text);
@@ -124,14 +123,14 @@ class AppointmentScreen extends StatelessWidget {
                           height: 15,
                         ),
                         defaultFormField(
-                          controller: shiftStartController,
+                          controller: vacationStartController,
                           keyboardType: TextInputType.text,
-                          label: t.appointmentStart,
+                          label: t.vacationStart,
                           prefix: Icons.watch_later_outlined,
                           validate: (value) {
                             if (value != null && value.isEmpty) {
                               showToast(
-                                  text: t.timeRequired,
+                                  text: t.vacationStartRequired,
                                   state: ToastStates.ERROR);
                             }
                             return null;
@@ -141,11 +140,69 @@ class AppointmentScreen extends StatelessWidget {
                               context: context,
                               initialTime: TimeOfDay.now(),
                             ).then((value) {
-                              shiftStartController.text =
+                              vacationStartController.text =
                                   value!.format(context).toString();
                             });
-                            print(shiftStartController.text);
+                            print(vacationStartController.text);
                           },
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        defaultFormField(
+                          controller: vacationEndController,
+                          keyboardType: TextInputType.text,
+                          label: t.vacationEnd,
+                          prefix: Icons.watch_later_outlined,
+                          validate: (value) {
+                            if (value != null && value.isEmpty) {
+                              showToast(
+                                  text: t.vacationEndRequired,
+                                  state: ToastStates.ERROR);
+                            }
+                            return null;
+                          },
+                          onTap: () {
+                            showTimePicker(
+                              context: context,
+                              initialTime: TimeOfDay.now(),
+                            ).then((value) {
+                              vacationEndController.text =
+                                  value!.format(context).toString();
+                            });
+                            print(vacationEndController.text);
+                          },
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        defaultFormField(
+                          controller: repeatController,
+                          keyboardType: TextInputType.number,
+                          label: t.repeat,
+                          prefix: Icons.repeat,
+                          validate: (value) {
+                            if (value!.isEmpty) {
+                              repeat = 0;
+                            }else if(value.isCaseInsensitiveContainsAny('-') ||
+                                value.isCaseInsensitiveContainsAny(',') ||
+                                value.isCaseInsensitiveContainsAny('.')
+                            )
+                            {
+                              showToast(
+                                  text: t.repeatRequired,
+                                  state: ToastStates.ERROR);
+                            }else if(value.hashCode.bitLength >= 0)
+                            {
+                              repeat = value.hashCode.bitLength;
+                            }
+                            return null;
+                          },
+                          onChange: (value)
+                          {
+
+                            print(value);
+                          }
                         ),
                         const SizedBox(
                           height: 20,
@@ -153,18 +210,16 @@ class AppointmentScreen extends StatelessWidget {
                         defaultButton(
                               function: () {
                                 if (formKey.currentState!.validate()) {
-                                  AppointmentCubit.get(context).bookAppointment(
+                                  AppointmentCubit.get(context).bookVacation(
                                       date: dateController.text,
-                                      start: shiftStartController.text,
-                                      consultantId: id,
-                                      clientId:
-                                          BlocProvider.of<AuthCubit>(context)
-                                              .authLogin
-                                              .user
-                                              .id);
+                                    vacationStart: vacationStartController.text,
+                                    vacationEnd: vacationEndController.text,
+                                    consultantId: BlocProvider.of<AuthCubit>(context).authLogin.user.id,
+                                    repeat: repeat,
+                                      );
                                 }
                               },
-                              text: t.book,
+                              text: t.takeVacation,
                               radius: 50,
                               color: AppColors.primaryColor),
                       ],

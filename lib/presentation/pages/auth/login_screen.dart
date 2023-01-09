@@ -4,6 +4,7 @@
 import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_states.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_cubit.dart';
+import 'package:e_consulting_flutter/data/models/home_model/home_data_model.dart';
 import 'package:e_consulting_flutter/presentation/pages/admin/admin_screen.dart';
 import 'package:e_consulting_flutter/presentation/pages/auth/register_type_screen.dart';
 import 'package:e_consulting_flutter/presentation/pages/home_layout/home_layout_screen.dart';
@@ -12,10 +13,10 @@ import 'package:e_consulting_flutter/presentation/widgets/default_button.dart';
 import 'package:e_consulting_flutter/presentation/widgets/default_form_field.dart';
 import 'package:e_consulting_flutter/presentation/widgets/navigate_to.dart';
 import 'package:e_consulting_flutter/presentation/widgets/show_toast.dart';
+import 'package:e_consulting_flutter/utils/helpers/cache_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:conditional_builder/conditional_builder.dart';
 import 'package:validators/validators.dart';
 import 'package:e_consulting_flutter/generated/l10n.dart';
 
@@ -38,18 +39,26 @@ class LoginScreen extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthStates>(
       listener: (context, state) {
         if (state is LoginSuccessState) {
+          HomeDataModel.doctors = [];
+          HomeDataModel.dentists = [];
+          HomeDataModel.therapists = [];
+          HomeDataModel.lawyers = [];
+          HomeDataModel.economists = [];
+          HomeDataModel.software_engineers = [];
+          HomeDataModel.civil_engineers = [];
           if (state.authLogin.status == 200) {
-            showToast(text: t.loginSuccess, state: ToastStates.SUCCESS);
             if (state.authLogin.user.role == 1 ||
                 state.authLogin.user.role == 2) {
+              HomeCubit.get(context).getHomeData(context);
               HomeCubit.get(context).currentIndex = 0;
               navigateAndFinish(context, HomeLayoutScreen());
             } else if (state.authLogin.user.role == 0) {
               navigateAndFinish(context, AdminScreen());
             }
+            showToast(text: t.loginSuccess, state: ToastStates.SUCCESS);
           }
         } else if(state is LoginErrorState) {
-          showToast(text: t.loginError, state: ToastStates.ERROR);
+          showToast(text: t.emailOrPasswordError, state: ToastStates.ERROR);
         }
       },
       builder: (context, state) {
@@ -117,6 +126,7 @@ class LoginScreen extends StatelessWidget {
                               text: t.passwordMin,
                               state: ToastStates.WARNING,
                             );
+
                           }
                           return null;
                         },
@@ -128,9 +138,7 @@ class LoginScreen extends StatelessWidget {
                       const SizedBox(
                         height: 20,
                       ),
-                      ConditionalBuilder(
-                        condition: state is! LoginLoadingState,
-                        builder: (context) => defaultButton(
+                      defaultButton(
                             function: () {
                               if (formKey.currentState!.validate()) {
                                 AuthCubit.get(context).userLogin(
@@ -141,9 +149,7 @@ class LoginScreen extends StatelessWidget {
                             },
                             text: t.login,
                             radius: 50,
-                            color: AppColors.primaryColor),
-                        fallback: (context) =>
-                            Center(child: CircularProgressIndicator()),
+                            color: AppColors.primaryColor
                       ),
                       const SizedBox(
                         height: 20,

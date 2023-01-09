@@ -9,6 +9,7 @@ import 'package:e_consulting_flutter/presentation/themes/colors.dart';
 import 'package:e_consulting_flutter/presentation/widgets/default_button.dart';
 import 'package:e_consulting_flutter/presentation/widgets/default_form_field.dart';
 import 'package:e_consulting_flutter/presentation/widgets/select_consultations.dart';
+import 'package:e_consulting_flutter/presentation/widgets/show_toast.dart';
 import 'package:e_consulting_flutter/shared/constants/global_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,7 +27,12 @@ class _DetailsScreenState extends State<DetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<HomeCubit, HomeStates>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if(state is ConsultantRatingSuccess)
+        {
+          showToast(text: t.ratingSuccessfully, state: ToastStates.SUCCESS);
+        }
+      },
       builder: (context, state) {
         var t = S.of(context);
         var cubit = BlocProvider.of<HomeCubit>(context).detailsModel.data;
@@ -119,6 +125,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     enable: false,
                     label: t.address,
                     prefix: Icons.house_outlined,
+                      line: null
                   ),
                   const SizedBox(
                     height: 20,
@@ -163,6 +170,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     enable: false,
                     label: t.bio,
                     prefix: Icons.details,
+                      line: null
                   ),
                   const SizedBox(
                     height: 20,
@@ -184,7 +192,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     child: Column(
                       children: [
                         Text(
-                          'Rating',
+                          t.rating,
                           style: TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
