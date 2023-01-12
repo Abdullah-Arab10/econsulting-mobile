@@ -2,6 +2,7 @@
 
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_states.dart';
+import 'package:e_consulting_flutter/data/models/favorite/favorite_data_model.dart';
 import 'package:e_consulting_flutter/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,6 +23,10 @@ class HomeLayoutScreen extends StatelessWidget {
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: cubit.currentIndex,
             onTap: (value) {
+              if(value == 1)
+              {
+                FavoriteDataModel.favoriteList.clear();
+              }
               cubit.changeIndex(context,value);
             },
             items: [

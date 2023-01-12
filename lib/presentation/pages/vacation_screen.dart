@@ -45,7 +45,7 @@ class VacationScreen extends StatelessWidget {
                   text: t.vacationCreatedSuccessfully,
                   state: ToastStates.SUCCESS);
               HomeCubit.get(context).currentIndex = 0;
-              navigateTo(context, HomeLayoutScreen());
+              navigateAndFinish(context, HomeLayoutScreen());
             }
           } else if (state is BookVacationErrorState) {
             print(state.vacationErrorModel.errorId);

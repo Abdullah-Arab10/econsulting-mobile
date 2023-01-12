@@ -1,6 +1,4 @@
 // ignore_for_file: prefer_const_constructors
-
-
 import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_states.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/home_cubit/home_cubit.dart';
@@ -39,16 +37,16 @@ class LoginScreen extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthStates>(
       listener: (context, state) {
         if (state is LoginSuccessState) {
-          HomeDataModel.doctors = [];
-          HomeDataModel.dentists = [];
-          HomeDataModel.therapists = [];
-          HomeDataModel.lawyers = [];
-          HomeDataModel.economists = [];
-          HomeDataModel.software_engineers = [];
-          HomeDataModel.civil_engineers = [];
           if (state.authLogin.status == 200) {
             if (state.authLogin.user.role == 1 ||
                 state.authLogin.user.role == 2) {
+              HomeDataModel.doctors = [];
+              HomeDataModel.dentists = [];
+              HomeDataModel.therapists = [];
+              HomeDataModel.lawyers = [];
+              HomeDataModel.economists = [];
+              HomeDataModel.software_engineers = [];
+              HomeDataModel.civil_engineers = [];
               HomeCubit.get(context).getHomeData(context);
               HomeCubit.get(context).currentIndex = 0;
               navigateAndFinish(context, HomeLayoutScreen());

@@ -74,6 +74,8 @@ class SearchScreen extends StatelessWidget {
                     condition: state is! SearchGetConsultantLoading,
                     builder: (context) => listViewCard(
                       screen: SearchDataModel.search,
+                      scroll: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
                     ),
                     fallback: (context) =>
                         LinearProgressIndicator(),

@@ -12,7 +12,7 @@ class ConsultantData
   late int skill;
   late String shiftStart;
   late String shiftEnd;
-
+  late int userId;
   ConsultantData.fromJson(dynamic json)
   {
 json=json[0];
@@ -28,5 +28,6 @@ json=json[0];
     skill = json['skill'];
     shiftStart = json['shiftStart'];
     shiftEnd = json['shiftEnd'];
+    userId = json['user_id'];
   }
 }

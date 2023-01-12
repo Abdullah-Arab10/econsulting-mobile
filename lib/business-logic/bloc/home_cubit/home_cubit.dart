@@ -35,9 +35,19 @@ class HomeCubit extends Cubit<HomeStates> {
     emit(HomeBottomNavState());
     if(index == 1)
     {
-      FavoriteDataModel.favoriteList = [];
       emit(GetFavoriteListLoadingState());
+      FavoriteDataModel.favoriteList.clear();
       getFavoriteList(context);
+    }else if(index == 0)
+    {
+      HomeDataModel.doctors = [];
+      HomeDataModel.dentists = [];
+      HomeDataModel.therapists = [];
+      HomeDataModel.lawyers = [];
+      HomeDataModel.economists = [];
+      HomeDataModel.software_engineers = [];
+      HomeDataModel.civil_engineers = [];
+      HomeCubit.get(context).getHomeData(context);
     }
   }
 
@@ -202,9 +212,8 @@ class HomeCubit extends Cubit<HomeStates> {
         'clientid' : clientId,
       }
   ).then((value) {
-
     emit(FavoriteSuccessState());
-    FavoriteDataModel.favoriteList = [];
+    FavoriteDataModel.favoriteList.clear();
     getFavoriteList(context);
   },).catchError((error)
   {
@@ -216,7 +225,7 @@ class HomeCubit extends Cubit<HomeStates> {
 void getFavoriteList(context)
 {
   int id = BlocProvider.of<AuthCubit>(context).authLogin.user.id;
-
+  FavoriteDataModel.favoriteList.clear();
   emit(GetFavoriteListLoadingState());
 
   DioHelper.getData(

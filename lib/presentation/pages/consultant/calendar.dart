@@ -104,15 +104,19 @@ class _ConsultantCalendarState extends State<ConsultantCalendar> {
             child: ValueListenableBuilder<List<Event>>(
               valueListenable: _selectedEvents,
               builder: (context, value, _) {
-                return ListView.separated(
+                return ListView.builder(
                   itemCount: value.length,
-                  separatorBuilder: (context, index) => SizedBox(height: 20,),
                   itemBuilder: (context, index) {
-                    if(value[index].consultantId == value[index].clientId)
+                    if(BlocProvider.of<AuthCubit>(context).authLogin.user.id == value[index].clientId)
                     {
                       return Padding(
-                        padding: const EdgeInsets.all(20),
+                        padding: const EdgeInsetsDirectional.only(
+                          start: 20,
+                          end: 20,
+                          bottom: 20
+                        ),
                         child: Container(
+                          width: double.infinity,
                           decoration: BoxDecoration(
                               color: AppColors.greyColor,
                               borderRadius: BorderRadius.circular(16)),
@@ -202,7 +206,11 @@ class _ConsultantCalendarState extends State<ConsultantCalendar> {
                     }else
                     {
                       return Padding(
-                        padding: const EdgeInsets.all(20),
+                        padding: const EdgeInsetsDirectional.only(
+                          start: 20,
+                          end: 20,
+                          bottom: 20
+                        ),
                         child: Container(
                           decoration: BoxDecoration(
                               color: AppColors.greyColor,

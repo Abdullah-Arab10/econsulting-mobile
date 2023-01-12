@@ -47,7 +47,7 @@ class ConsultingApp extends StatelessWidget {
           create: (context) => AuthCubit(),
         ),
         BlocProvider(
-          create: (context) => HomeCubit()..getHomeData(context),
+          create: (context) => HomeCubit(),
         )
       ],
       child: BlocBuilder<LocaleCubit, ChangeLocaleState>(

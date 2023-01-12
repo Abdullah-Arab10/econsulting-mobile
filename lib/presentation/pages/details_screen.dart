@@ -227,7 +227,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             min: 1,
                             onChanged: (value) {
                               setState(() {
-                                start = value;
+                                start = value.roundToDouble();
                               });
                             }),
                         SizedBox(
@@ -240,7 +240,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             function: () {
                               HomeCubit.get(context).postConsultantRating(
                                   rating: start,
-                                  consultantId: cubit.id,
+                                  consultantId: cubit.userId,
                                 clientId: BlocProvider.of<AuthCubit>(context)
                                     .authLogin
                                     .user

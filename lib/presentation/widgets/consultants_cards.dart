@@ -52,7 +52,7 @@ Widget buildCategoriesItem(
           maxLines: 1,
           style: TextStyle(
               overflow: TextOverflow.ellipsis,
-              fontSize: 20,
+              fontSize: 16,
               fontWeight: FontWeight.w700,
               color: Colors.grey),
         ),
@@ -147,7 +147,7 @@ Widget buildCardsItem(
                   ),
                   Text(
                     '${item['bio'] ?? ''}',
-                    maxLines: 2,
+                    maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       fontSize: 11,

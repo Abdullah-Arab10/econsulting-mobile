@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 
+import 'dart:io';
+
 import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_cubit.dart';
 import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_states.dart';
 import 'package:e_consulting_flutter/generated/l10n.dart';
@@ -53,6 +55,7 @@ class UserRegisterScreen extends StatelessWidget {
         }
       },
       builder: (context, state) {
+        File? profileImage = AuthCubit.get(context).profileImage;
         return Scaffold(
           backgroundColor: AppColors.backgroundColor,
           appBar: AppBar(
@@ -238,7 +241,7 @@ class UserRegisterScreen extends StatelessWidget {
                                 password: passwordController.text,
                                 address: addressController.text,
                                 phone: phoneController.text,
-                                //image: ,
+                                image: profileImage,
                               );
                             }
                           },

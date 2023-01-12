@@ -186,7 +186,7 @@ class AdminScreen extends StatelessWidget {
                               showToast(
                                   text: t.repeatRequired,
                                   state: ToastStates.ERROR);
-                            }else if(value.isCaseInsensitiveContainsAny('0'))
+                            }else if(value == '0')
                             {
                               showToast(
                                   text: t.cashMustBeGreaterThanZero,

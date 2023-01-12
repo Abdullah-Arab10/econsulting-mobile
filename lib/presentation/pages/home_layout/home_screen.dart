@@ -84,7 +84,7 @@ class HomeScreen extends StatelessWidget {
                     height: 10,
                   ),
                   Container(
-                    height: 105,
+                    height: 120,
                     child: ListView.separated(
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
@@ -116,23 +116,48 @@ class HomeScreen extends StatelessWidget {
                   Align(
                       alignment: Alignment.center,
                       child: title(t.consultantsList)),
-                  SizedBox(
-                    height: 5,
-                  ),
                   title(t.doctors),
-                  listViewCard(screen: HomeDataModel.doctors),
+                  listViewCard(
+                      screen: HomeDataModel.doctors,
+                    scroll: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true
+                  ),
                   title(t.dentists),
-                  listViewCard(screen: HomeDataModel.dentists),
+                  listViewCard(
+                      screen: HomeDataModel.dentists,
+                      scroll: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true
+                  ),
                   title(t.therapists),
-                  listViewCard(screen: HomeDataModel.therapists),
+                  listViewCard(
+                      screen: HomeDataModel.therapists,
+                      scroll: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true
+                  ),
                   title(t.lawyers),
-                  listViewCard(screen: HomeDataModel.lawyers),
+                  listViewCard(
+                      screen: HomeDataModel.lawyers,
+                      scroll: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true
+                  ),
                   title(t.economics),
-                  listViewCard(screen: HomeDataModel.economists),
+                  listViewCard(
+                      screen: HomeDataModel.economists,
+                      scroll: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true
+                  ),
                   title(t.softwareEngineers),
-                  listViewCard(screen: HomeDataModel.software_engineers),
+                  listViewCard(
+                      screen: HomeDataModel.software_engineers,
+                      scroll: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true
+                  ),
                   title(t.civilEngineers),
-                  listViewCard(screen: HomeDataModel.civil_engineers),
+                  listViewCard(
+                      screen: HomeDataModel.civil_engineers,
+                      scroll: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true
+                  ),
                 ],
               ),
             ),

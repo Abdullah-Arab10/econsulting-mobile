@@ -4,9 +4,11 @@ import 'package:flutter/cupertino.dart';
 
 Widget listViewCard({
   screen,
+  NeverScrollableScrollPhysics? scroll,
+  bool shrinkWrap = false,
 }) => ListView.separated(
-    physics: NeverScrollableScrollPhysics(),
-    shrinkWrap: true,
+    physics: scroll,
+    shrinkWrap: shrinkWrap,
     itemBuilder: (context, index) => buildCardsItem(
       screen[index],
       context

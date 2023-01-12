@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:e_consulting_flutter/business-logic/bloc/auth_cubit/auth_cubit.dart';
 import 'package:e_consulting_flutter/generated/l10n.dart';
 import 'package:e_consulting_flutter/presentation/pages/auth/consultant_register_screen.dart';
 import 'package:e_consulting_flutter/presentation/pages/auth/user_register_screen.dart';
@@ -43,6 +44,7 @@ class RegisterTypeScreen extends StatelessWidget {
               padding: EdgeInsetsDirectional.all(33),
               child: buttonRegisterType(
                 onTap: () {
+                  AuthCubit.get(context).profileImage = null;
                   navigateTo(context, ConsultantRegisterScreen());
                 },
                 text1: t.consultant,
@@ -53,6 +55,7 @@ class RegisterTypeScreen extends StatelessWidget {
                   EdgeInsetsDirectional.only(start: 33, end: 33, bottom: 33),
               child: buttonRegisterType(
                 onTap: () {
+                  AuthCubit.get(context).profileImage = null;
                   navigateTo(context, UserRegisterScreen());
                 },
                 text1: t.user,
